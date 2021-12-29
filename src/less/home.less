@@ -1,0 +1,45 @@
+@Montserrat: "Montserrat", sans-serif;
+
+.main-container {
+  width: 100%;
+  height: 20rem;
+  position: relative;
+  // margin-top: 0.5rem;
+
+  main {
+    background-color: rgba(76, 131, 122, 0.8);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      color: #fff;
+      position: absolute;
+      top: 20%;
+      left: 4rem;
+      font-family: @Montserrat;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 4rem;
+      font-family: @Montserrat;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: -1;
+      filter: grayscale(100%);
+    }
+  }
+}

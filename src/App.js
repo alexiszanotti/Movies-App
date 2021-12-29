@@ -1,9 +1,15 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 
 function App() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
     </div>
   );
 }
