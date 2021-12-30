@@ -5,7 +5,7 @@
 @color3: rgb(76, 131, 122);
 @Montserrat: "Montserrat", sans-serif;
 
-.container {
+.container1 {
   h1 {
     text-align: center;
     font-family: @Montserrat;
@@ -14,14 +14,13 @@
     border-radius: 10px;
     background-color: @color1;
     color: @color2;
-    width: 25%;
+    width: 20%;
   }
 }
 .movie-container {
   width: 95%;
   margin: 1rem auto;
   height: 80%;
-  background-color: @color2;
   padding: 0.5rem;
   img {
     border-radius: 20px;
@@ -45,6 +44,7 @@
   img {
     width: 18rem;
     margin: 0 auto;
+    box-shadow: 10px 10px 10px #111;
   }
 
   h3 {
@@ -62,7 +62,9 @@
 }
 
 .arrow {
-  padding: 2.5rem;
+  color: @color2;
+  background-color: @color3;
+  padding: 0.5rem;
   border-radius: 20%;
   font-size: 1.6rem;
   position: absolute;

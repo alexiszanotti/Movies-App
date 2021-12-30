@@ -2,24 +2,22 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "../less/movie.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
-const apiKey = process.env.REACT_APP_API_KEY;
-
-const Movies = () => {
-  const [movies, setMovies] = useState([]);
+const Series = () => {
+  const apiKey = "7c703bc4ce83a4e6ccf422ae071636e7";
+  const [series, setSeries] = useState([]);
   const [imageIndex, setImageIndex] = useState(0);
 
-  const getMovies = async () => {
+  const getSeries = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-ES`
+        `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=es-ES`
       );
 
       if (data.status === 200) {
         const resultado = await data.json();
 
-        setMovies(resultado.results);
+        setSeries(resultado.results);
       } else {
         console.log("Error");
       }
@@ -28,7 +26,7 @@ const Movies = () => {
     }
   };
   useEffect(() => {
-    getMovies();
+    getSeries();
   }, []);
 
   const NextArrow = ({ onClick }) => {
@@ -88,19 +86,17 @@ const Movies = () => {
   };
 
   return (
-    <div className='container'>
-      <h1>Peliculas populares</h1>
+    <div className='container1'>
+      <h1>Series populares</h1>
       <div className='movie-container'>
         <Slider {...settings}>
-          {movies.map((movie, index) => (
-            <div key={movie.id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
-              <Link to={`/pelicula/${movie.id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={`${movie.title}`}
-                />
-              </Link>
-              <h3>{movie.title}</h3>
+          {series.map((series, index) => (
+            <div key={series.id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
+                alt={`${series.name}`}
+              />
+              <h3>{series.name}</h3>
             </div>
           ))}
         </Slider>
@@ -109,4 +105,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Series;

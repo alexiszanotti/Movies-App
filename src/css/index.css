@@ -1,8 +1,10 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 .nav-container {
   width: 100%;
-  height: 4rem;
+  height: 5rem;
   background-color: #04253a;
 }
 .nav-container nav {
@@ -126,10 +128,14 @@
   filter: grayscale(100%);
 }
 .container h1 {
-  color: #04253a;
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  margin: 1rem;
+  margin: 1.5rem -10px;
+  border: 5px solid #04253a;
+  border-radius: 10px;
+  background-color: #04253a;
+  color: #e4ddbf;
+  width: 25%;
 }
 .movie-container {
   width: 95%;
@@ -170,21 +176,19 @@
   opacity: 1;
 }
 .arrow {
-  color: #e4ddbf;
-  background-color: #04253a;
-  padding: 0.8rem;
+  padding: 2.5rem;
   border-radius: 20%;
-  font-size: 2rem;
+  font-size: 1.6rem;
   position: absolute;
   cursor: pointer;
   z-index: 10;
 }
 .arrow svg {
   transition: color 0.5s;
-  padding-top: 4px;
+  margin-top: 0.4rem;
 }
 .arrow svg:hover {
-  color: #4c837a;
+  color: #04253a;
 }
 @media screen and (max-width: 800px) {
   .arrow {
@@ -203,11 +207,113 @@
 }
 .next {
   right: -1.5rem;
-  top: 40%;
+  top: 35%;
 }
 .prev {
   left: -1.5rem;
-  top: 40%;
+  top: 35%;
+}
+.container1 h1 {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  margin: 1.5rem -10px;
+  border: 5px solid #04253a;
+  border-radius: 10px;
+  background-color: #04253a;
+  color: #e4ddbf;
+  width: 20%;
+}
+.movie-container {
+  width: 95%;
+  margin: 1rem auto;
+  height: 80%;
+  padding: 0.5rem;
+}
+.movie-container img {
+  border-radius: 20px;
+}
+@media screen and (max-width: 600px) {
+  .movie-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+}
+.slide {
+  transform: scale(0.7);
+  transition: transform 500ms;
+  opacity: 0.5;
+}
+.slide img {
+  width: 18rem;
+  margin: 0 auto;
+  box-shadow: 10px 10px 10px #111;
+}
+.slide h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  color: #04253a;
+  text-align: center;
+  margin: 0.5rem;
+}
+.activeSlide {
+  transform: scale(1);
+  opacity: 1;
+}
+.arrow {
+  color: #e4ddbf;
+  background-color: #4c837a;
+  padding: 0.5rem;
+  border-radius: 20%;
+  font-size: 1.6rem;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+.arrow svg {
+  transition: color 0.5s;
+  margin-top: 0.4rem;
+}
+.arrow svg:hover {
+  color: #04253a;
+}
+@media screen and (max-width: 800px) {
+  .arrow {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .arrow {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .arrow {
+    font-size: 0.8rem;
+  }
+}
+.next {
+  right: -1.5rem;
+  top: 35%;
+}
+.prev {
+  left: -1.5rem;
+  top: 35%;
+}
+.detail-movie {
+  display: flex;
+  margin: 1rem;
+}
+.detail-cast {
+  display: flex;
+  margin-left: 1rem;
+}
+.detail-cast img {
+  width: 20vh;
+  height: 30vh;
+  border-radius: 20px;
+  margin-right: 1rem;
 }
 body {
   background-color: #e4ddbf;
