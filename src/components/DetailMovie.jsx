@@ -1,7 +1,9 @@
 import "../less/detailMovie.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import HorizontalScroll from "react-scroll-horizontal";
+import { Link, useParams } from "react-router-dom";
+import ImgPerfil from "../img/Img-Default-Perfil.jpg";
+import Slider from "react-slick";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -9,11 +11,12 @@ const DetailMovie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const [credits, setCredits] = useState({});
+  const [imageIndex, setImageIndex] = useState(0);
 
   const getMovie = async () => {
     try {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-ES`
       );
       if (res.status === 200) {
         const data = await res.json();
@@ -42,10 +45,62 @@ const DetailMovie = () => {
       console.log(error);
     }
   };
-  console.log(credits);
 
-  const child = { width: `20vh`, height: `100%` };
-  const parent = { width: `100vh`, height: `100%` };
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className='arrow1 next1' onClick={onClick}>
+        <FaArrowRight />
+      </div>
+    );
+  };
+
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className='arrow1 prev1' onClick={onClick}>
+        <FaArrowLeft />
+      </div>
+    );
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    lazyLoad: true,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 8,
+    centerMode: true,
+    centerPadding: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    beforeChange: (current, next) => setImageIndex(next),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   useEffect(() => {
     getMovie();
@@ -55,7 +110,7 @@ const DetailMovie = () => {
   return (
     <div className='container-movie'>
       <div className='detail-movie'>
-        <div className='detail-image'>
+        <div>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
         </div>
         <div className='detail-info'>
@@ -69,12 +124,19 @@ const DetailMovie = () => {
           <p>{movie.overview}</p>
           <div className='detail-info-rating'>
             <div className='detail-info-rating-average'>
-              <p>{`${movie.vote_average}/10`}</p>
-              <p>Puntuación</p>
+              <p>
+                {" "}
+                <span>
+                  <i className='fas fa-poll'></i>
+                </span>
+                {`${movie.vote_average}/10`}
+              </p>
             </div>
             <div className='detail-info-rating-count'>
-              <p>{movie.vote_count}</p>
-              <p>Votos</p>
+              <p>
+                <i className='fas fa-award'></i>
+                {movie.vote_count} <span>Votos</span>
+              </p>
             </div>
           </div>
           <div className='production-companies'>
@@ -94,7 +156,7 @@ const DetailMovie = () => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <i className='fab fa-youtube'></i>
+                Ver trailer <i className='fab fa-youtube'></i>
               </a>
             </button>
           </div>
@@ -102,17 +164,33 @@ const DetailMovie = () => {
       </div>
       <h2>Reparto</h2>
       <div className='detail-cast'>
-        {credits.cast &&
-          credits.cast.map((actor, index) => (
-            <div key={actor.id} className='detail-cast-actor'>
-              <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
-              <div className='detail-cast-actor-info'>
-                <h3>{actor.name}</h3>
-                <p>{actor.character}</p>
+        <Slider {...settings}>
+          {credits.cast &&
+            credits.cast.map((actor, index) => (
+              <div
+                key={actor.id}
+                className={index === imageIndex ? "slide1 activeSlide1" : "slide1"}
+              >
+                {actor.profile_path ? (
+                  <img
+                    className='img-perfil'
+                    src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                    alt={actor.name}
+                  />
+                ) : (
+                  <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
+                )}
+                <div>
+                  <h4>{actor.name}</h4>
+                  <p>{actor.character}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </Slider>
       </div>
+      <Link to='/'>
+        <button className='btn-back'>Volver</button>
+      </Link>
     </div>
   );
 };

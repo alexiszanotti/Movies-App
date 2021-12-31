@@ -1,3 +1,5 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 @color1: rgb(4, 37, 58);
 @color2: rgb(228, 221, 191);
 @color3: rgb(76, 131, 122);
@@ -8,13 +10,202 @@
   margin: 1rem;
 }
 
-.detail-cast {
-  display: flex;
-  margin-left: 1rem;
-  img {
-    width: 20vh;
-    height: 30vh;
-    border-radius: 20px;
-    margin-right: 1rem;
+.container-movie {
+  h2 {
+    font-family: Montserrat;
+    font-size: 2rem;
+    font-weight: bold;
+    color: @color2;
+    margin: 2rem -2rem;
+    background-color: @color1;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 20%;
+    text-align: center;
   }
+}
+
+.slide1 {
+  img {
+    width: 9rem;
+    height: 50%;
+    border-radius: 20px;
+    margin: 0.5rem;
+  }
+
+  h4 {
+    font-family: @Montserrat;
+    color: @color1;
+  }
+
+  p {
+    font-family: @Montserrat;
+    color: @color3;
+  }
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
+
+.arrow1 {
+  padding: 2.5rem;
+  border-radius: 20%;
+  font-size: 1.6rem;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+
+  svg {
+    transition: color 0.5s;
+    margin-top: 0.4rem;
+    &:hover {
+      color: @color1;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 0.8rem;
+  }
+}
+
+.next1 {
+  right: -5rem;
+  top: 20%;
+}
+
+.prev1 {
+  left: -5rem;
+  top: 20%;
+}
+
+.detail-cast {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.detail-movie {
+  width: 100%;
+  position: relative;
+  padding: 1rem;
+  margin-left: 0;
+  margin-top: 0;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+}
+
+.detail-info {
+  width: 100%;
+  padding: 1rem;
+  margin-left: 3rem;
+  h1 {
+    font-family: @Montserrat;
+    color: @color3;
+    font-size: 2.5rem;
+    span {
+      font-size: 1.8rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  span {
+    font-family: @Montserrat;
+    color: @color1;
+  }
+
+  p {
+    font-family: @Montserrat;
+    color: @color3;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+}
+
+.detail-info-rating-average {
+  i {
+    font-size: 1.8rem;
+    color: @color1;
+    margin-right: 0.5rem;
+  }
+  p {
+    color: @color1;
+  }
+
+  h4 {
+    margin-top: 1rem;
+    margin-bottom: -0.5rem;
+    font-family: @Montserrat;
+    color: @color1;
+    font-size: 1.5rem;
+  }
+}
+
+.detail-info-rating-count {
+  p {
+    color: @color1;
+    font-size: 1.4rem;
+  }
+  i {
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.production-companies {
+  p {
+    margin-bottom: 0.5rem;
+  }
+  span {
+    font-size: 1.2rem;
+  }
+}
+
+.detail-info-buttons {
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: @color1;
+    background-color: @color1;
+    color: @color2;
+    padding: 4px;
+  }
+  button {
+    font-family: @Montserrat;
+    border-radius: 5px;
+    background-color: @color2;
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: @color2;
+    border: 1px solid @color1;
+  }
+  i {
+    font-size: 1.5rem;
+    margin: 0.5rem;
+  }
+}
+
+.btn-back {
+  margin: 4rem 35rem;
+  font-size: 1.2rem;
+  color: @color2;
+  width: 30%;
+  text-align: center;
+  background-color: @color1;
+  border: 1px solid @color1;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-family: @Montserrat;
+  cursor: pointer;
 }
