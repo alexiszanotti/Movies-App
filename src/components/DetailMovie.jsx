@@ -63,14 +63,12 @@ const DetailMovie = () => {
   };
 
   const settings = {
-    dots: true,
     infinite: true,
-    lazyLoad: true,
+    lazyLoad: false,
     speed: 500,
+    dots: true,
     slidesToShow: 8,
-    slidesToScroll: 8,
-    centerMode: true,
-    centerPadding: 0,
+    slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     beforeChange: (current, next) => setImageIndex(next),
@@ -109,56 +107,72 @@ const DetailMovie = () => {
 
   return (
     <div className='container-movie'>
-      <div className='detail-movie'>
-        <div>
-          <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+      <div className='container-movie-detail'>
+        <div className='img-fondo'></div>
+        <div className='container-movie-detail-img'>
+          {movie.backdrop_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+              alt='backdrop'
+            />
+          ) : (
+            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='backdrop' />
+          )}
         </div>
-        <div className='detail-info'>
-          <h1>{movie.title}</h1>
-          {movie.genres &&
-            movie.genres.map((genre, index) => (
-              <span key={genre.id}>
-                {genre.name} {index !== movie.genres.length - 1 ? "- " : ""}
-              </span>
-            ))}
-          <p>{movie.overview}</p>
-          <div className='detail-info-rating'>
-            <div className='detail-info-rating-average'>
-              <p>
-                {" "}
-                <span>
-                  <i className='fas fa-poll'></i>
-                </span>
-                {`${movie.vote_average}/10`}
-              </p>
-            </div>
-            <div className='detail-info-rating-count'>
-              <p>
-                <i className='fas fa-award'></i>
-                {movie.vote_count} <span>Votos</span>
-              </p>
-            </div>
+        <div className='detail-movie'>
+          <div>
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
           </div>
-          <div className='production-companies'>
-            <p>Compañías de producción:</p>
-            {movie.production_companies &&
-              movie.production_companies.map((company, index) => (
-                <span key={company.id}>
-                  {company.name} {index !== movie.production_companies.length - 1 ? ", " : ""}
+          <div className='detail-info'>
+            <h1>{movie.title}</h1>
+            {movie.genres &&
+              movie.genres.map((genre, index) => (
+                <span key={genre.id}>
+                  {genre.name} {index !== movie.genres.length - 1 ? "- " : ""}
                 </span>
               ))}
-          </div>
+            <span>{`(${movie.runtime} min)`}</span>
+            <p>{movie.tagline ? `"${movie.tagline}"` : ""}</p>
+            <p>{movie.overview}</p>
+            <div className='detail-info-rating'>
+              <div className='detail-info-rating-average'>
+                <p>
+                  {" "}
+                  <span>
+                    <i className='fas fa-poll'></i>
+                  </span>
+                  {`${movie.vote_average}/10`}
+                </p>
+              </div>
+              <div className='detail-info-rating-count'>
+                <p>
+                  <i className='fas fa-thumbs-up'></i>
+                  {movie.vote_count} <span>Votos</span>
+                </p>
+              </div>
+            </div>
 
-          <div className='detail-info-buttons'>
-            <button>
-              <a
-                href={`https://www.youtube.com/results?search_query=${movie.title}`}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Ver trailer <i className='fab fa-youtube'></i>
-              </a>
-            </button>
+            <div className='production-companies'>
+              <p>Compañías de producción:</p>
+              {movie.production_companies &&
+                movie.production_companies.map((company, index) => (
+                  <span key={company.id}>
+                    {company.name} {index !== movie.production_companies.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+            </div>
+
+            <div className='detail-info-buttons'>
+              <button>
+                <a
+                  href={`https://www.youtube.com/results?search_query=${movie.title}`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Ver trailer <i className='fab fa-youtube'></i>
+                </a>
+              </button>
+            </div>
           </div>
         </div>
       </div>
