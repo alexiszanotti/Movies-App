@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import DetailMovie from "./components/DetailMovie";
+import DetailSerie from "./components/DetailSerie";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/pelicula/:id' element={<DetailMovie />} />
+        <Route path='/serie/:id' element={<DetailSerie />} />
       </Routes>
     </div>
   );

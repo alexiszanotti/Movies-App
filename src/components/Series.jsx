@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "../less/movie.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Series = () => {
   const apiKey = "7c703bc4ce83a4e6ccf422ae071636e7";
@@ -92,10 +93,12 @@ const Series = () => {
         <Slider {...settings}>
           {series.map((series, index) => (
             <div key={series.id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
-                alt={`${series.name}`}
-              />
+              <Link to={`/serie/${series.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}
+                  alt={`${series.name}`}
+                />
+              </Link>
               <h3>{series.name}</h3>
             </div>
           ))}

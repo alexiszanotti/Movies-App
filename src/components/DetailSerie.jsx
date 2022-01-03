@@ -1,4 +1,4 @@
-import "../less/detailMovie.css";
+import "../less/detailSerie.css";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ImgPerfil from "../img/Img-Default-Perfil.jpg";
@@ -7,20 +7,20 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const DetailMovie = () => {
+const DetailSerie = () => {
   const { id } = useParams();
-  const [movie, setMovie] = useState({});
+  const [serie, setSerie] = useState({});
   const [credits, setCredits] = useState({});
   const [imageIndex, setImageIndex] = useState(0);
 
-  const getMovie = async () => {
+  const getSerie = async () => {
     try {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-ES`
+        `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=es-ES`
       );
       if (res.status === 200) {
         const data = await res.json();
-        setMovie(data);
+        setSerie(data);
       } else {
         console.log("error");
       }
@@ -32,7 +32,7 @@ const DetailMovie = () => {
   const getCredits = async () => {
     try {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=es-ES`
+        `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=es-ES`
       );
 
       if (res.status === 200) {
@@ -48,7 +48,7 @@ const DetailMovie = () => {
 
   const NextArrow = ({ onClick }) => {
     return (
-      <div className='arrow1 next1' onClick={onClick}>
+      <div className='arrow3 next3' onClick={onClick}>
         <FaArrowRight />
       </div>
     );
@@ -56,7 +56,7 @@ const DetailMovie = () => {
 
   const PrevArrow = ({ onClick }) => {
     return (
-      <div className='arrow1 prev1' onClick={onClick}>
+      <div className='arrow3 prev3' onClick={onClick}>
         <FaArrowLeft />
       </div>
     );
@@ -64,10 +64,11 @@ const DetailMovie = () => {
 
   const settings = {
     infinite: true,
-    lazyLoad: false,
+    lazyLoad: true,
     speed: 500,
     dots: true,
-    slidesToShow: 8,
+    rows: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -101,39 +102,39 @@ const DetailMovie = () => {
   };
 
   useEffect(() => {
-    getMovie();
+    getSerie();
     getCredits();
   }, [id]);
 
   return (
-    <div className='container-movie'>
-      <div className='container-movie-detail'>
-        <div className='img-fondo'></div>
-        <div className='container-movie-detail-img'>
-          {movie.backdrop_path ? (
+    <div className='container-serie'>
+      <div className='container-serie-detail'>
+        <div className='img-fondo1'></div>
+        <div className='container-serie-detail-img'>
+          {serie.backdrop_path ? (
             <img
-              src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/original/${serie.backdrop_path}`}
               alt='backdrop'
             />
           ) : (
-            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='backdrop' />
+            <img src={`https://image.tmdb.org/t/p/original/${serie.poster_path}`} alt='backdrop' />
           )}
         </div>
-        <div className='detail-movie'>
+        <div className='detail-serie'>
           <div>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+            <img src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} />
           </div>
-          <div className='detail-info'>
-            <h1>{movie.title}</h1>
-            {movie.genres &&
-              movie.genres.map((genre, index) => (
+          <div className='detail-info1'>
+            <h1>{serie.name}</h1>
+            {serie.genres &&
+              serie.genres.map((genre, index) => (
                 <span key={genre.id}>
-                  {genre.name} {index !== movie.genres.length - 1 ? "- " : ""}
+                  {genre.name} {index !== serie.genres.length - 1 ? "- " : ""}
                 </span>
               ))}
-            <span>{`(${movie.runtime} min)`}</span>
-            <p>{movie.tagline ? `"${movie.tagline}"` : ""}</p>
-            <p>{movie.overview}</p>
+            <span>{`(${serie.episode_run_time} min)`}</span>
+            <p>{serie.tagline ? `"${serie.tagline}"` : ""}</p>
+            <p>{serie.overview}</p>
             <div className='detail-info-rating'>
               <div className='detail-info-rating-average'>
                 <p>
@@ -141,37 +142,48 @@ const DetailMovie = () => {
                   <span>
                     <i className='fas fa-poll'></i>
                   </span>
-                  {`${movie.vote_average}/10`}
+                  {`${serie.vote_average}/10`}
                 </p>
               </div>
               <div className='detail-info-rating-count'>
                 <p>
                   <i className='fas fa-thumbs-up'></i>
-                  {movie.vote_count} <span>Votos</span>
+                  {serie.vote_count} <span>Votos</span>
                 </p>
               </div>
             </div>
-            <div className='sitioWeb'>
-              <a href={movie.homepage} target='_blank' rel='noopener noreferrer'>
-                <i className='fas fa-link'></i>
-                <span>Sitio web</span>
-              </a>
+
+            <div className='networks'>
+              {serie.networks &&
+                serie.networks.map(network => (
+                  <div key={network.id}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200/${network.logo_path}`}
+                      alt={network.name}
+                    />
+                  </div>
+                ))}
             </div>
 
-            <div className='production-companies'>
-              <p>Compañías de producción:</p>
-              {movie.production_companies &&
-                movie.production_companies.map((company, index) => (
-                  <span key={company.id}>
-                    {company.name} {index !== movie.production_companies.length - 1 ? ", " : ""}
-                  </span>
-                ))}
+            <div className='created-by'>
+              <div className='creador'>
+                <p>Creado por:</p>
+                {serie.created_by &&
+                  serie.created_by.map((creator, index) => (
+                    <span key={creator.id}>
+                      {creator.name} {index !== serie.created_by.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+              </div>
+
+              <h5>Temporadas: {serie.number_of_seasons}</h5>
+              <h5>Episodios: {serie.number_of_episodes}</h5>
             </div>
 
             <div className='detail-info-buttons'>
               <button>
                 <a
-                  href={`https://www.youtube.com/results?search_query=${movie.title}`}
+                  href={`https://www.youtube.com/results?search_query=${serie.title}`}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -189,7 +201,7 @@ const DetailMovie = () => {
             credits.cast.map((actor, index) => (
               <div
                 key={actor.id}
-                className={index === imageIndex ? "slide1 activeSlide1" : "slide1"}
+                className={index === imageIndex ? "slide8 activeSlide8" : "slide8"}
               >
                 {actor.profile_path ? (
                   <img
@@ -215,4 +227,4 @@ const DetailMovie = () => {
   );
 };
 
-export default DetailMovie;
+export default DetailSerie;
