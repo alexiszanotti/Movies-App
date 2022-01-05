@@ -17,6 +17,7 @@
     width: 100%;
     height: auto;
     border-radius: 20px;
+    object-fit: cover;
   }
 }
 
@@ -40,8 +41,6 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
     z-index: -1;
 
     img {
@@ -148,7 +147,7 @@
 
 .next3 {
   right: -5rem;
-  top: 20%;
+  top: 30%;
 }
 
 .prev3 {
@@ -168,7 +167,6 @@
   margin-left: 3rem;
   h1 {
     font-family: @Montserrat;
-
     color: @color2;
     font-size: 2.5rem;
     span {
@@ -197,11 +195,11 @@
   margin-top: 1rem;
   width: 100%;
   height: 100%;
-  // background-color: rgba(228, 221, 191, 0.2);
   border-radius: 20px;
+
   img {
-    width: 8rem;
-    height: 2rem;
+    width: 50%;
+    height: 50%;
     margin: 0.5rem;
     border-radius: 0;
   }
@@ -284,5 +282,40 @@
     font-size: 1.5rem;
     margin-right: 1rem;
     font-weight: 400;
+  }
+}
+.seasons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+
+  .seasons-container {
+    width: 15%;
+    margin-bottom: 2rem;
+    .img-container {
+      width: 30vh;
+      height: 50vh;
+      margin-bottom: -2rem;
+      img {
+        width: 100%;
+        height: 90%;
+        border-radius: 20px;
+      }
+    }
+
+    h4 {
+      font-family: @Montserrat;
+      color: @color1;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+    p {
+      font-family: @Montserrat;
+      color: @color3;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+    }
   }
 }

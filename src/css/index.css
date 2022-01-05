@@ -175,93 +175,7 @@
   color: #04253a;
   text-align: center;
   margin: 0.5rem;
-}
-.activeSlide {
-  transform: scale(1);
-  opacity: 1;
-}
-.arrow {
-  padding: 2.5rem;
-  border-radius: 20%;
-  font-size: 1.6rem;
-  position: absolute;
-  cursor: pointer;
-  z-index: 10;
-}
-.arrow svg {
-  transition: color 0.5s;
-  margin-top: 0.4rem;
-}
-.arrow svg:hover {
-  color: #04253a;
-}
-@media screen and (max-width: 800px) {
-  .arrow {
-    font-size: 1.5rem;
-  }
-}
-@media screen and (max-width: 600px) {
-  .arrow {
-    font-size: 1rem;
-  }
-}
-@media screen and (max-width: 400px) {
-  .arrow {
-    font-size: 0.8rem;
-  }
-}
-.next {
-  right: -1.5rem;
-  top: 35%;
-}
-.prev {
-  left: -1.5rem;
-  top: 35%;
-}
-.container1 h1 {
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
-  margin: 1.5rem -10px;
-  border: 5px solid #04253a;
-  border-radius: 10px;
-  background-color: #04253a;
-  color: #e4ddbf;
-  width: 20%;
   font-weight: 600;
-}
-.movie-container {
-  width: 95%;
-  margin: 1rem auto;
-  height: 80%;
-  padding: 0.5rem;
-}
-.movie-container img {
-  border-radius: 20px;
-}
-@media screen and (max-width: 600px) {
-  .movie-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-}
-.slide {
-  transform: scale(0.7);
-  transition: transform 500ms;
-  opacity: 0.5;
-}
-.slide img {
-  width: 18rem;
-  margin: 0 auto;
-  box-shadow: 5px 5px 5px #111;
-}
-.slide h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
-  color: #04253a;
-  text-align: center;
-  margin: 0.5rem;
 }
 .activeSlide {
   transform: scale(1);
@@ -307,6 +221,96 @@
   left: -1.5rem;
   top: 35%;
 }
+.container4 h1 {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  margin: 1.5rem -10px;
+  border: 5px solid #04253a;
+  border-radius: 10px;
+  background-color: #04253a;
+  color: #e4ddbf;
+  width: 25%;
+  font-weight: 600;
+}
+.serie-container {
+  width: 95%;
+  margin: 1rem auto;
+  height: 80%;
+  background-color: #e4ddbf;
+  padding: 0.5rem;
+}
+.serie-container img {
+  border-radius: 20px;
+}
+@media screen and (max-width: 600px) {
+  .serie-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+}
+.slide4 {
+  transform: scale(0.7);
+  transition: transform 500ms;
+  opacity: 0.5;
+}
+.slide4 img {
+  width: 18rem;
+  margin: 0 auto;
+}
+.slide4 h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  color: #04253a;
+  text-align: center;
+  margin: 0.5rem;
+  font-weight: 600;
+}
+.activeSlide4 {
+  transform: scale(1);
+  opacity: 1;
+}
+.arrow4 {
+  color: #e4ddbf;
+  background-color: #4c837a;
+  padding: 0.5rem;
+  border-radius: 20%;
+  font-size: 1.6rem;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+.arrow4 svg {
+  transition: color 0.5s;
+  margin-top: 0.4rem;
+}
+.arrow4 svg:hover {
+  color: #04253a;
+}
+@media screen and (max-width: 800px) {
+  .arrow4 {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .arrow4 {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .arrow4 {
+    font-size: 0.8rem;
+  }
+}
+.next4 {
+  right: -1.5rem;
+  top: 40%;
+}
+.prev4 {
+  left: -1.5rem;
+  top: 40%;
+}
 .detail-movie {
   display: flex;
   width: 100%;
@@ -347,7 +351,7 @@
 .container-movie-detail .container-movie-detail-img img {
   width: 100%;
   height: 100%;
-  background-size: cover;
+  background-size: size;
   background-position: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -520,7 +524,7 @@
 .production-companies span {
   font-size: 1.2rem;
 }
-.btn-back {
+.btn-back1 {
   margin: 4rem 35rem;
   font-size: 1.2rem;
   color: #e4ddbf;
@@ -546,6 +550,7 @@
   width: 100%;
   height: auto;
   border-radius: 20px;
+  object-fit: cover;
 }
 .container-serie-detail {
   width: 100%;
@@ -566,8 +571,6 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: -1;
 }
 .container-serie-detail .container-serie-detail-img img {
@@ -663,7 +666,7 @@
 }
 .next3 {
   right: -5rem;
-  top: 20%;
+  top: 30%;
 }
 .prev3 {
   left: -5rem;
@@ -708,8 +711,8 @@
   border-radius: 20px;
 }
 .networks img {
-  width: 8rem;
-  height: 2rem;
+  width: 50%;
+  height: 50%;
   margin: 0.5rem;
   border-radius: 0;
 }
@@ -779,6 +782,39 @@
   font-size: 1.5rem;
   margin-right: 1rem;
   font-weight: 400;
+}
+.seasons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.seasons .seasons-container {
+  width: 15%;
+  margin-bottom: 2rem;
+}
+.seasons .seasons-container .img-container {
+  width: 30vh;
+  height: 50vh;
+  margin-bottom: -2rem;
+}
+.seasons .seasons-container .img-container img {
+  width: 100%;
+  height: 90%;
+  border-radius: 20px;
+}
+.seasons .seasons-container h4 {
+  font-family: "Montserrat", sans-serif;
+  color: #04253a;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.seasons .seasons-container p {
+  font-family: "Montserrat", sans-serif;
+  color: #4c837a;
+  font-size: 1.2rem;
+  margin-right: 1rem;
 }
 body {
   background-color: #e4ddbf;

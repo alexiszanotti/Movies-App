@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import "../less/movie.css";
+import "../less/series.less";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const Series = () => {
 
   const NextArrow = ({ onClick }) => {
     return (
-      <div className='arrow next' onClick={onClick}>
+      <div className='arrow4 next4' onClick={onClick}>
         <FaArrowRight />
       </div>
     );
@@ -40,7 +40,7 @@ const Series = () => {
 
   const PrevArrow = ({ onClick }) => {
     return (
-      <div className='arrow prev' onClick={onClick}>
+      <div className='arrow4 prev4' onClick={onClick}>
         <FaArrowLeft />
       </div>
     );
@@ -87,12 +87,15 @@ const Series = () => {
   };
 
   return (
-    <div className='container1'>
+    <div className='container4'>
       <h1>Series populares</h1>
-      <div className='movie-container'>
+      <div className='serie-container'>
         <Slider {...settings}>
           {series.map((series, index) => (
-            <div key={series.id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
+            <div
+              key={series.id}
+              className={index === imageIndex ? "slide4 activeSlide4" : "slide4"}
+            >
               <Link to={`/serie/${series.id}`}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${series.poster_path}`}

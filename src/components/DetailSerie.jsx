@@ -1,4 +1,4 @@
-import "../less/detailSerie.css";
+import "../less/detailSerie.less";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ImgPerfil from "../img/Img-Default-Perfil.jpg";
@@ -68,7 +68,7 @@ const DetailSerie = () => {
     speed: 500,
     dots: true,
     rows: 1,
-    slidesToShow: 4,
+    slidesToShow: 6,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -220,6 +220,26 @@ const DetailSerie = () => {
             ))}
         </Slider>
       </div>
+      <h2>Temporadas</h2>
+      <div className='seasons'>
+        {serie.seasons &&
+          serie.seasons.map(season => (
+            <div key={season.id} className='seasons-container'>
+              <div className='img-container'>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
+                  alt={season.name}
+                />
+              </div>
+              <div>
+                <h4>{season.name}</h4>
+                <p>Estreno: {season.air_date && season.air_date.split("-").reverse().join("-")}</p>
+                <p>Episodios: {season.episode_count}</p>
+              </div>
+            </div>
+          ))}
+      </div>
+
       <Link to='/'>
         <button className='btn-back'>Volver</button>
       </Link>

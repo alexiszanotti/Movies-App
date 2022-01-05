@@ -1,4 +1,4 @@
-import "../less/detailMovie.css";
+import "../less/detailMovie.less";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ImgPerfil from "../img/Img-Default-Perfil.jpg";
@@ -209,7 +209,7 @@ const DetailMovie = () => {
         </Slider>
       </div>
       <Link to='/'>
-        <button className='btn-back'>Volver</button>
+        <button className='btn-back1'>Volver</button>
       </Link>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import "../less/movie.css";
+import "../less/movie.less";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 

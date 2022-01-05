@@ -1,4 +1,4 @@
-import "../less/home.css";
+import "../less/home.less";
 import imagenHome from "../img/Img-Home.jpg";
 import Movies from "./Movies";
 import Series from "./Series";
