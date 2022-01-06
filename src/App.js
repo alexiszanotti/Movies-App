@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import DetailMovie from "./components/DetailMovie";
 import DetailSerie from "./components/DetailSerie";
+import DetailCast from "./components/DetailCast";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/pelicula/:id' element={<DetailMovie />} />
         <Route path='/serie/:id' element={<DetailSerie />} />
+        <Route path='/personaje/:id' element={<DetailCast />} />
       </Routes>
     </div>
   );

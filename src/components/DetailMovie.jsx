@@ -62,7 +62,7 @@ const DetailMovie = () => {
     );
   };
 
-  const settings = {
+  const settings6 = {
     infinite: true,
     lazyLoad: false,
     speed: 500,
@@ -184,21 +184,22 @@ const DetailMovie = () => {
       </div>
       <h2>Reparto</h2>
       <div className='detail-cast'>
-        <Slider {...settings}>
+        <Slider {...settings6}>
           {credits.cast &&
-            credits.cast.map((actor, index) => (
-              <div
-                key={actor.id}
-                className={index === imageIndex ? "slide1 activeSlide1" : "slide1"}
-              >
+            credits.cast.map(actor => (
+              <div key={actor.id} className={"slide1 "}>
                 {actor.profile_path ? (
-                  <img
-                    className='img-perfil'
-                    src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                    alt={actor.name}
-                  />
+                  <Link to={`/personaje/${actor.id}`}>
+                    <img
+                      className='img-perfil'
+                      src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                      alt={actor.name}
+                    />
+                  </Link>
                 ) : (
-                  <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
+                  <Link to={`/personaje/${actor.id}`}>
+                    <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
+                  </Link>
                 )}
                 <div>
                   <h4>{actor.name}</h4>

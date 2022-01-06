@@ -204,13 +204,17 @@ const DetailSerie = () => {
                 className={index === imageIndex ? "slide8 activeSlide8" : "slide8"}
               >
                 {actor.profile_path ? (
-                  <img
-                    className='img-perfil'
-                    src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                    alt={actor.name}
-                  />
+                  <Link to={`/personaje/${actor.id}`}>
+                    <img
+                      className='img-perfil'
+                      src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                      alt={actor.name}
+                    />
+                  </Link>
                 ) : (
-                  <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
+                  <Link to={`/personaje/${actor.id}`}>
+                    <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
+                  </Link>
                 )}
                 <div>
                   <h4>{actor.name}</h4>
@@ -225,12 +229,16 @@ const DetailSerie = () => {
         {serie.seasons &&
           serie.seasons.map(season => (
             <div key={season.id} className='seasons-container'>
-              <div className='img-container'>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
-                  alt={season.name}
-                />
-              </div>
+              {season.poster_path ? (
+                <div className='img-container'>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
+                    alt={season.name}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
               <div>
                 <h4>{season.name}</h4>
                 <p>Estreno: {season.air_date && season.air_date.split("-").reverse().join("-")}</p>

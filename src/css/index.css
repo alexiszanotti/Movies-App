@@ -399,6 +399,7 @@
 .slide1 h4 {
   font-family: "Montserrat", sans-serif;
   color: #04253a;
+  font-weight: 600;
 }
 .slide1 p {
   font-family: "Montserrat", sans-serif;
@@ -815,6 +816,133 @@
   color: #4c837a;
   font-size: 1.2rem;
   margin-right: 1rem;
+}
+.cast-container {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #e4ddbf;
+  padding: 10px;
+}
+.cast-container .cast-detail {
+  display: flex;
+  width: 100%;
+}
+.cast-container .cast-detail .cast-img {
+  width: 30%;
+  margin: 0 auto;
+}
+.cast-container .cast-detail .cast-img img {
+  width: 90%;
+  height: auto;
+  border-radius: 20px;
+  margin: 1rem;
+}
+.cast-container .cast-detail .cast-info {
+  margin: 1rem;
+  width: 70%;
+}
+.cast-container .cast-detail .cast-info h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  color: #4c837a;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+}
+.cast-container .cast-detail .cast-info h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #04253a;
+  margin-bottom: 1rem;
+}
+.cast-container .cast-detail .cast-info p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #4c837a;
+  margin-bottom: 1rem;
+}
+.slide7 img {
+  width: 9rem;
+  border-radius: 10px;
+  margin: 0.5rem;
+}
+.slide7 img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.slide7 h4 {
+  font-family: "Montserrat", sans-serif;
+  color: #04253a;
+  font-weight: 600;
+}
+.slide7 p {
+  font-family: "Montserrat", sans-serif;
+  color: #4c837a;
+}
+.cast-credits h1 {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  margin: 1.5rem -20px;
+  border: 5px solid #04253a;
+  border-radius: 10px;
+  background-color: #04253a;
+  color: #e4ddbf;
+  width: 20%;
+  font-weight: 600;
+  font-size: 2rem;
+}
+.cast-credits-container {
+  width: 90%;
+  margin: 0 auto;
+}
+.cast-credits-container h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #04253a;
+  margin-left: 0.5rem;
+}
+.arrow7 {
+  padding: 2.5rem;
+  border-radius: 20%;
+  font-size: 1.6rem;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+.arrow7 svg {
+  transition: color 0.5s;
+  margin-top: 0.4rem;
+}
+.arrow7 svg:hover {
+  color: #04253a;
+}
+@media screen and (max-width: 800px) {
+  .arrow7 {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .arrow7 {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .arrow7 {
+    font-size: 0.8rem;
+  }
+}
+.next7 {
+  right: -5rem;
+  top: 20%;
+}
+.prev7 {
+  left: -5rem;
+  top: 20%;
 }
 body {
   background-color: #e4ddbf;
