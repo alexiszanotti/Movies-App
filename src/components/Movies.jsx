@@ -92,7 +92,7 @@ const Movies = () => {
       <h1>Peliculas populares</h1>
       <div className='movie-container'>
         <Slider {...settings}>
-          {movies.map((movie, index) => (
+          {movies?.map((movie, index) => (
             <div key={movie.id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
               <Link to={`/pelicula/${movie.id}`}>
                 <img

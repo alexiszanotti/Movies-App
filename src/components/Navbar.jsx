@@ -18,6 +18,9 @@ const Navbar = () => {
           <Link to='/personajes'>
             <li>Personajes</li>
           </Link>
+          <Link to='/productoras'>
+            <li>Productoras</li>
+          </Link>
         </ul>
         <input type='text' placeholder='Película, serie o personaje...' />
         <i className='fas fa-search'></i>

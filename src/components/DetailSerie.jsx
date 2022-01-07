@@ -127,7 +127,7 @@ const DetailSerie = () => {
           <div className='detail-info1'>
             <h1>{serie.name}</h1>
             {serie.genres &&
-              serie.genres.map((genre, index) => (
+              serie.genres?.map((genre, index) => (
                 <span key={genre.id}>
                   {genre.name} {index !== serie.genres.length - 1 ? "- " : ""}
                 </span>
@@ -155,7 +155,7 @@ const DetailSerie = () => {
 
             <div className='networks'>
               {serie.networks &&
-                serie.networks.map(network => (
+                serie.networks?.map(network => (
                   <div key={network.id}>
                     <img
                       src={`https://image.tmdb.org/t/p/w200/${network.logo_path}`}
@@ -169,7 +169,7 @@ const DetailSerie = () => {
               <div className='creador'>
                 <p>Creado por:</p>
                 {serie.created_by &&
-                  serie.created_by.map((creator, index) => (
+                  serie.created_by?.map((creator, index) => (
                     <span key={creator.id}>
                       {creator.name} {index !== serie.created_by.length - 1 ? ", " : ""}
                     </span>
@@ -198,7 +198,7 @@ const DetailSerie = () => {
       <div className='detail-cast'>
         <Slider {...settings}>
           {credits.cast &&
-            credits.cast.map((actor, index) => (
+            credits.cast?.map((actor, index) => (
               <div
                 key={actor.id}
                 className={index === imageIndex ? "slide8 activeSlide8" : "slide8"}
@@ -227,7 +227,7 @@ const DetailSerie = () => {
       <h2>Temporadas</h2>
       <div className='seasons'>
         {serie.seasons &&
-          serie.seasons.map(season => (
+          serie.seasons?.map(season => (
             <div key={season.id} className='seasons-container'>
               {season.poster_path ? (
                 <div className='img-container'>

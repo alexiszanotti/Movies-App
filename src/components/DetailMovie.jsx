@@ -126,7 +126,7 @@ const DetailMovie = () => {
           <div className='detail-info'>
             <h1>{movie.title}</h1>
             {movie.genres &&
-              movie.genres.map((genre, index) => (
+              movie.genres?.map((genre, index) => (
                 <span key={genre.id}>
                   {genre.name} {index !== movie.genres.length - 1 ? "- " : ""}
                 </span>
@@ -161,7 +161,7 @@ const DetailMovie = () => {
             <div className='production-companies'>
               <p>Compañías de producción:</p>
               {movie.production_companies &&
-                movie.production_companies.map((company, index) => (
+                movie.production_companies?.map((company, index) => (
                   <span key={company.id}>
                     {company.name} {index !== movie.production_companies.length - 1 ? ", " : ""}
                   </span>
@@ -182,11 +182,11 @@ const DetailMovie = () => {
           </div>
         </div>
       </div>
-      <h2>Reparto</h2>
+      <h2 className='reparto'>Reparto</h2>
       <div className='detail-cast'>
         <Slider {...settings6}>
           {credits.cast &&
-            credits.cast.map(actor => (
+            credits.cast?.map(actor => (
               <div key={actor.id} className={"slide1 "}>
                 {actor.profile_path ? (
                   <Link to={`/personaje/${actor.id}`}>

@@ -46,6 +46,10 @@
 .nav-container nav ul a:nth-child(4):focus {
   background-size: 55% 2px;
 }
+.nav-container nav ul a:nth-child(5):hover,
+.nav-container nav ul a:nth-child(5):focus {
+  background-size: 57% 2px;
+}
 .nav-container nav ul li {
   color: #e4ddbf;
   text-decoration: none;
@@ -360,7 +364,7 @@
 .container-movie h2 {
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 600;
   color: #e4ddbf;
   margin: 2rem -2rem;
   background-color: #04253a;
@@ -861,7 +865,7 @@
 .cast-container .cast-detail .cast-info p {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #4c837a;
   margin-bottom: 1rem;
 }
@@ -886,7 +890,7 @@
 .cast-credits h1 {
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  margin: 1.5rem -20px;
+  margin: 1.5rem 76rem;
   border: 5px solid #04253a;
   border-radius: 10px;
   background-color: #04253a;
@@ -896,8 +900,8 @@
   font-size: 2rem;
 }
 .cast-credits-container {
-  width: 90%;
-  margin: 0 auto;
+  width: 65%;
+  margin-left: 29rem;
 }
 .cast-credits-container h2 {
   font-family: "Montserrat", sans-serif;
@@ -943,6 +947,54 @@
 .prev7 {
   left: -5rem;
   top: 20%;
+}
+.more-info-container {
+  width: 25%;
+  position: absolute;
+}
+.more-info-container h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #04253a;
+  margin-left: 0.5rem;
+}
+.more-info-container p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #4c837a;
+  margin-left: 0.5rem;
+}
+.genero {
+  margin-top: 1rem;
+}
+.allMovies {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 1rem;
+  margin-left: 0;
+  margin-top: 0;
+  flex-wrap: wrap;
+}
+.allMovies .movie {
+  width: 20%;
+  height: 100%;
+  margin: 2rem;
+}
+.allMovies .movie img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+.allMovies .movie h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #04253a;
+  text-align: center;
 }
 body {
   background-color: #e4ddbf;

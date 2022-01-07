@@ -72,7 +72,7 @@ const DetailCast = () => {
     lazyLoad: false,
     speed: 500,
 
-    slidesToShow: 8,
+    slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -110,7 +110,6 @@ const DetailCast = () => {
     getActorCredits();
   }, [id]);
 
-  console.log(cast);
   return (
     <div className='cast-container'>
       <section className='cast-detail'>
@@ -120,11 +119,21 @@ const DetailCast = () => {
         <div className='cast-info'>
           <h1>{cast.name}</h1>
           <h2>Biografía:</h2>
-          <p>{cast.biography}</p>
+          <p>{cast.biography ? cast.biography : "Biogrfía no disponible en español."}</p>
           <h2>Nacionalidad:</h2>
           <p>{cast.place_of_birth}</p>
           <h2>Fecha de nacimiento:</h2>
-          <p>{cast.birthday}</p>
+          <p>{cast.birthday && cast.birthday.split("-").reverse().join("-")}</p>
+        </div>
+      </section>
+      <section className='more-info'>
+        <div className='more-info-container'>
+          <h1>También conocido como:</h1>
+          {cast.also_known_as?.map(item => (
+            <p key={item}>{item}</p>
+          ))}
+          <h1 className='genero'>Género:</h1>
+          <p>{cast.gender === 2 ? "Masculino" : "Femenino"}</p>
         </div>
       </section>
       <section className='cast-credits'>
@@ -153,11 +162,10 @@ const DetailCast = () => {
           </Slider>
         </div>
       </section>
-      {/* <Link to='/'> */}
+
       <button onClick={handleClick} className='btn-back1'>
         Volver
       </button>
-      {/* </Link> */}
     </div>
   );
 };

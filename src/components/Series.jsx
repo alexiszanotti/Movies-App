@@ -91,7 +91,7 @@ const Series = () => {
       <h1>Series populares</h1>
       <div className='serie-container'>
         <Slider {...settings}>
-          {series.map((series, index) => (
+          {series?.map((series, index) => (
             <div
               key={series.id}
               className={index === imageIndex ? "slide4 activeSlide4" : "slide4"}
