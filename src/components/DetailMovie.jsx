@@ -13,6 +13,12 @@ const DetailMovie = () => {
   const [credits, setCredits] = useState({});
   const [imageIndex, setImageIndex] = useState(0);
 
+  const historia = window.history;
+
+  const handleClick = () => {
+    historia.go(-1);
+  };
+
   const getMovie = async () => {
     try {
       const res = await fetch(
@@ -66,8 +72,8 @@ const DetailMovie = () => {
     infinite: true,
     lazyLoad: false,
     speed: 500,
-    dots: true,
-    slidesToShow: 8,
+    dots: false,
+    slidesToShow: 5,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -183,11 +189,11 @@ const DetailMovie = () => {
         </div>
       </div>
       <h2 className='reparto'>Reparto</h2>
-      <div className='detail-cast'>
+      <div className='detail-cast1'>
         <Slider {...settings6}>
           {credits.cast &&
             credits.cast?.map(actor => (
-              <div key={actor.id} className={"slide1 "}>
+              <div key={actor.id} className='slide1'>
                 {actor.profile_path ? (
                   <Link to={`/personaje/${actor.id}`}>
                     <img
@@ -209,9 +215,10 @@ const DetailMovie = () => {
             ))}
         </Slider>
       </div>
-      <Link to='/'>
-        <button className='btn-back1'>Volver</button>
-      </Link>
+
+      <button onClick={handleClick} className='btn-back1'>
+        Volver
+      </button>
     </div>
   );
 };

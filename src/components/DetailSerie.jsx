@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import ImgPerfil from "../img/Img-Default-Perfil.jpg";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import imgPoster from "../img/default_poster.jpg";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -12,6 +13,12 @@ const DetailSerie = () => {
   const [serie, setSerie] = useState({});
   const [credits, setCredits] = useState({});
   const [imageIndex, setImageIndex] = useState(0);
+
+  const historia = window.history;
+
+  const handleClick = () => {
+    historia.go(-1);
+  };
 
   const getSerie = async () => {
     try {
@@ -66,7 +73,7 @@ const DetailSerie = () => {
     infinite: true,
     lazyLoad: true,
     speed: 500,
-    dots: true,
+    dots: false,
     rows: 1,
     slidesToShow: 6,
     slidesToScroll: 1,
@@ -229,16 +236,16 @@ const DetailSerie = () => {
         {serie.seasons &&
           serie.seasons?.map(season => (
             <div key={season.id} className='seasons-container'>
-              {season.poster_path ? (
-                <div className='img-container'>
+              <div className='img-container'>
+                {season.poster_path ? (
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
                     alt={season.name}
                   />
-                </div>
-              ) : (
-                ""
-              )}
+                ) : (
+                  <img src={imgPoster} alt={season.name} />
+                )}
+              </div>
               <div>
                 <h4>{season.name}</h4>
                 <p>Estreno: {season.air_date && season.air_date.split("-").reverse().join("-")}</p>
@@ -248,9 +255,9 @@ const DetailSerie = () => {
           ))}
       </div>
 
-      <Link to='/'>
-        <button className='btn-back'>Volver</button>
-      </Link>
+      <button onClick={handleClick} className='btn-back'>
+        Volver
+      </button>
     </div>
   );
 };

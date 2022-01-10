@@ -6,6 +6,7 @@ import DetailMovie from "./components/DetailMovie";
 import DetailSerie from "./components/DetailSerie";
 import DetailCast from "./components/DetailCast";
 import AllMovies from "./components/AllMovies";
+import AllSeries from "./components/AllSeries";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/serie/:id' element={<DetailSerie />} />
         <Route path='/personaje/:id' element={<DetailCast />} />
         <Route path='/peliculas' element={<AllMovies />} />
+        <Route path='/series' element={<AllSeries />} />
       </Routes>
     </div>
   );
