@@ -7,6 +7,7 @@ import DetailSerie from "./components/DetailSerie";
 import DetailCast from "./components/DetailCast";
 import AllMovies from "./components/AllMovies";
 import AllSeries from "./components/AllSeries";
+import Actors from "./components/Actors";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/personaje/:id' element={<DetailCast />} />
         <Route path='/peliculas' element={<AllMovies />} />
         <Route path='/series' element={<AllSeries />} />
+        <Route path='/personajes' element={<Actors />} />
       </Routes>
     </div>
   );

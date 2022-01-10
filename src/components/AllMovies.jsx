@@ -1,12 +1,38 @@
 import "../less/allMovies.less";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Poster from "../img/default_poster.jpg";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 let lastMovie;
 
 const AllMovies = () => {
   const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchMovie, setSearchMovie] = useState([]);
+
+  const handleChange = e => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const res = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=es-ES&query=${search}&page=1&include_adult=false`
+    );
+    const data = await res.json();
+
+    if (data.results.length > 0) {
+      setSearchMovie(data.results);
+    } else if (data.results.length === 0) {
+      alert("No se encontraron resultados");
+      setSearchMovie([]);
+    } else {
+      alert("Error");
+      setSearchMovie([]);
+    }
+    setSearch("");
+  };
 
   let observer = new IntersectionObserver(
     entries => {
@@ -50,19 +76,42 @@ const AllMovies = () => {
   };
 
   useEffect(() => {
-    getAllMovies();
-  }, []);
+    if (searchMovie.length === 0) {
+      getAllMovies();
+    } else {
+      setMovies(searchMovie);
+    }
+  }, [searchMovie]);
 
   return (
     <div className='allMovies'>
-      {movies.map(movie => (
+      <div className='search-bar'>
+        <form onSubmit={handleSubmit}>
+          <input type='text' placeholder='Película...' value={search} onChange={handleChange} />
+          <button type='submit'>
+            <i className='fas fa-search'></i>
+          </button>
+        </form>
+      </div>
+
+      {movies?.map(movie => (
         <div className='movie' key={movie.id}>
           <Link to={`/pelicula/${movie.id}`}>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+            {movie.poster_path ? (
+              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+            ) : (
+              <img src={Poster} alt={movie.title} />
+            )}
+            <div className='movie-avg'>
+              <p>{movie.vote_average}</p>
+            </div>
           </Link>
           <h3>{movie.title}</h3>
         </div>
       ))}
+      <button onClick={() => window.location.reload()} className='btn-back1'>
+        Volver
+      </button>
     </div>
   );
 };

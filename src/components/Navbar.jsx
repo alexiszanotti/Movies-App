@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "../less/navBar.less";
 
 const Navbar = () => {
+  //search bar
+
   return (
     <div className='nav-container'>
       <nav>
@@ -18,12 +20,7 @@ const Navbar = () => {
           <Link to='/personajes'>
             <li>Personajes</li>
           </Link>
-          <Link to='/productoras'>
-            <li>Productoras</li>
-          </Link>
         </ul>
-        <input type='text' placeholder='Película, serie o personaje...' />
-        <i className='fas fa-search'></i>
       </nav>
     </div>
   );

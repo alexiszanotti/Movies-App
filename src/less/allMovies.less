@@ -17,6 +17,10 @@
     width: 20%;
     height: 100%;
     margin: 2rem;
+    position: relative;
+    a {
+      text-decoration: none;
+    }
     img {
       width: 100%;
       height: auto;
@@ -24,6 +28,27 @@
       &:hover {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         scale: 1.02;
+      }
+    }
+
+    .movie-avg {
+      top: -0.5rem;
+      right: -0.5rem;
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background-color: @color1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: @color2;
+        text-align: center;
+        font-family: @Montserrat;
       }
     }
     h3 {

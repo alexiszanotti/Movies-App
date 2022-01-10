@@ -61,6 +61,9 @@ const AllSeries = () => {
             <img src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} />
           </Link>
           <h3>{serie.name}</h3>
+          <div className='serie-avg'>
+            <p>{serie.vote_average}</p>
+          </div>
         </div>
       ))}
     </div>
