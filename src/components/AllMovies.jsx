@@ -10,6 +10,16 @@ const AllMovies = () => {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   const [searchMovie, setSearchMovie] = useState([]);
+  const [genres, setGenres] = useState([]);
+
+  //get genres  from api
+  const getGenres = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=es-ES`
+    );
+    const data = await response.json();
+    setGenres(data.genres);
+  };
 
   const handleChange = e => {
     setSearch(e.target.value);
@@ -77,14 +87,16 @@ const AllMovies = () => {
 
   useEffect(() => {
     if (searchMovie.length === 0) {
+      getGenres();
       getAllMovies();
     } else {
+      getGenres();
       setMovies(searchMovie);
     }
   }, [searchMovie]);
 
   return (
-    <div className='allMovies'>
+    <div className='container-movies1'>
       <div className='search-bar'>
         <form onSubmit={handleSubmit}>
           <input type='text' placeholder='Película...' value={search} onChange={handleChange} />
@@ -93,25 +105,54 @@ const AllMovies = () => {
           </button>
         </form>
       </div>
-
-      {movies?.map(movie => (
-        <div className='movie' key={movie.id}>
-          <Link to={`/pelicula/${movie.id}`}>
-            {movie.poster_path ? (
-              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-            ) : (
-              <img src={Poster} alt={movie.title} />
-            )}
-            <div className='movie-avg'>
-              <p>{movie.vote_average}</p>
+      <div className='allMovies'>
+        {movies?.map(movie => (
+          <div className='card' key={movie.id}>
+            <div className='poster'>
+              {movie.poster_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                />
+              ) : (
+                <img src={Poster} alt={movie.title} />
+              )}
             </div>
-          </Link>
-          <h3>{movie.title}</h3>
-        </div>
-      ))}
-      <button onClick={() => window.location.reload()} className='btn-back1'>
-        Volver
-      </button>
+
+            <div className='details1'>
+              <h2>
+                {movie.title}
+                {`(${movie.release_date.substring(0, 4)})`}
+              </h2>
+              <div className='raiting'>
+                <i className='fas fa-star'></i>
+                <i className='fas fa-star'></i>
+                <i className='fas fa-star'></i>
+                <i className='fas fa-star'></i>
+                <i className='far fa-star'></i>
+                <span>{`${movie.vote_average}/10`}</span>
+              </div>
+              <div className='genres'>
+                {movie.genre_ids &&
+                  movie.genre_ids?.map(id => {
+                    const genre = genres?.find(genre => genre.id === id);
+                    return (
+                      <span key={genre.id} className='genres-unit'>
+                        {genre.name + " "}
+                      </span>
+                    );
+                  })}
+              </div>
+              <div className='info'>
+                <p>{movie.overview}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+        <button onClick={() => window.location.reload()} className='btn-back1'>
+          Volver
+        </button>
+      </div>
     </div>
   );
 };

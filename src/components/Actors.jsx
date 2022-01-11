@@ -1,12 +1,38 @@
 import "../less/actors.less";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ImgDefault from "../img/Img-Default-Perfil.jpg";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 let lastActor;
 
 const Actors = () => {
   const [actors, setActors] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchActor, setSearchActor] = useState([]);
+
+  const handleChange = e => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const res = await fetch(
+      `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&language=es-ES&query=${search}&page=1&include_adult=false`
+    );
+    const data = await res.json();
+
+    if (data.results.length > 0) {
+      setSearchActor(data.results);
+    } else if (data.results.length === 0) {
+      alert("No se encontraron resultados");
+      setSearchActor([]);
+    } else {
+      alert("Error");
+      setSearchActor([]);
+    }
+    setSearch("");
+  };
 
   let observer = new IntersectionObserver(
     entries => {
@@ -51,21 +77,39 @@ const Actors = () => {
   };
 
   useEffect(() => {
-    getActors();
-  }, []);
+    if (searchActor.length === 0) {
+      getActors();
+    } else {
+      setActors(searchActor);
+    }
+  }, [searchActor]);
 
   return (
     <div className='actors-container'>
-      <h1>Personajes populares</h1>
+      <div className='search-bar'>
+        <form onSubmit={handleSubmit}>
+          <input type='text' placeholder='Personaje...' value={search} onChange={handleChange} />
+          <button type='submit'>
+            <i className='fas fa-search'></i>
+          </button>
+        </form>
+      </div>
       {actors?.map(actor => (
         <div className='actor' key={actor.id}>
           <Link to={`/personaje/${actor.id}`}>
-            <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
+            {actor.profile_path ? (
+              <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
+            ) : (
+              <img src={ImgDefault} alt={actor.name} />
+            )}
             <h3>{actor.name}</h3>
             {actor.known_for && actor.known_for?.map(movie => <p key={movie.id}>{movie.title}</p>)}
           </Link>
         </div>
       ))}
+      <button onClick={() => window.location.reload()} className='btn-back1'>
+        Volver
+      </button>
     </div>
   );
 };

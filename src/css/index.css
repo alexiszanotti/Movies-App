@@ -102,62 +102,6 @@
 .nav-container nav form i:hover {
   cursor: pointer;
 }
-.search-bar {
-  width: 100%;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
-.search-bar form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 50%;
-}
-.search-bar form input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: #fff;
-  font-size: 1rem;
-  font-weight: 400;
-  font-family: "Montserrat", sans-serif;
-  color: #04253a;
-  border-radius: 10px;
-  padding: 0.8rem;
-  position: relative;
-}
-.search-bar form input:focus {
-  outline: none;
-}
-.search-bar form input:active {
-  outline: none;
-}
-.search-bar form input::placeholder {
-  color: #04253a;
-  font-size: 1rem;
-}
-.search-bar form button {
-  width: 20%;
-  height: 100%;
-  border: none;
-  background-color: #fff;
-  border-radius: 10px;
-  font-weight: 400;
-  margin-left: -0.8rem;
-}
-.search-bar form button i {
-  color: #04253a;
-  font-size: 1.3rem;
-}
-.search-bar form button i:hover {
-  cursor: pointer;
-  color: #4c837a;
-  transition: 0.3s ease-in-out;
-}
 .main-container {
   width: 100%;
   height: 20rem;
@@ -1033,60 +977,139 @@
 .genero {
   margin-top: 1rem;
 }
-.allMovies {
+.container-movies1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.container-movies1 .allMovies {
   display: flex;
   width: 100%;
   height: 100%;
-  position: relative;
   padding: 1rem;
-  margin-left: 0;
-  margin-top: 0;
+  margin-top: 5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
-.allMovies .movie {
-  width: 20%;
-  height: 100%;
-  margin: 2rem;
+.container-movies1 .allMovies .card {
+  transform: translate(0%, 0%);
+  width: 22%;
+  height: 35%;
+  margin: 1rem;
+}
+.container-movies1 .allMovies .card .poster {
   position: relative;
+  overflow: hidden;
 }
-.allMovies .movie a {
-  text-decoration: none;
-}
-.allMovies .movie img {
+.container-movies1 .allMovies .card .poster img {
   width: 100%;
-  height: auto;
-  border-radius: 20px;
 }
-.allMovies .movie img:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  scale: 1.02;
-}
-.allMovies .movie .movie-avg {
-  top: -0.5rem;
-  right: -0.5rem;
+.container-movies1 .allMovies .card .poster::before {
+  content: "";
   position: absolute;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background-color: #04253a;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #000 50%, transparent);
+  transition: 0.5s;
+  z-index: 1;
+}
+.container-movies1 .allMovies .card .details1 {
+  position: absolute;
+  padding: 1.3rem;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  transition: 0.5s;
+  z-index: 2;
+}
+.container-movies1 .allMovies .card .details1 h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #e4ddbf;
+}
+.container-movies1 .allMovies .card .details1 .raiting {
+  position: relative;
+  padding: 1rem 0;
+}
+.container-movies1 .allMovies .card .details1 .raiting .fas {
+  color: #f7f406;
+  font-size: 1rem;
+  margin-right: 0.2rem;
+}
+.container-movies1 .allMovies .card .details1 .raiting .far {
+  color: #f7f406;
+  font-size: 1rem;
+  margin-right: 0.2rem;
+}
+.container-movies1 .allMovies .card .details1 .raiting span {
+  font-size: 1rem 0;
+  color: #e4ddbf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+.container-movies1 .allMovies .card .genres {
+  position: relative;
+  margin-top: 0.2rem;
+}
+.container-movies1 .search-bar {
+  width: 50%;
+  height: 5rem;
+  padding: 1rem;
+  position: absolute;
+  top: 6rem;
+}
+.container-movies1 .search-bar form {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
 }
-.allMovies .movie .movie-avg p {
-  font-size: 1.5rem;
+.container-movies1 .search-bar form input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  font-size: 1rem;
   font-weight: 400;
-  color: #e4ddbf;
-  text-align: center;
   font-family: "Montserrat", sans-serif;
-}
-.allMovies .movie h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 400;
   color: #04253a;
-  text-align: center;
-  margin-top: 0.5rem;
+  border-radius: 10px;
+  padding: 0.8rem;
+  position: relative;
+}
+.container-movies1 .search-bar form input:focus {
+  outline: none;
+}
+.container-movies1 .search-bar form input:active {
+  outline: none;
+}
+.container-movies1 .search-bar form input::placeholder {
+  color: #04253a;
+  font-size: 1rem;
+}
+.container-movies1 .search-bar form button {
+  width: 20%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: 400;
+  margin-left: -0.8rem;
+}
+.container-movies1 .search-bar form button i {
+  color: #04253a;
+  font-size: 1.3rem;
+}
+.container-movies1 .search-bar form button i:hover {
+  cursor: pointer;
+  color: #4c837a;
+  transition: 0.3s ease-in-out;
 }
 .allSeries {
   display: flex;
@@ -1148,19 +1171,7 @@
   height: 100%;
   background-color: #e4ddbf;
   flex-wrap: wrap;
-  margin-top: 8rem;
-}
-.actors-container h1 {
-  position: absolute;
-  top: 6rem;
-  left: -3rem;
-  margin: 2rem;
-  color: #e4ddbf;
-  background-color: #04253a;
-  padding: 0.5rem 2rem;
-  border-radius: 10px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
+  margin-top: 1rem;
 }
 .actors-container .actor {
   width: 15%;
