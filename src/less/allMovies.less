@@ -22,19 +22,22 @@
       width: 22%;
       height: 35%;
       margin: 1rem;
+      overflow: hidden;
+      border-radius: 0.5rem;
 
       .poster {
         position: relative;
         overflow: hidden;
         img {
           width: 100%;
+          transition: 0.5s;
         }
       }
 
       .poster::before {
         content: "";
         position: absolute;
-        bottom: 0;
+        bottom: -10rem;
         left: 0;
         width: 100%;
         height: 100%;
@@ -47,8 +50,8 @@
         position: absolute;
         padding: 1.3rem;
         width: 100%;
-        height: 100%;
-        bottom: 0;
+        height: 62%;
+        bottom: -10rem;
         left: 0;
         box-sizing: border-box;
         transition: 0.5s;
@@ -57,10 +60,13 @@
           font-family: @Montserrat;
           font-weight: 600;
           color: @color2;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
         .raiting {
           position: relative;
-          padding: 1rem 0;
+          padding: 0.5rem 0;
 
           .fas {
             color: #f7f406;
@@ -83,6 +89,58 @@
       .genres {
         position: relative;
         margin-top: 0.2rem;
+        span {
+          background-color: @color1;
+          color: @color2;
+          padding: 0.2rem 0.5rem;
+          font-size: 0.8rem;
+          font-family: @Montserrat;
+          display: inline-block;
+          border-radius: 5px;
+          margin: 12px 2px;
+        }
+      }
+
+      .info {
+        color: @color2;
+
+        p {
+          font-size: 0.8rem;
+          font-family: @Montserrat;
+          font-weight: 600;
+          margin: 1rem 0 0.8rem;
+          text-overflow: ellipsis;
+          white-space: initial;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .card:hover {
+      .details1 {
+        bottom: 0rem;
+      }
+    }
+
+    .card:hover {
+      .poster::before {
+        bottom: 0rem;
+      }
+    }
+
+    .card:hover {
+      .poster img {
+        filter: blur(5px);
+        transform: translateY(-3rem);
+      }
+    }
+
+    .card:hover {
+      .details1 {
+        h2 {
+          text-overflow: length(100%);
+          white-space: pre-wrap;
+        }
       }
     }
   }

@@ -74,7 +74,7 @@ const AllMovies = () => {
         if (lastMovie) {
           observer.unobserve(lastMovie);
         }
-        const movies = document.querySelectorAll(".allMovies .movie");
+        const movies = document.querySelectorAll(".allMovies .card");
         lastMovie = movies[movies.length - 1];
         observer.observe(lastMovie);
       } else {
@@ -108,16 +108,18 @@ const AllMovies = () => {
       <div className='allMovies'>
         {movies?.map(movie => (
           <div className='card' key={movie.id}>
-            <div className='poster'>
-              {movie.poster_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                />
-              ) : (
-                <img src={Poster} alt={movie.title} />
-              )}
-            </div>
+            <Link to={`/pelicula/${movie.id}`}>
+              <div className='poster'>
+                {movie.poster_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                ) : (
+                  <img src={Poster} alt={movie.title} />
+                )}
+              </div>
+            </Link>
 
             <div className='details1'>
               <h2>
@@ -143,8 +145,11 @@ const AllMovies = () => {
                     );
                   })}
               </div>
+
               <div className='info'>
-                <p>{movie.overview}</p>
+                <span>
+                  <i class='fas fa-thumbs-up'></i> {Math.round(movie.popularity)}
+                </span>
               </div>
             </div>
           </div>
