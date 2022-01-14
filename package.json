@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false && react-scripts build",
     "less": "less-watch-compiler src/less src/css index.less"
   },
   "eslintConfig": {
