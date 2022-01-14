@@ -8,12 +8,13 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   .allMovies {
     display: flex;
     width: 100%;
     height: 100%;
     padding: 1rem;
-    margin-top: 5rem;
     flex-wrap: wrap;
     justify-content: center;
 
@@ -64,25 +65,45 @@
           white-space: nowrap;
           overflow: hidden;
         }
-        .raiting {
+        .stars-outer {
           position: relative;
-          padding: 0.5rem 0;
+          display: inline-block;
 
-          .fas {
-            color: #f7f406;
-            font-size: 1rem;
-            margin-right: 0.2rem;
+          .stars-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
           }
-          .far {
-            color: #f7f406;
-            font-size: 1rem;
-            margin-right: 0.2rem;
-          }
+        }
+        .stars-inner:before {
+          content: "\f005 \f005 \f005 \f005 \f005";
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          color: #f7f406;
+          font-size: 1.1rem;
+        }
+        .stars-outer:before {
+          content: "\f005 \f005 \f005 \f005 \f005";
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          color: #fff;
+          font-size: 1.1rem;
+        }
+
+        .rating {
+          width: 100%;
+          display: flex;
+          height: auto;
+          margin: 0.5rem 0;
           span {
-            font-size: 1rem 0;
+            font-size: 1.2rem;
             color: @color2;
             font-family: @Montserrat;
-            font-weight: 600;
+            font-weight: 400;
+            margin-left: 0.5rem;
           }
         }
       }
@@ -103,22 +124,30 @@
 
       .info {
         color: @color2;
-
-        p {
-          font-size: 0.8rem;
+        position: absolute;
+        bottom: 4rem;
+        span {
+          font-size: 1.2rem;
           font-family: @Montserrat;
+          color: @color2;
           font-weight: 600;
-          margin: 1rem 0 0.8rem;
-          text-overflow: ellipsis;
-          white-space: initial;
-          overflow: hidden;
+          margin-right: 1.5rem;
+
+          i {
+            color: @color1;
+            margin-right: 0.2rem;
+            background-color: @color2;
+            padding: 0.5rem;
+            border-radius: 50%;
+            margin-right: 3px;
+          }
         }
       }
     }
 
     .card:hover {
       .details1 {
-        bottom: 0rem;
+        bottom: -2rem;
       }
     }
 
@@ -148,8 +177,7 @@
     width: 50%;
     height: 5rem;
     padding: 1rem;
-    position: absolute;
-    top: 6rem;
+    margin-top: 2rem;
     form {
       display: flex;
       justify-content: center;
@@ -196,6 +224,29 @@
             transition: 0.3s ease-in-out;
           }
         }
+      }
+    }
+  }
+
+  .return {
+    padding: 2rem;
+
+    a {
+      text-decoration: none;
+    }
+    span {
+      font-size: 1.2rem;
+      color: @color2;
+      font-family: @Montserrat;
+      font-weight: 400;
+      background-color: @color1;
+      border-radius: 5px;
+      padding: 0.5rem 2.5rem;
+      margin-bottom: 2rem;
+      &:hover {
+        cursor: pointer;
+        color: @color3;
+        transition: 0.3s ease-in-out;
       }
     }
   }

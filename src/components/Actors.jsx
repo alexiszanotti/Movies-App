@@ -86,7 +86,7 @@ const Actors = () => {
 
   return (
     <div className='actors-container'>
-      <div className='search-bar'>
+      <div className='search-bar2'>
         <form onSubmit={handleSubmit}>
           <input type='text' placeholder='Personaje...' value={search} onChange={handleChange} />
           <button type='submit'>
@@ -94,19 +94,29 @@ const Actors = () => {
           </button>
         </form>
       </div>
-      {actors?.map(actor => (
-        <div className='actor' key={actor.id}>
-          <Link to={`/personaje/${actor.id}`}>
-            {actor.profile_path ? (
-              <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
-            ) : (
-              <img src={ImgDefault} alt={actor.name} />
-            )}
-            <h3>{actor.name}</h3>
-            {actor.known_for && actor.known_for?.map(movie => <p key={movie.id}>{movie.title}</p>)}
-          </Link>
-        </div>
-      ))}
+      <div className='actors-list'>
+        {actors?.map(actor => (
+          <div className='actor' key={actor.id}>
+            <Link to={`/personaje/${actor.id}`}>
+              <div className='actor-img'>
+                {actor.profile_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                    alt={actor.name}
+                  />
+                ) : (
+                  <img src={ImgDefault} alt={actor.name} />
+                )}
+              </div>
+              <div className='actor-name'>
+                <h3>{actor.name}</h3>
+                {actor.known_for &&
+                  actor.known_for?.map(movie => <p key={movie.id}>{movie.title}</p>)}
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
       <button onClick={() => window.location.reload()} className='btn-back1'>
         Volver
       </button>

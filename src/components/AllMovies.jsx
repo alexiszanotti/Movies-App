@@ -3,22 +3,28 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Poster from "../img/default_poster.jpg";
 
-const apiKey = process.env.REACT_APP_API_KEY;
-let lastMovie;
-
 const AllMovies = () => {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   const [searchMovie, setSearchMovie] = useState([]);
   const [genres, setGenres] = useState([]);
 
+  const apiKey = process.env.REACT_APP_API_KEY;
+  let pagina = 2;
+  let lastMovie;
+  let starsTotal = 5;
+  let genre;
   //get genres  from api
   const getGenres = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=es-ES`
-    );
-    const data = await response.json();
-    setGenres(data.genres);
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=es-ES`
+      );
+      const data = await response.json();
+      setGenres(data.genres);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = e => {
@@ -26,22 +32,25 @@ const AllMovies = () => {
   };
 
   const handleSubmit = async e => {
-    e.preventDefault();
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=es-ES&query=${search}&page=1&include_adult=false`
-    );
-    const data = await res.json();
+    try {
+      e.preventDefault();
+      const res = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=es-ES&query=${search}&page=1&include_adult=false`
+      );
+      const data = await res.json();
 
-    if (data.results.length > 0) {
-      setSearchMovie(data.results);
-    } else if (data.results.length === 0) {
-      alert("No se encontraron resultados");
-      setSearchMovie([]);
-    } else {
-      alert("Error");
-      setSearchMovie([]);
+      if (data.results.length > 0) {
+        setSearchMovie(data.results);
+      } else if (data.results.length === 0) {
+        alert("No se encontraron resultados");
+      } else {
+        alert("Error");
+        setSearchMovie([]);
+      }
+      setSearch("");
+    } catch (error) {
+      console.log(error);
     }
-    setSearch("");
   };
 
   let observer = new IntersectionObserver(
@@ -59,7 +68,6 @@ const AllMovies = () => {
     }
   );
 
-  let pagina = 2;
   const getAllMovies = async () => {
     try {
       const data = await fetch(
@@ -86,11 +94,11 @@ const AllMovies = () => {
   };
 
   useEffect(() => {
+    getGenres();
+
     if (searchMovie.length === 0) {
-      getGenres();
       getAllMovies();
     } else {
-      getGenres();
       setMovies(searchMovie);
     }
   }, [searchMovie]);
@@ -122,25 +130,23 @@ const AllMovies = () => {
             </Link>
 
             <div className='details1'>
-              <h2>
-                {movie.title}
-                {`(${movie.release_date.substring(0, 4)})`}
-              </h2>
-              <div className='raiting'>
-                <i className='fas fa-star'></i>
-                <i className='fas fa-star'></i>
-                <i className='fas fa-star'></i>
-                <i className='fas fa-star'></i>
-                <i className='far fa-star'></i>
-                <span>{`${movie.vote_average}/10`}</span>
+              <h2>{movie.title}</h2>
+              <div className='rating'>
+                <div className='stars-outer'>
+                  <div
+                    className='stars-inner'
+                    style={{ width: `${(movie.vote_average / 2 / starsTotal) * 100}%` }}
+                  ></div>
+                </div>
+                <span>{`${movie.vote_average / 2}/5`}</span>
               </div>
               <div className='genres'>
                 {movie.genre_ids &&
-                  movie.genre_ids?.map(id => {
-                    const genre = genres?.find(genre => genre.id === id);
+                  movie.genre_ids.slice(0, 3)?.map(id => {
+                    genre = genres?.find(genre => genre.id === id);
                     return (
-                      <span key={genre.id} className='genres-unit'>
-                        {genre.name + " "}
+                      <span key={genre.id && genre.id}>
+                        {genre.name === undefined ? "" : genre.name}
                       </span>
                     );
                   })}
@@ -150,13 +156,19 @@ const AllMovies = () => {
                 <span>
                   <i class='fas fa-thumbs-up'></i> {Math.round(movie.popularity)}
                 </span>
+                <span>
+                  <i class='fas fa-calendar-alt'></i>{" "}
+                  {movie.release_date && movie.release_date.split("-").reverse().join("-")}
+                </span>
               </div>
             </div>
           </div>
         ))}
-        <button onClick={() => window.location.reload()} className='btn-back1'>
-          Volver
-        </button>
+      </div>
+      <div className='return'>
+        <Link to='/'>
+          <span>Volver</span>
+        </Link>
       </div>
     </div>
   );

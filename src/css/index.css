@@ -883,7 +883,7 @@
   margin: 0.5rem;
 }
 .slide7 img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
 }
 .slide7 h4 {
@@ -911,7 +911,7 @@
   width: 65%;
   margin-left: 29rem;
 }
-.cast-credits-container h2 {
+.cast-credits-container .cast-credit-info h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -982,13 +982,14 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .container-movies1 .allMovies {
   display: flex;
   width: 100%;
   height: 100%;
   padding: 1rem;
-  margin-top: 5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -1038,25 +1039,44 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.container-movies1 .allMovies .card .details1 .raiting {
+.container-movies1 .allMovies .card .details1 .stars-outer {
   position: relative;
-  padding: 0.5rem 0;
+  display: inline-block;
 }
-.container-movies1 .allMovies .card .details1 .raiting .fas {
+.container-movies1 .allMovies .card .details1 .stars-outer .stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+.container-movies1 .allMovies .card .details1 .stars-inner:before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
   color: #f7f406;
-  font-size: 1rem;
-  margin-right: 0.2rem;
+  font-size: 1.1rem;
 }
-.container-movies1 .allMovies .card .details1 .raiting .far {
-  color: #f7f406;
-  font-size: 1rem;
-  margin-right: 0.2rem;
+.container-movies1 .allMovies .card .details1 .stars-outer:before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #fff;
+  font-size: 1.1rem;
 }
-.container-movies1 .allMovies .card .details1 .raiting span {
-  font-size: 1rem 0;
+.container-movies1 .allMovies .card .details1 .rating {
+  width: 100%;
+  display: flex;
+  height: auto;
+  margin: 0.5rem 0;
+}
+.container-movies1 .allMovies .card .details1 .rating span {
+  font-size: 1.2rem;
   color: #e4ddbf;
   font-family: "Montserrat", sans-serif;
-  font-weight: 600;
+  font-weight: 400;
+  margin-left: 0.5rem;
 }
 .container-movies1 .allMovies .card .genres {
   position: relative;
@@ -1074,18 +1094,26 @@
 }
 .container-movies1 .allMovies .card .info {
   color: #e4ddbf;
+  position: absolute;
+  bottom: 4rem;
 }
-.container-movies1 .allMovies .card .info p {
-  font-size: 0.8rem;
+.container-movies1 .allMovies .card .info span {
+  font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
+  color: #e4ddbf;
   font-weight: 600;
-  margin: 1rem 0 0.8rem;
-  text-overflow: ellipsis;
-  white-space: initial;
-  overflow: hidden;
+  margin-right: 1.5rem;
+}
+.container-movies1 .allMovies .card .info span i {
+  color: #04253a;
+  margin-right: 0.2rem;
+  background-color: #e4ddbf;
+  padding: 0.5rem;
+  border-radius: 50%;
+  margin-right: 3px;
 }
 .container-movies1 .allMovies .card:hover .details1 {
-  bottom: 0rem;
+  bottom: -2rem;
 }
 .container-movies1 .allMovies .card:hover .poster::before {
   bottom: 0rem;
@@ -1102,8 +1130,7 @@
   width: 50%;
   height: 5rem;
   padding: 1rem;
-  position: absolute;
-  top: 6rem;
+  margin-top: 2rem;
 }
 .container-movies1 .search-bar form {
   display: flex;
@@ -1153,105 +1180,384 @@
   color: #4c837a;
   transition: 0.3s ease-in-out;
 }
-.allSeries {
+.container-movies1 .return {
+  padding: 2rem;
+}
+.container-movies1 .return a {
+  text-decoration: none;
+}
+.container-movies1 .return span {
+  font-size: 1.2rem;
+  color: #e4ddbf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  background-color: #04253a;
+  border-radius: 5px;
+  padding: 0.5rem 2.5rem;
+  margin-bottom: 2rem;
+}
+.container-movies1 .return span:hover {
+  cursor: pointer;
+  color: #4c837a;
+  transition: 0.3s ease-in-out;
+}
+.series-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.series-container .allSeries {
   display: flex;
   width: 100%;
   height: 100%;
-  position: relative;
   padding: 1rem;
-  margin-left: 0;
-  margin-top: 0;
   flex-wrap: wrap;
+  justify-content: center;
 }
-.allSeries .serie {
-  width: 20%;
-  height: 100%;
-  margin: 2rem;
+.series-container .allSeries .serie {
+  transform: translate(0%, 0%);
+  width: 22%;
+  height: 35%;
+  margin: 1rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+.series-container .allSeries .serie .poster1 {
   position: relative;
+  overflow: hidden;
 }
-.allSeries .serie .serie-avg {
-  top: -0.5rem;
-  right: -0.5rem;
+.series-container .allSeries .serie .poster1 img {
+  width: 100%;
+  transition: 0.5s;
+}
+.series-container .allSeries .serie .poster1::before {
+  content: "";
   position: absolute;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
+  bottom: -10rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #000 50%, transparent);
+  transition: 0.5s;
+  z-index: 1;
+}
+.series-container .allSeries .serie .details2 {
+  position: absolute;
+  padding: 1.3rem;
+  width: 100%;
+  height: 62%;
+  bottom: -10rem;
+  left: 0;
+  box-sizing: border-box;
+  transition: 0.5s;
+  z-index: 2;
+}
+.series-container .allSeries .serie .details2 h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #e4ddbf;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.series-container .allSeries .serie .details2 .stars-outer1 {
+  position: relative;
+  display: inline-block;
+}
+.series-container .allSeries .serie .details2 .stars-outer1 .stars-inner1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+.series-container .allSeries .serie .details2 .stars-inner1:before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f7f406;
+  font-size: 1.1rem;
+}
+.series-container .allSeries .serie .details2 .stars-outer1:before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.series-container .allSeries .serie .details2 .rating1 {
+  width: 100%;
+  display: flex;
+  height: auto;
+  margin: 0.5rem 0;
+}
+.series-container .allSeries .serie .details2 .rating1 span {
+  font-size: 1.2rem;
+  color: #e4ddbf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin-left: 0.5rem;
+}
+.series-container .allSeries .serie .genres1 {
+  position: relative;
+  margin-top: 0.2rem;
+}
+.series-container .allSeries .serie .genres1 span {
   background-color: #04253a;
+  color: #e4ddbf;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  display: inline-block;
+  border-radius: 5px;
+  margin: 12px 2px;
+}
+.series-container .allSeries .serie .info1 {
+  color: #e4ddbf;
+  position: absolute;
+  bottom: 4rem;
+}
+.series-container .allSeries .serie .info1 span {
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  color: #e4ddbf;
+  font-weight: 600;
+  margin-right: 1.5rem;
+}
+.series-container .allSeries .serie .info1 span i {
+  color: #04253a;
+  margin-right: 0.2rem;
+  background-color: #e4ddbf;
+  padding: 0.5rem;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+.series-container .allSeries .serie:hover .details2 {
+  bottom: -2rem;
+}
+.series-container .allSeries .serie:hover .poster1::before {
+  bottom: 0rem;
+}
+.series-container .allSeries .serie:hover .poster1 img {
+  filter: blur(5px);
+  transform: translateY(-3rem);
+}
+.series-container .allSeries .serie:hover .details2 h2 {
+  text-overflow: 1;
+  white-space: pre-wrap;
+}
+.series-container .search-bar1 {
+  width: 50%;
+  height: 5rem;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+.series-container .search-bar1 form {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.allSeries .serie .serie-avg p {
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #e4ddbf;
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
-}
-.allSeries .serie img {
+  height: 100%;
   width: 100%;
-  height: auto;
-  border-radius: 20px;
 }
-.allSeries .serie img:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  scale: 1.02;
-}
-.allSeries .serie h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
+.series-container .search-bar1 form input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  font-size: 1rem;
   font-weight: 400;
+  font-family: "Montserrat", sans-serif;
   color: #04253a;
-  text-align: center;
-  margin-top: 0.5rem;
+  border-radius: 10px;
+  padding: 0.8rem;
+  position: relative;
+}
+.series-container .search-bar1 form input:focus {
+  outline: none;
+}
+.series-container .search-bar1 form input:active {
+  outline: none;
+}
+.series-container .search-bar1 form input::placeholder {
+  color: #04253a;
+  font-size: 1rem;
+}
+.series-container .search-bar1 form button {
+  width: 20%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: 400;
+  margin-left: -0.8rem;
+}
+.series-container .search-bar1 form button i {
+  color: #04253a;
+  font-size: 1.3rem;
+}
+.series-container .search-bar1 form button i:hover {
+  cursor: pointer;
+  color: #4c837a;
+  transition: 0.3s ease-in-out;
+}
+.series-container .return1 {
+  padding: 2rem;
+}
+.series-container .return1 a {
+  text-decoration: none;
+}
+.series-container .return1 span {
+  font-size: 1.2rem;
+  color: #e4ddbf;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  background-color: #04253a;
+  border-radius: 5px;
+  padding: 0.5rem 2.5rem;
+  margin-bottom: 2rem;
+}
+.series-container .return1 span:hover {
+  cursor: pointer;
+  color: #4c837a;
+  transition: 0.3s ease-in-out;
 }
 .actors-container {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: #e4ddbf;
-  flex-wrap: wrap;
   margin-top: 1rem;
 }
-.actors-container .actor {
-  width: 15%;
-  height: 25rem;
-  margin: 1rem 0.1rem;
-  border: 1px solid #999;
-  border-radius: 10px;
+.actors-container .search-bar2 {
+  width: 50%;
+  height: 5rem;
+  padding: 1rem;
 }
-.actors-container .actor a {
-  text-decoration: none;
-}
-.actors-container .actor:hover {
-  scale: 1.02;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-.actors-container .actor img {
+.actors-container .search-bar2 form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   width: 100%;
-  height: 70%;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
 }
-.actors-container .actor h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #04253a;
-  margin-left: 1rem;
-  margin-bottom: 0.2rem;
-}
-.actors-container .actor p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.9rem;
+.actors-container .search-bar2 form input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  font-size: 1rem;
   font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  color: #04253a;
+  border-radius: 10px;
+  padding: 0.8rem;
+  position: relative;
+}
+.actors-container .search-bar2 form input:focus {
+  outline: none;
+}
+.actors-container .search-bar2 form input:active {
+  outline: none;
+}
+.actors-container .search-bar2 form input::placeholder {
+  color: #04253a;
+  font-size: 1rem;
+}
+.actors-container .search-bar2 form button {
+  width: 20%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: 400;
+  margin-left: -0.8rem;
+}
+.actors-container .search-bar2 form button i {
+  color: #04253a;
+  font-size: 1.3rem;
+}
+.actors-container .search-bar2 form button i:hover {
+  cursor: pointer;
   color: #4c837a;
+  transition: 0.3s ease-in-out;
+}
+.actors-container .actors-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+}
+.actors-container .actors-list .actor {
+  width: 15%;
+  height: 100%;
+  margin: 1rem;
+  transform: translate(0%, 0%);
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+.actors-container .actors-list .actor:hover {
+  cursor: pointer;
+  scale: 1.05;
+  transition: 0.3s ease-in-out;
+}
+.actors-container .actors-list .actor .actor-img {
+  position: relative;
+  overflow: hidden;
+}
+.actors-container .actors-list .actor .actor-img img {
+  width: 100%;
+  transition: 0.5s;
+}
+.actors-container .actors-list .actor .actor-img::before {
+  content: "";
+  position: absolute;
+  bottom: -10rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #000 55%, transparent);
+  transition: 0.5s;
+  z-index: 1;
+}
+.actors-container .actors-list .actor .actor-name {
+  position: absolute;
+  padding: 1.3rem;
+  width: 100%;
+  height: 62%;
+  bottom: -9.5rem;
+  left: 0;
+  box-sizing: border-box;
+  transition: 0.5s;
+  z-index: 2;
+  overflow: hidden;
+}
+.actors-container .actors-list .actor .actor-name h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #e4ddbf;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.actors-container .actors-list .actor .actor-name p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #4c837a;
   text-overflow: ellipsis;
-  margin-left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1rem;
 }
 body {
   background-color: #e4ddbf;
