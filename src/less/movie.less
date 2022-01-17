@@ -42,20 +42,27 @@
   transform: scale(0.7);
   transition: transform 500ms;
   opacity: 0.5;
+  position: relative;
 
   img {
     width: 18rem;
     margin: 0 auto;
+    z-index: 1;
   }
 
-  h3 {
-    font-family: @Montserrat;
-    font-size: 1.5rem;
-    color: @color1;
-    text-align: center;
-    margin: 0.5rem;
-    font-weight: 600;
-  }
+  // h3 {
+  //   font-family: @Montserrat;
+  //   font-size: 1.4rem;
+  //   color: @color2;
+  //   font-weight: 600;
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  //   background: linear-gradient(0deg, #111 30%, transparent);
+  //   padding: 1rem;
+  //   width: 18rem;
+  //   border-radius: 0 0 10px 10px;
+  // }
 }
 
 .activeSlide {
@@ -94,10 +101,10 @@
 
 .next {
   right: -1.5rem;
-  top: 35%;
+  top: 40%;
 }
 
 .prev {
   left: -1.5rem;
-  top: 35%;
+  top: 40%;
 }

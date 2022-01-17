@@ -139,16 +139,15 @@ const AllSeries = () => {
                 {serie.genre_ids &&
                   serie.genre_ids.slice(0, 3).map(id => {
                     genre = genres?.find(genre => genre.id === id);
-                    console.log(genre);
                     return <span key={genre.id}>{genre.name === undefined ? "" : genre.name}</span>;
                   })}
               </div>
               <div className='info1'>
                 <span>
-                  <i class='fas fa-thumbs-up'></i> {Math.round(serie.popularity)}
+                  <i className='fas fa-thumbs-up'></i> {Math.round(serie.popularity)}
                 </span>
                 <span>
-                  <i class='fas fa-calendar-alt'></i>{" "}
+                  <i className='fas fa-calendar-alt'></i>{" "}
                   {serie.first_air_date && serie.first_air_date.split("-").reverse().join("-")}
                 </span>
               </div>

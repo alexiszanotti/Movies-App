@@ -27,7 +27,7 @@ const AllMovies = () => {
     }
   };
 
-  const handleChange = e => {
+  const handleInputChange = e => {
     setSearch(e.target.value);
   };
 
@@ -107,7 +107,12 @@ const AllMovies = () => {
     <div className='container-movies1'>
       <div className='search-bar'>
         <form onSubmit={handleSubmit}>
-          <input type='text' placeholder='Película...' value={search} onChange={handleChange} />
+          <input
+            type='text'
+            placeholder='Película...'
+            value={search}
+            onChange={handleInputChange}
+          />
           <button type='submit'>
             <i className='fas fa-search'></i>
           </button>
@@ -154,10 +159,10 @@ const AllMovies = () => {
 
               <div className='info'>
                 <span>
-                  <i class='fas fa-thumbs-up'></i> {Math.round(movie.popularity)}
+                  <i className='fas fa-thumbs-up'></i> {Math.round(movie.popularity)}
                 </span>
                 <span>
-                  <i class='fas fa-calendar-alt'></i>{" "}
+                  <i className='fas fa-calendar-alt'></i>{" "}
                   {movie.release_date && movie.release_date.split("-").reverse().join("-")}
                 </span>
               </div>

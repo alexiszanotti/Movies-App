@@ -100,7 +100,6 @@ const Movies = () => {
                   alt={`${movie.title}`}
                 />
               </Link>
-              <h3>{movie.title}</h3>
             </div>
           ))}
         </Slider>

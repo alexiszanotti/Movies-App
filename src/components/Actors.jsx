@@ -110,8 +110,6 @@ const Actors = () => {
               </div>
               <div className='actor-name'>
                 <h3>{actor.name}</h3>
-                {actor.known_for &&
-                  actor.known_for?.map(movie => <p key={movie.id}>{movie.title}</p>)}
               </div>
             </Link>
           </div>

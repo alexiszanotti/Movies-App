@@ -102,7 +102,6 @@ const Series = () => {
                   alt={`${series.name}`}
                 />
               </Link>
-              <h3>{series.name}</h3>
             </div>
           ))}
         </Slider>

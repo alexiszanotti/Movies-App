@@ -135,8 +135,8 @@ const DetailSerie = () => {
             <h1>{serie.name}</h1>
             {serie.genres &&
               serie.genres?.map((genre, index) => (
-                <span key={genre.id}>
-                  {genre.name} {index !== serie.genres.length - 1 ? "- " : ""}
+                <span className='genres' key={genre.id}>
+                  {genre.name + " "}
                 </span>
               ))}
             <span>{`(${serie.episode_run_time} min)`}</span>
