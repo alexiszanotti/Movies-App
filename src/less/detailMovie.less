@@ -73,6 +73,11 @@
 
 .detail-info-buttons {
   margin-top: 1rem;
+  button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
   a {
     display: flex;
     justify-content: center;
@@ -83,6 +88,10 @@
     background-color: @color2;
     color: @color1;
     padding: 2px 10px;
+    border-radius: 5px;
+    &:hover {
+      background-color: rgb(114, 175, 165);
+    }
   }
 
   i {
@@ -93,11 +102,12 @@
 
 .slide1 {
   img {
-    width: 9rem;
+    width: 80%;
+    height: auto;
     border-radius: 10px;
     margin: 0.5rem;
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       cursor: pointer;
     }
   }
@@ -106,11 +116,13 @@
     font-family: @Montserrat;
     color: @color1;
     font-weight: 600;
+    margin-left: 0.5rem;
   }
 
   p {
     font-family: @Montserrat;
     color: @color3;
+    margin-left: 0.5rem;
   }
 }
 
@@ -159,16 +171,13 @@
 .detail-info {
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 0 1rem;
   margin-left: 3rem;
   h1 {
     font-family: @Montserrat;
     color: @color2;
     font-size: 2.5rem;
-    span {
-      font-size: 1.8rem;
-      margin-left: 0.5rem;
-    }
+    margin-bottom: 1rem;
   }
 
   span {
@@ -180,7 +189,22 @@
     font-family: @Montserrat;
     color: @color2;
     margin-top: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .genres-movie {
+    background-color: @color3;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.2rem 0.2rem;
+  }
+
+  .tagline {
+    font-family: @Montserrat;
+    color: @color2;
     font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: 600;
   }
 }
 
@@ -190,21 +214,19 @@
   justify-content: space-between;
 
   .detail-info-rating-average {
-    i {
-      font-size: 1.8rem;
-      color: @color2;
-      margin-right: 0.5rem;
-    }
-    p {
-      color: @color2;
-    }
-
-    h4 {
-      margin-top: 1rem;
-      margin-bottom: -0.5rem;
+    margin: 1rem 0;
+    span {
       font-family: @Montserrat;
       color: @color2;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
+      i {
+        font-size: 1.2rem;
+        margin: 0.5rem;
+        color: @color3;
+        background-color: @color2;
+        padding: 0.5rem;
+        border-radius: 50%;
+      }
     }
   }
 }
@@ -220,24 +242,6 @@
       font-size: 1.2rem;
       margin-right: 0.5rem;
     }
-  }
-}
-
-.detail-info-rating-count {
-  p {
-    color: @color2;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-  i {
-    font-size: 1.8rem;
-    margin-right: 0.5rem;
-  }
-  a {
-    color: @color2;
-    font-size: 1.4rem;
-    margin-left: 0.5rem;
-    font-family: @Montserrat;
   }
 }
 
@@ -262,4 +266,8 @@
   border-radius: 5px;
   font-family: @Montserrat;
   cursor: pointer;
+  &:hover {
+    background-color: rgb(20, 74, 107);
+    border: 1px solid rgb(20, 74, 107);
+  }
 }

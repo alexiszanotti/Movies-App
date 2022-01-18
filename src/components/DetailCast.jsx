@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Poster from "../img/default_poster.jpg";
 
 const DetailCast = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -151,7 +152,7 @@ const DetailCast = () => {
                   </Link>
                 ) : (
                   <Link to={`/pelicula/${credit.id}`}>
-                    <img src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} alt='' />
+                    <img src={Poster} alt='' />
                   </Link>
                 )}
                 <div className='cast-credit-info'>

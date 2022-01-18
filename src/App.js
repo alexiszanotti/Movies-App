@@ -8,6 +8,7 @@ import DetailCast from "./components/DetailCast";
 import AllMovies from "./components/AllMovies";
 import AllSeries from "./components/AllSeries";
 import Actors from "./components/Actors";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/series' element={<AllSeries />} />
         <Route path='/personajes' element={<Actors />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

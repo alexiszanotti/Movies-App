@@ -140,23 +140,16 @@ const DetailSerie = () => {
                 </span>
               ))}
             <span>{`(${serie.episode_run_time} min)`}</span>
-            <p>{serie.tagline ? `"${serie.tagline}"` : ""}</p>
+            <p className='tagline'>{serie.tagline ? `"${serie.tagline}"` : ""}</p>
             <p>{serie.overview}</p>
             <div className='detail-info-rating'>
               <div className='detail-info-rating-average'>
-                <p>
-                  {" "}
-                  <span>
-                    <i className='fas fa-poll'></i>
-                  </span>
+                <span>
+                  <i className='fas fa-poll'></i>
                   {`${serie.vote_average}/10`}
-                </p>
-              </div>
-              <div className='detail-info-rating-count'>
-                <p>
                   <i className='fas fa-thumbs-up'></i>
-                  {serie.vote_count} <span>Votos</span>
-                </p>
+                  {serie.vote_count}
+                </span>
               </div>
             </div>
 

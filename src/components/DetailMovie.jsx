@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import ImgPerfil from "../img/Img-Default-Perfil.jpg";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Poster from "../img/default_poster.jpg";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -83,7 +84,7 @@ const DetailMovie = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: true,
         },
@@ -92,7 +93,7 @@ const DetailMovie = () => {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -127,34 +128,33 @@ const DetailMovie = () => {
         </div>
         <div className='detail-movie'>
           <div>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+            {movie.poster_path ? (
+              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+            ) : (
+              <img src={Poster} alt={movie.title} />
+            )}
           </div>
           <div className='detail-info'>
             <h1>{movie.title}</h1>
             {movie.genres &&
-              movie.genres?.map((genre, index) => (
-                <span key={genre.id}>
-                  {genre.name} {index !== movie.genres.length - 1 ? "- " : ""}
+              movie.genres?.map(genre => (
+                <span className='genres-movie' key={genre.id}>
+                  {genre.name + " "}
                 </span>
               ))}
             <span>{`(${movie.runtime} min)`}</span>
-            <p>{movie.tagline ? `"${movie.tagline}"` : ""}</p>
+            <p className='tagline'>{movie.tagline ? `"${movie.tagline}"` : ""}</p>
             <p>{movie.overview}</p>
             <div className='detail-info-rating'>
               <div className='detail-info-rating-average'>
-                <p>
-                  {" "}
-                  <span>
-                    <i className='fas fa-poll'></i>
-                  </span>
+                <span>
+                  <i className='fas fa-poll'></i>
+                </span>
+                <span>
                   {`${movie.vote_average}/10`}
-                </p>
-              </div>
-              <div className='detail-info-rating-count'>
-                <p>
                   <i className='fas fa-thumbs-up'></i>
-                  {movie.vote_count} <span>Votos</span>
-                </p>
+                  {movie.vote_count}
+                </span>
               </div>
             </div>
             <div className='sitioWeb'>
