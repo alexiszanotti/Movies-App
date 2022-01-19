@@ -155,9 +155,6 @@ const DetailCast = () => {
                     <img src={Poster} alt='' />
                   </Link>
                 )}
-                <div className='cast-credit-info'>
-                  <h2>{credit.title}</h2>
-                </div>
               </div>
             ))}
           </Slider>

@@ -1,8 +1,3 @@
-@color1: rgb(4, 37, 58);
-@color2: rgb(228, 221, 191);
-@color3: rgb(76, 131, 122);
-@Montserrat: "Montserrat", sans-serif;
-
 .container-movies1 {
   width: 100%;
   height: 100%;
@@ -17,6 +12,10 @@
     padding: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    @media @phone {
+      width: 100%;
+      padding: 0;
+    }
 
     .card {
       transform: translate(0%, 0%);
@@ -25,6 +24,11 @@
       margin: 1rem;
       overflow: hidden;
       border-radius: 0.5rem;
+      @media @phone {
+        width: 40%;
+        height: 100%;
+        margin: 0.5rem;
+      }
 
       .poster {
         position: relative;
@@ -57,6 +61,7 @@
         box-sizing: border-box;
         transition: 0.5s;
         z-index: 2;
+
         h2 {
           font-family: @Montserrat;
           font-weight: 600;
@@ -178,6 +183,10 @@
     height: 5rem;
     padding: 1rem;
     margin-top: 2rem;
+    @media @phone {
+      width: 100%;
+      margin-top: 0;
+    }
     form {
       display: flex;
       justify-content: center;

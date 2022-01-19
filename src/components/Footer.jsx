@@ -1,17 +1,22 @@
 import "../less/footer.less";
+import img from "../img/tmdb.svg";
 
 const Footer = () => {
   return (
     <div className='footer-container'>
       <footer>
         <span>
-          <a href='https://www.linkedin.com/in/alexis-zanotti/'>
-            <i className='fab fa-linkedin'></i>
+          <a href='https://www.linkedin.com/in/alexis-zanotti/' target='_blank'>
+            <i id='linkedin' className='fab fa-linkedin'></i>
           </a>
-        </span>
-        <span>
-          <a href='https://github.com/alexiszanotti'>
-            <i className='fab fa-github'></i>
+          <a href='https://github.com/alexiszanotti' target='_blank'>
+            <i id='github' className='fab fa-github'></i>
+          </a>
+          <a href='https://www.behance.net/alexis-zanotti' target='_blank'>
+            <i id='behance' className='fab fa-behance'></i>
+          </a>
+          <a href='https://www.themoviedb.org/'>
+            <img src={img} alt='tmdb' />
           </a>
         </span>
       </footer>

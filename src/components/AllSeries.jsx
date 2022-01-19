@@ -11,7 +11,7 @@ const AllSeries = () => {
 
   const apiKey = process.env.REACT_APP_API_KEY;
   let lastSerie;
-  let genre;
+  var genre;
   let starsTotal = 5;
   let pagina = 2;
 

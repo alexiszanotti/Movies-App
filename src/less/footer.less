@@ -1,23 +1,58 @@
-@color1: rgb(4, 37, 58);
-@color2: rgb(228, 221, 191);
-@color3: rgb(76, 131, 122);
-
 .footer-container {
   background-color: @color1;
-  border-top: 1px solid #ddd;
   padding: 10px 15px;
   margin-top: 20px;
   text-align: center;
   height: 5rem;
+  margin-top: 2rem;
   footer {
     text-align: center;
-    a {
-      border-radius: 50%;
-      font-size: 2.5rem;
-      margin-left: 2rem;
-      color: @color3;
-      &:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    span {
+      width: 100%;
+
+      a {
+        font-size: 2.5rem;
+        margin-left: 3rem;
         color: @color2;
+        @media @phone {
+          font-size: 2rem;
+          margin-left: 1.7rem;
+        }
+        i {
+          transition: color 300ms ease;
+        }
+        #linkedin {
+          &:hover {
+            color: #0177b5;
+          }
+        }
+        #github {
+          &:hover {
+            color: #333;
+          }
+        }
+        #behance {
+          &:hover {
+            color: #1769ff;
+          }
+        }
+      }
+    }
+
+    img {
+      width: 10%;
+      margin-bottom: 4px;
+      filter: grayscale(100%);
+      &:hover {
+        filter: grayscale(0%);
+      }
+      @media @phone {
+        width: 40%;
       }
     }
   }

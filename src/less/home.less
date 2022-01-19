@@ -1,10 +1,10 @@
-@Montserrat: "Montserrat", sans-serif;
-
 .main-container {
   width: 100%;
-  height: 20rem;
+  height: 40vh;
   position: relative;
-  // margin-top: 0.5rem;
+  @media @phone {
+    height: 25vh;
+  }
 
   main {
     background-color: rgba(76, 131, 122, 0.8);
@@ -14,6 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     h1 {
       font-size: 4rem;
       font-weight: 900;
@@ -23,6 +24,11 @@
       left: 4rem;
       font-family: @Montserrat;
       font-weight: bold;
+      @media @phone {
+        font-size: 2rem;
+        top: 10%;
+        left: 2rem;
+      }
     }
     h2 {
       font-size: 2rem;
@@ -32,6 +38,12 @@
       top: 50%;
       left: 4rem;
       font-family: @Montserrat;
+
+      @media @phone {
+        font-size: 1.5rem;
+        top: 40%;
+        left: 2rem;
+      }
     }
     img {
       width: 100%;

@@ -1,8 +1,3 @@
-@color1: rgb(4, 37, 58);
-@color2: rgb(228, 221, 191);
-@color3: rgb(76, 131, 122);
-@Montserrat: "Montserrat", sans-serif;
-
 .nav-container {
   width: 100%;
   height: 4rem;
@@ -12,108 +7,80 @@
     width: 80%;
     height: 100%;
     margin: 0 auto;
+    .menu-hamburguer {
+      display: none;
+      @media screen and (max-width: 768px) {
+        display: flex;
+        position: absolute;
+        top: -1.9rem;
+        font-size: 5rem;
+        right: 2rem;
+        cursor: pointer;
+        i {
+          font-size: 2rem;
+          color: @color2;
+        }
+      }
+    }
 
     ul {
-      width: 95%;
       height: 100%;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
 
-      li {
-        color: @color2;
-        text-decoration: none;
-        list-style: none;
-        font-size: 1.3rem;
-        font-weight: 400;
-        font-family: @Montserrat;
+      @media screen and (max-width: 768px) {
+        background-color: @color1;
+        z-index: 50;
+        position: absolute;
+        top: 4rem;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        justify-content: start;
+        flex-direction: column;
+        align-items: center;
+        transition: 0.5s all ease;
+      }
+
+      .menu-navbar {
+        @media screen and (max-width: 768px) {
+          font-size: 1.5rem;
+          width: 100%;
+          height: 2rem;
+          justify-content: center;
+          align-items: center;
+        }
       }
       a {
-        text-decoration: none;
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
-        z-index: 1;
-        text-transform: uppercase;
-        transition: all 0.3s ease-in-out;
         height: 100%;
         padding: 0.5rem 1rem;
+        color: @color2;
+        font-family: @Montserrat;
+        font-weight: 400;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        list-style: none;
+        font-size: 1.3rem;
+        &:hover {
+          background-color: @color3;
+          transition: all 0.3s ease-in-out;
+        }
+        @media screen and (max-width: 768px) {
+          height: 6rem;
+          width: 100%;
+          text-align: center;
+          margin-top: 1rem;
+        }
 
         i {
           font-size: 1.4rem;
           margin-right: 0.5rem;
           color: @color2;
-        }
-      }
-
-      a:after {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        margin: auto;
-        width: 100%;
-        transition: all 0.3s;
-        content: ".";
-        color: transparent;
-        background: @color3;
-        visibility: none;
-        opacity: 0;
-        z-index: -1;
-      }
-
-      a:hover:after {
-        opacity: 1;
-        visibility: visible;
-        height: 100%;
-      }
-    }
-
-    form {
-      width: 30%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      input {
-        width: 100%;
-        height: 50%;
-        border: none;
-        background-color: rgba(228, 221, 191, 0.5);
-        font-size: 1rem;
-        font-weight: 400;
-        font-family: @Montserrat;
-        color: @color1;
-        border-radius: 10px;
-        padding: 1.2rem;
-        margin-right: 3rem;
-        position: relative;
-        &:focus {
-          outline: none;
-        }
-        &:active {
-          outline: none;
-        }
-        &::placeholder {
-          color: @color1;
-          font-size: 1rem;
-        }
-      }
-
-      i {
-        color: @color2;
-        font-size: 1.3rem;
-        margin-right: 3rem;
-        position: absolute;
-        right: 1.5rem;
-        top: 1.8rem;
-        color: @color1;
-        &:hover {
-          cursor: pointer;
         }
       }
     }
