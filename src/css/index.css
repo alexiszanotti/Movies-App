@@ -10,6 +10,9 @@
   width: 100%;
   height: 4rem;
   background-color: #04253a;
+  position: fixed;
+  z-index: 50;
+  top: 0;
 }
 .nav-container nav {
   width: 80%;
@@ -30,7 +33,7 @@
   }
   .nav-container nav .menu-hamburguer i {
     font-size: 2rem;
-    color: #e4ddbf;
+    color: #fff;
   }
 }
 .nav-container nav ul {
@@ -69,7 +72,7 @@
   align-items: center;
   height: 100%;
   padding: 0.5rem 1rem;
-  color: #e4ddbf;
+  color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
@@ -93,7 +96,10 @@
 .nav-container nav ul a i {
   font-size: 1.4rem;
   margin-right: 0.5rem;
-  color: #e4ddbf;
+  color: #fff;
+}
+.nav-container nav .active {
+  background-color: #4c837a;
 }
 .main-container {
   width: 100%;
@@ -113,6 +119,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 3rem;
 }
 .main-container main h1 {
   font-size: 4rem;
@@ -162,7 +169,7 @@
   border: 5px solid #04253a;
   border-radius: 10px;
   background-color: #04253a;
-  color: #e4ddbf;
+  color: #fff;
   width: 25%;
   font-weight: 600;
 }
@@ -178,7 +185,7 @@
   width: 95%;
   margin: 1rem auto;
   height: 80%;
-  background-color: #e4ddbf;
+  background-color: #fff;
   padding: 0.5rem;
 }
 @media (max-width: 768px) {
@@ -198,20 +205,25 @@
   position: relative;
 }
 .slide img {
-  width: 18rem;
+  width: 100%;
   margin: 0 auto;
   z-index: 1;
+}
+@media (max-width: 768px) {
+  .slide img {
+    width: 70%;
+    height: auto;
+  }
 }
 .activeSlide {
   transform: scale(1);
   opacity: 1;
 }
 .arrow {
-  color: #e4ddbf;
-  background-color: #4c837a;
+  color: #04253a;
   padding: 0.5rem;
   border-radius: 20%;
-  font-size: 1.6rem;
+  font-size: 2.6rem;
   position: absolute;
   cursor: pointer;
   z-index: 10;
@@ -219,7 +231,7 @@
 @media (max-width: 768px) {
   .arrow {
     padding: 0;
-    background-color: #e4ddbf;
+    background-color: transparent;
   }
 }
 .arrow svg {
@@ -228,6 +240,7 @@
 }
 .arrow svg:hover {
   color: #04253a;
+  scale: 1.3;
 }
 .next {
   right: -1.5rem;
@@ -256,7 +269,7 @@
   border: 5px solid #04253a;
   border-radius: 10px;
   background-color: #04253a;
-  color: #e4ddbf;
+  color: #fff;
   width: 25%;
   font-weight: 600;
 }
@@ -272,7 +285,7 @@
   width: 95%;
   margin: 1rem auto;
   height: 80%;
-  background-color: #e4ddbf;
+  background-color: #fff;
   padding: 0.5rem;
 }
 @media (max-width: 768px) {
@@ -291,19 +304,23 @@
   opacity: 0.5;
 }
 .slide4 img {
-  width: 18rem;
+  width: 100%;
   margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .slide4 img {
+    width: 70%;
+  }
 }
 .activeSlide4 {
   transform: scale(1);
   opacity: 1;
 }
 .arrow4 {
-  color: #e4ddbf;
-  background-color: #4c837a;
+  color: #04253a;
   padding: 0.5rem;
   border-radius: 20%;
-  font-size: 1.6rem;
+  font-size: 2.6rem;
   position: absolute;
   cursor: pointer;
   z-index: 10;
@@ -311,7 +328,7 @@
 @media (max-width: 768px) {
   .arrow4 {
     padding: 0;
-    background-color: #e4ddbf;
+    background-color: transparent;
   }
 }
 .arrow4 svg {
@@ -348,10 +365,11 @@
   position: relative;
   padding: 1rem;
   margin-left: 0;
-  margin-top: 0;
+  margin-top: 4.5rem;
 }
 .detail-movie img {
   width: 100%;
+  min-width: 10rem;
   height: auto;
   border-radius: 20px;
 }
@@ -384,13 +402,14 @@
 .container-movie-detail .container-movie-detail-img img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   z-index: -2;
 }
 .container-movie h2 {
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   font-weight: 600;
-  color: #e4ddbf;
+  color: #fff;
   margin: 2rem -2rem;
   background-color: #04253a;
   padding: 0.5rem;
@@ -412,8 +431,8 @@
   align-items: center;
   font-size: 1.2rem;
   text-decoration: none;
-  color: #e4ddbf;
-  background-color: #e4ddbf;
+  color: #fff;
+  background-color: #fff;
   color: #04253a;
   padding: 2px 10px;
   border-radius: 5px;
@@ -426,14 +445,17 @@
   margin: 0.5rem;
 }
 .slide1 img {
-  width: 80%;
+  width: 60%;
   height: auto;
   border-radius: 10px;
   margin: 0.5rem;
+  box-shadow: 3px 3px 10px #000000;
+  filter: grayscale(100%);
 }
 .slide1 img:hover {
   transform: scale(1.05);
   cursor: pointer;
+  filter: grayscale(0%);
 }
 .slide1 h4 {
   font-family: "Montserrat", sans-serif;
@@ -449,7 +471,7 @@
 .arrow1 {
   padding: 2.5rem;
   border-radius: 20%;
-  font-size: 1.6rem;
+  font-size: 3rem;
   position: absolute;
   cursor: pointer;
   z-index: 10;
@@ -477,11 +499,11 @@
   }
 }
 .next1 {
-  right: -5rem;
+  right: -4rem;
   top: 20%;
 }
 .prev1 {
-  left: -5rem;
+  left: -6rem;
   top: 20%;
 }
 .detail-cast1 {
@@ -496,17 +518,17 @@
 }
 .detail-info h1 {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 .detail-info span {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
 }
 .detail-info p {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   margin-top: 1rem;
   font-size: 1.3rem;
 }
@@ -518,7 +540,7 @@
 }
 .detail-info .tagline {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-size: 1.5rem;
   margin-top: 1rem;
   font-weight: 600;
@@ -533,14 +555,14 @@
 }
 .detail-info-rating .detail-info-rating-average span {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-size: 1.2rem;
 }
 .detail-info-rating .detail-info-rating-average span i {
   font-size: 1.2rem;
   margin: 0.5rem;
   color: #4c837a;
-  background-color: #e4ddbf;
+  background-color: #fff;
   padding: 0.5rem;
   border-radius: 50%;
 }
@@ -548,7 +570,7 @@
   margin-top: 1rem;
 }
 .sitioWeb a {
-  color: #e4ddbf;
+  color: #fff;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
 }
@@ -565,7 +587,7 @@
 .btn-back1 {
   margin: 4rem 35rem;
   font-size: 1.2rem;
-  color: #e4ddbf;
+  color: #fff;
   width: 30%;
   text-align: center;
   background-color: #04253a;
@@ -586,12 +608,13 @@
   position: relative;
   padding: 1rem;
   margin-left: 0;
-  margin-top: 0;
+  margin-top: 4.5rem;
 }
 .detail-serie img {
   width: 100%;
+  min-width: 10rem;
   height: auto;
-  border-radius: 20px;
+  border-radius: 10px;
   object-fit: cover;
 }
 .container-serie-detail {
@@ -623,12 +646,13 @@
   background-repeat: no-repeat;
   position: absolute;
   z-index: -2;
+  object-fit: cover;
 }
 .container-serie h2 {
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   font-weight: 600;
-  color: #e4ddbf;
+  color: #fff;
   margin: 2rem -2rem;
   background-color: #04253a;
   padding: 0.5rem;
@@ -647,7 +671,7 @@
   text-decoration: none;
   color: #4c837a;
   background-color: #4c837a;
-  color: #e4ddbf;
+  color: #fff;
   padding: 2px 10px;
 }
 .detail-info-buttons i {
@@ -655,13 +679,17 @@
   margin: 0.5rem;
 }
 .slide8 img {
-  width: 80%;
+  width: 60%;
   border-radius: 10px;
   margin: 0.5rem;
+  object-fit: cover;
+  box-shadow: 3px 3px 10px #000000;
+  filter: grayscale(100%);
 }
 .slide8 img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
+  filter: grayscale(0%);
 }
 .slide8 h4 {
   font-family: "Montserrat", sans-serif;
@@ -674,14 +702,10 @@
   color: #4c837a;
   margin-left: 0.5rem;
 }
-.activeSlide8 {
-  transform: scale(1);
-  opacity: 1;
-}
 .arrow3 {
   padding: 2.5rem;
   border-radius: 20%;
-  font-size: 1.6rem;
+  font-size: 3rem;
   position: absolute;
   cursor: pointer;
   z-index: 10;
@@ -693,24 +717,9 @@
 .arrow3 svg:hover {
   color: #04253a;
 }
-@media screen and (max-width: 800px) {
-  .arrow3 {
-    font-size: 1.5rem;
-  }
-}
-@media screen and (max-width: 600px) {
-  .arrow3 {
-    font-size: 1rem;
-  }
-}
-@media screen and (max-width: 400px) {
-  .arrow3 {
-    font-size: 0.8rem;
-  }
-}
 .next3 {
-  right: -5rem;
-  top: 30%;
+  right: -1.5rem;
+  top: 20%;
 }
 .prev3 {
   left: -5rem;
@@ -728,13 +737,13 @@
 }
 .detail-info1 h1 {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 .detail-info1 .tagline {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: 600;
@@ -747,11 +756,11 @@
 }
 .detail-info1 span {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
 }
 .detail-info1 p {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   margin-top: 1rem;
   font-size: 1.3rem;
   font-weight: 400;
@@ -760,17 +769,16 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
 }
 .networks img {
-  width: 50%;
-  height: 50%;
+  width: 10%;
+  height: auto;
   border-radius: 0;
+  object-fit: cover;
+  margin: 0 1rem;
 }
 .detail-info-rating-count p {
-  color: #e4ddbf;
+  color: #fff;
   font-size: 1.4rem;
   margin-bottom: 1rem;
 }
@@ -779,7 +787,7 @@
   margin-right: 0.5rem;
 }
 .detail-info-rating-count a {
-  color: #e4ddbf;
+  color: #fff;
   font-size: 1.4rem;
   margin-left: 0.5rem;
   font-family: "Montserrat", sans-serif;
@@ -793,7 +801,7 @@
 .btn-back {
   margin: 4rem 35rem;
   font-size: 1.2rem;
-  color: #e4ddbf;
+  color: #fff;
   width: 30%;
   text-align: center;
   background-color: #04253a;
@@ -820,7 +828,7 @@
 }
 .created-by h5 {
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-size: 1.5rem;
   margin-right: 1rem;
   font-weight: 400;
@@ -834,17 +842,19 @@
 }
 .seasons .seasons-container {
   width: 15%;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 .seasons .seasons-container .img-container {
-  width: 30vh;
-  height: 50vh;
+  width: 80%;
+  height: 100%;
   margin-bottom: -2rem;
 }
 .seasons .seasons-container .img-container img {
   width: 100%;
   height: 90%;
   border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 3px 3px 10px #000000;
 }
 .seasons .seasons-container h4 {
   font-family: "Montserrat", sans-serif;
@@ -863,8 +873,9 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: #e4ddbf;
+  background-color: #fff;
   padding: 10px;
+  margin-top: 3.5rem;
 }
 .cast-container .cast-detail {
   display: flex;
@@ -930,7 +941,7 @@
   border: 5px solid #04253a;
   border-radius: 10px;
   background-color: #04253a;
-  color: #e4ddbf;
+  color: #fff;
   width: 20%;
   font-weight: 600;
   font-size: 2rem;
@@ -949,7 +960,7 @@
 .arrow7 {
   padding: 2.5rem;
   border-radius: 20%;
-  font-size: 1.6rem;
+  font-size: 2.6rem;
   position: absolute;
   cursor: pointer;
   z-index: 10;
@@ -961,23 +972,8 @@
 .arrow7 svg:hover {
   color: #04253a;
 }
-@media screen and (max-width: 800px) {
-  .arrow7 {
-    font-size: 1.5rem;
-  }
-}
-@media screen and (max-width: 600px) {
-  .arrow7 {
-    font-size: 1rem;
-  }
-}
-@media screen and (max-width: 400px) {
-  .arrow7 {
-    font-size: 0.8rem;
-  }
-}
 .next7 {
-  right: -5rem;
+  right: -3rem;
   top: 30%;
 }
 .prev7 {
@@ -1012,6 +1008,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 3.5rem;
 }
 .container-movies1 .allMovies {
   display: flex;
@@ -1034,6 +1031,7 @@
   margin: 1rem;
   overflow: hidden;
   border-radius: 0.5rem;
+  box-shadow: 2px 2px 10px #000000;
 }
 @media (max-width: 768px) {
   .container-movies1 .allMovies .card {
@@ -1072,10 +1070,15 @@
   transition: 0.5s;
   z-index: 2;
 }
+@media (max-width: 768px) {
+  .container-movies1 .allMovies .card .details1 {
+    display: none;
+  }
+}
 .container-movies1 .allMovies .card .details1 h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  color: #e4ddbf;
+  color: #fff;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -1114,7 +1117,7 @@
 }
 .container-movies1 .allMovies .card .details1 .rating span {
   font-size: 1.2rem;
-  color: #e4ddbf;
+  color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   margin-left: 0.5rem;
@@ -1125,7 +1128,7 @@
 }
 .container-movies1 .allMovies .card .genres span {
   background-color: #04253a;
-  color: #e4ddbf;
+  color: #fff;
   padding: 0.2rem 0.5rem;
   font-size: 0.8rem;
   font-family: "Montserrat", sans-serif;
@@ -1134,21 +1137,21 @@
   margin: 12px 2px;
 }
 .container-movies1 .allMovies .card .info {
-  color: #e4ddbf;
+  color: #fff;
   position: absolute;
   bottom: 4rem;
 }
 .container-movies1 .allMovies .card .info span {
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-weight: 600;
   margin-right: 1.5rem;
 }
 .container-movies1 .allMovies .card .info span i {
   color: #04253a;
   margin-right: 0.2rem;
-  background-color: #e4ddbf;
+  background-color: #fff;
   padding: 0.5rem;
   border-radius: 50%;
   margin-right: 3px;
@@ -1168,15 +1171,17 @@
   white-space: pre-wrap;
 }
 .container-movies1 .search-bar {
-  width: 50%;
-  height: 5rem;
-  padding: 1rem;
+  width: 30%;
+  height: 3rem;
+  box-shadow: 3px 3px 10px #000000;
   margin-top: 2rem;
+  border: 3px solid #04253a;
+  border-radius: 0.5rem;
 }
 @media (max-width: 768px) {
   .container-movies1 .search-bar {
-    width: 100%;
-    margin-top: 0;
+    width: 70%;
+    margin: 2rem;
   }
 }
 .container-movies1 .search-bar form {
@@ -1208,18 +1213,27 @@
 .container-movies1 .search-bar form input::placeholder {
   color: #04253a;
   font-size: 1rem;
+  font-weight: 600;
 }
 .container-movies1 .search-bar form button {
-  width: 20%;
+  width: 10%;
   height: 100%;
   border: none;
   background-color: #fff;
-  border-radius: 10px;
-  font-weight: 400;
+  border-radius: 0 10px 10px 0;
+  background-color: #04253a;
+  cursor: pointer;
+  z-index: 1;
   margin-left: -0.8rem;
 }
+@media (max-width: 768px) {
+  .container-movies1 .search-bar form button {
+    width: 20%;
+    margin-left: -0.5rem;
+  }
+}
 .container-movies1 .search-bar form button i {
-  color: #04253a;
+  color: #fff;
   font-size: 1.3rem;
 }
 .container-movies1 .search-bar form button i:hover {
@@ -1235,7 +1249,7 @@
 }
 .container-movies1 .return span {
   font-size: 1.2rem;
-  color: #e4ddbf;
+  color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   background-color: #04253a;
@@ -1254,6 +1268,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 3.5rem;
 }
 .series-container .allSeries {
   display: flex;
@@ -1270,6 +1285,7 @@
   margin: 1rem;
   overflow: hidden;
   border-radius: 0.5rem;
+  box-shadow: 2px 2px 10px #000000;
 }
 .series-container .allSeries .serie .poster1 {
   position: relative;
@@ -1304,7 +1320,7 @@
 .series-container .allSeries .serie .details2 h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  color: #e4ddbf;
+  color: #fff;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -1343,7 +1359,7 @@
 }
 .series-container .allSeries .serie .details2 .rating1 span {
   font-size: 1.2rem;
-  color: #e4ddbf;
+  color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   margin-left: 0.5rem;
@@ -1354,7 +1370,7 @@
 }
 .series-container .allSeries .serie .genres1 span {
   background-color: #04253a;
-  color: #e4ddbf;
+  color: #fff;
   padding: 0.2rem 0.5rem;
   font-size: 0.8rem;
   font-family: "Montserrat", sans-serif;
@@ -1363,21 +1379,21 @@
   margin: 12px 2px;
 }
 .series-container .allSeries .serie .info1 {
-  color: #e4ddbf;
+  color: #fff;
   position: absolute;
   bottom: 4rem;
 }
 .series-container .allSeries .serie .info1 span {
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
-  color: #e4ddbf;
+  color: #fff;
   font-weight: 600;
   margin-right: 1.5rem;
 }
 .series-container .allSeries .serie .info1 span i {
   color: #04253a;
   margin-right: 0.2rem;
-  background-color: #e4ddbf;
+  background-color: #fff;
   padding: 0.5rem;
   border-radius: 50%;
   margin-right: 3px;
@@ -1397,10 +1413,18 @@
   white-space: pre-wrap;
 }
 .series-container .search-bar1 {
-  width: 50%;
-  height: 5rem;
-  padding: 1rem;
+  width: 30%;
+  height: 3rem;
+  box-shadow: 3px 3px 10px #000000;
   margin-top: 2rem;
+  border: 3px solid #04253a;
+  border-radius: 0.5rem;
+}
+@media (max-width: 768px) {
+  .series-container .search-bar1 {
+    width: 100%;
+    margin-top: 0;
+  }
 }
 .series-container .search-bar1 form {
   display: flex;
@@ -1421,6 +1445,7 @@
   border-radius: 10px;
   padding: 0.8rem;
   position: relative;
+  font-weight: 600;
 }
 .series-container .search-bar1 form input:focus {
   outline: none;
@@ -1431,18 +1456,21 @@
 .series-container .search-bar1 form input::placeholder {
   color: #04253a;
   font-size: 1rem;
+  font-weight: 600;
 }
 .series-container .search-bar1 form button {
-  width: 20%;
+  width: 10%;
   height: 100%;
   border: none;
   background-color: #fff;
-  border-radius: 10px;
-  font-weight: 400;
+  border-radius: 0 10px 10px 0;
+  background-color: #04253a;
+  cursor: pointer;
+  z-index: 1;
   margin-left: -0.8rem;
 }
 .series-container .search-bar1 form button i {
-  color: #04253a;
+  color: #fff;
   font-size: 1.3rem;
 }
 .series-container .search-bar1 form button i:hover {
@@ -1458,7 +1486,7 @@
 }
 .series-container .return1 span {
   font-size: 1.2rem;
-  color: #e4ddbf;
+  color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   background-color: #04253a;
@@ -1478,13 +1506,23 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: #e4ddbf;
-  margin-top: 1rem;
+  background-color: #fff;
+  margin-top: 4.5rem;
 }
 .actors-container .search-bar2 {
-  width: 50%;
-  height: 5rem;
-  padding: 1rem;
+  width: 30%;
+  height: 3rem;
+  margin-top: 1rem;
+  border: 3px solid #04253a;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 3px 3px 10px #000000;
+}
+@media (max-width: 768px) {
+  .actors-container .search-bar2 {
+    width: 100%;
+    margin-top: 0;
+  }
 }
 .actors-container .search-bar2 form {
   display: flex;
@@ -1505,6 +1543,7 @@
   border-radius: 10px;
   padding: 0.8rem;
   position: relative;
+  font-weight: 600;
 }
 .actors-container .search-bar2 form input:focus {
   outline: none;
@@ -1515,18 +1554,21 @@
 .actors-container .search-bar2 form input::placeholder {
   color: #04253a;
   font-size: 1rem;
+  font-weight: 600;
 }
 .actors-container .search-bar2 form button {
-  width: 20%;
+  width: 10%;
   height: 100%;
   border: none;
   background-color: #fff;
-  border-radius: 10px;
-  font-weight: 400;
+  border-radius: 0 10px 10px 0;
+  background-color: #04253a;
+  cursor: pointer;
+  z-index: 1;
   margin-left: -0.8rem;
 }
 .actors-container .search-bar2 form button i {
-  color: #04253a;
+  color: #fff;
   font-size: 1.3rem;
 }
 .actors-container .search-bar2 form button i:hover {
@@ -1549,6 +1591,7 @@
   transform: translate(0%, 0%);
   overflow: hidden;
   border-radius: 0.5rem;
+  box-shadow: 2px 2px 10px #000000;
 }
 .actors-container .actors-list .actor:hover {
   cursor: pointer;
@@ -1589,7 +1632,7 @@
 .actors-container .actors-list .actor .actor-name h3 {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  color: #e4ddbf;
+  color: #fff;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -1610,24 +1653,41 @@
   padding: 10px 15px;
   margin-top: 20px;
   text-align: center;
-  height: 5rem;
+  height: 10rem;
   margin-top: 2rem;
 }
 .footer-container footer {
   text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   height: 100%;
   width: 100%;
+}
+.footer-container footer h1 {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: PT Sans, sans-serif;
+  font-weight: 600;
+}
+.footer-container footer h4 {
+  font-size: 1rem;
+  color: #4c837a;
+  font-family: PT Sans, sans-serif;
+}
+.footer-container footer p {
+  font-size: 0.8rem;
+  color: #4c837a;
+  font-family: PT Sans, sans-serif;
 }
 .footer-container footer span {
   width: 100%;
 }
 .footer-container footer span a {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-left: 3rem;
-  color: #e4ddbf;
+  color: #fff;
 }
 @media (max-width: 768px) {
   .footer-container footer span a {
@@ -1661,6 +1721,6 @@
   }
 }
 body {
-  background-color: #e4ddbf;
+  background-color: #fff;
   font-size: 100%;
 }

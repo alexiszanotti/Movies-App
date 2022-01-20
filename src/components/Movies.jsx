@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "../less/movie.less";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -34,7 +34,7 @@ const Movies = () => {
   const NextArrow = ({ onClick }) => {
     return (
       <div className='arrow next' onClick={onClick}>
-        <FaArrowRight />
+        <VscChevronRight />
       </div>
     );
   };
@@ -42,7 +42,7 @@ const Movies = () => {
   const PrevArrow = ({ onClick }) => {
     return (
       <div className='arrow prev' onClick={onClick}>
-        <FaArrowLeft />
+        <VscChevronLeft />
       </div>
     );
   };

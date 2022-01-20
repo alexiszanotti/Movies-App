@@ -8,11 +8,12 @@
   position: relative;
   padding: 1rem;
   margin-left: 0;
-  margin-top: 0;
+  margin-top: 4.5rem;
   img {
     width: 100%;
+    min-width: 10rem;
     height: auto;
-    border-radius: 20px;
+    border-radius: 10px;
     object-fit: cover;
   }
 }
@@ -47,6 +48,7 @@
       background-repeat: no-repeat;
       position: absolute;
       z-index: -2;
+      object-fit: cover;
     }
   }
 }
@@ -88,12 +90,16 @@
 
 .slide8 {
   img {
-    width: 80%;
+    width: 60%;
     border-radius: 10px;
     margin: 0.5rem;
+    object-fit: cover;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+    filter: grayscale(100%);
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       cursor: pointer;
+      filter: grayscale(0%);
     }
   }
 
@@ -111,15 +117,10 @@
   }
 }
 
-.activeSlide8 {
-  transform: scale(1);
-  opacity: 1;
-}
-
 .arrow3 {
   padding: 2.5rem;
   border-radius: 20%;
-  font-size: 1.6rem;
+  font-size: 3rem;
   position: absolute;
   cursor: pointer;
   z-index: 10;
@@ -131,21 +132,11 @@
       color: @color1;
     }
   }
-  @media screen and (max-width: 800px) {
-    font-size: 1.5rem;
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 1rem;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 0.8rem;
-  }
 }
 
 .next3 {
-  right: -5rem;
-  top: 30%;
+  right: -1.5rem;
+  top: 20%;
 }
 
 .prev3 {
@@ -200,14 +191,13 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
 
   img {
-    width: 50%;
-    height: 50%;
+    width: 10%;
+    height: auto;
     border-radius: 0;
+    object-fit: cover;
+    margin: 0 1rem;
   }
 }
 
@@ -285,15 +275,18 @@
 
   .seasons-container {
     width: 15%;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     .img-container {
-      width: 30vh;
-      height: 50vh;
+      width: 80%;
+      height: 100%;
       margin-bottom: -2rem;
+
       img {
         width: 100%;
         height: 90%;
         border-radius: 20px;
+        object-fit: cover;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
       }
     }
 

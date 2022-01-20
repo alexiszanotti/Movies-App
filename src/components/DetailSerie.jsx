@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ImgPerfil from "../img/Img-Default-Perfil.jpg";
 import Slider from "react-slick";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import imgPoster from "../img/default_poster.jpg";
 
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -56,7 +56,7 @@ const DetailSerie = () => {
   const NextArrow = ({ onClick }) => {
     return (
       <div className='arrow3 next3' onClick={onClick}>
-        <FaArrowRight />
+        <VscChevronRight />
       </div>
     );
   };
@@ -64,7 +64,7 @@ const DetailSerie = () => {
   const PrevArrow = ({ onClick }) => {
     return (
       <div className='arrow3 prev3' onClick={onClick}>
-        <FaArrowLeft />
+        <VscChevronLeft />
       </div>
     );
   };
@@ -156,12 +156,11 @@ const DetailSerie = () => {
             <div className='networks'>
               {serie.networks &&
                 serie.networks?.map(network => (
-                  <div key={network.id}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200/${network.logo_path}`}
-                      alt={network.name}
-                    />
-                  </div>
+                  <img
+                    key={network.id}
+                    src={`https://image.tmdb.org/t/p/w200/${network.logo_path}`}
+                    alt={network.name}
+                  />
                 ))}
             </div>
 

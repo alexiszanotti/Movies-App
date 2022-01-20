@@ -2,7 +2,7 @@ import "../less/detailCast.less";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import Poster from "../img/default_poster.jpg";
 
 const DetailCast = () => {
@@ -55,7 +55,7 @@ const DetailCast = () => {
   const NextArrow = ({ onClick }) => {
     return (
       <div className='arrow7 next7' onClick={onClick}>
-        <FaArrowRight />
+        <VscChevronRight />
       </div>
     );
   };
@@ -63,7 +63,7 @@ const DetailCast = () => {
   const PrevArrow = ({ onClick }) => {
     return (
       <div className='arrow7 prev7' onClick={onClick}>
-        <FaArrowLeft />
+        <VscChevronLeft />
       </div>
     );
   };

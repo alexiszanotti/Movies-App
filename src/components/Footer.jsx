@@ -5,6 +5,9 @@ const Footer = () => {
   return (
     <div className='footer-container'>
       <footer>
+        <h1>Alexis Zanotti</h1>
+        <h4>Desarrollador Web Full Stack</h4>
+
         <span>
           <a href='https://www.linkedin.com/in/alexis-zanotti/' target='_blank'>
             <i id='linkedin' className='fab fa-linkedin'></i>
@@ -19,6 +22,7 @@ const Footer = () => {
             <img src={img} alt='tmdb' />
           </a>
         </span>
+        <p>© Copyright. Todos los derechos reservados </p>
       </footer>
     </div>
   );

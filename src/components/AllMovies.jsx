@@ -13,7 +13,7 @@ const AllMovies = () => {
   let pagina = 2;
   let lastMovie;
   let starsTotal = 5;
-  let genre;
+
   //get genres  from api
   const getGenres = async () => {
     try {
@@ -148,10 +148,10 @@ const AllMovies = () => {
               <div className='genres'>
                 {movie.genre_ids &&
                   movie.genre_ids.slice(0, 3)?.map(id => {
-                    genre = genres?.find(genre => genre.id === id);
+                    let genre = genres?.find(genre => genre.id === id);
                     return (
                       <span key={genre.id && genre.id}>
-                        {genre.name === undefined ? "" : genre.name}
+                        {genre.name && genre.name === undefined ? "" : genre.name}
                       </span>
                     );
                   })}

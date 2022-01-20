@@ -2,7 +2,9 @@
   width: 100%;
   height: 4rem;
   background-color: @color1;
-
+  position: fixed;
+  z-index: 50;
+  top: 0;
   nav {
     width: 80%;
     height: 100%;
@@ -83,6 +85,9 @@
           color: @color2;
         }
       }
+    }
+    .active {
+      background-color: @color3;
     }
   }
 }

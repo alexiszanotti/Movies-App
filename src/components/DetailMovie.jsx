@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ImgPerfil from "../img/Img-Default-Perfil.jpg";
 import Slider from "react-slick";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import Poster from "../img/default_poster.jpg";
 
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -56,7 +56,7 @@ const DetailMovie = () => {
   const NextArrow = ({ onClick }) => {
     return (
       <div className='arrow1 next1' onClick={onClick}>
-        <FaArrowRight />
+        <VscChevronRight />
       </div>
     );
   };
@@ -64,7 +64,7 @@ const DetailMovie = () => {
   const PrevArrow = ({ onClick }) => {
     return (
       <div className='arrow1 prev1' onClick={onClick}>
-        <FaArrowLeft />
+        <VscChevronLeft />
       </div>
     );
   };

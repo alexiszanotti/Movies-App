@@ -16,7 +16,9 @@ const Navbar = () => {
     <div className='nav-container'>
       <nav>
         <li className='menu-hamburguer' onClick={() => handleOpen()}>
-          <a href='#'>{open ? <i class='fas fa-times'></i> : <i class='fas fa-bars'></i>}</a>
+          <a href='#'>
+            {open ? <i className='fas fa-times'></i> : <i className='fas fa-bars'></i>}
+          </a>
         </li>
         <ul id='menu'>
           <NavLink to='/'>

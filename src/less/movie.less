@@ -21,6 +21,7 @@
   }
 }
 .movie-container {
+  background-color: #fff;
   width: 95%;
   margin: 1rem auto;
   height: 80%;
@@ -43,9 +44,13 @@
   position: relative;
 
   img {
-    width: 18rem;
+    width: 100%;
     margin: 0 auto;
     z-index: 1;
+    @media @phone {
+      width: 70%;
+      height: auto;
+    }
   }
 }
 
@@ -55,24 +60,26 @@
 }
 
 .arrow {
-  color: @color2;
-  background-color: @color3;
+  color: @color1;
   padding: 0.5rem;
   border-radius: 20%;
-  font-size: 1.6rem;
+  font-size: 2.6rem;
   position: absolute;
   cursor: pointer;
+
   z-index: 10;
   @media @phone {
     padding: 0;
-    background-color: @color2;
+    background-color: transparent;
   }
 
   svg {
     transition: color 0.5s;
     margin-top: 0.4rem;
+
     &:hover {
       color: @color1;
+      scale: 1.3;
     }
   }
 }

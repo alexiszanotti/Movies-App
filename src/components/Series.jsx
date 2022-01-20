@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "../less/series.less";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 
 const Series = () => {
@@ -33,7 +33,7 @@ const Series = () => {
   const NextArrow = ({ onClick }) => {
     return (
       <div className='arrow4 next4' onClick={onClick}>
-        <FaArrowRight />
+        <VscChevronRight />
       </div>
     );
   };
@@ -41,7 +41,7 @@ const Series = () => {
   const PrevArrow = ({ onClick }) => {
     return (
       <div className='arrow4 prev4' onClick={onClick}>
-        <FaArrowLeft />
+        <VscChevronLeft />
       </div>
     );
   };
