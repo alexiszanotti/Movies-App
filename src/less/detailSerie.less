@@ -9,12 +9,24 @@
   padding: 1rem;
   margin-left: 0;
   margin-top: 4.5rem;
+  @media @phone {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
   img {
     width: 100%;
     min-width: 10rem;
     height: auto;
     border-radius: 10px;
     object-fit: cover;
+    @media @phone {
+      width: 80%;
+      height: auto;
+      margin-bottom: 1rem;
+      margin-left: 10%;
+    }
   }
 }
 
@@ -24,7 +36,10 @@
   display: flex;
   z-index: 3;
   position: relative;
-
+  @media @phone {
+    width: 100%;
+    height: 100%;
+  }
   .img-fondo1 {
     width: 100%;
     height: 100%;
@@ -39,14 +54,14 @@
     height: 100%;
     position: absolute;
     z-index: -1;
+    background-size: size;
+    background-position: cover;
+    background-repeat: no-repeat;
 
     img {
       width: 100%;
       height: 100%;
       background-size: cover;
-      background-position: right;
-      background-repeat: no-repeat;
-      position: absolute;
       z-index: -2;
       object-fit: cover;
     }
@@ -54,22 +69,47 @@
 }
 
 .container-serie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media @phone {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
   h2 {
     font-family: @Montserrat;
     font-size: 2rem;
     font-weight: 600;
     color: @color2;
-    margin: 2rem -2rem;
+    margin-top: 1rem;
+    margin-left: -80rem;
+    margin-bottom: 1rem;
     background-color: @color1;
     padding: 0.5rem;
     border-radius: 5px;
     width: 20%;
     text-align: center;
+    @media @phone {
+      width: 100%;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border-radius: 0%;
+    }
   }
 }
 
 .detail-info-buttons {
   margin-top: 1rem;
+  @media @phone {
+    text-align: center;
+  }
+  button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
   a {
     display: flex;
     justify-content: center;
@@ -80,6 +120,9 @@
     background-color: @color3;
     color: @color2;
     padding: 2px 10px;
+    &:hover {
+      background-color: rgb(114, 175, 165);
+    }
   }
 
   i {
@@ -89,12 +132,22 @@
 }
 
 .slide8 {
+  @media @phone {
+    width: 100%;
+    height: 23rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   img {
     width: 60%;
     border-radius: 10px;
     margin: 0.5rem;
     object-fit: cover;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+    @media @phone {
+      margin-left: 4rem;
+    }
     filter: grayscale(100%);
     &:hover {
       transform: scale(1.05);
@@ -115,6 +168,23 @@
     color: @color3;
     margin-left: 0.5rem;
   }
+  .name-actor1 {
+    h4 {
+      @media @phone {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+    }
+
+    p {
+      @media @phone {
+        font-size: 1.2rem;
+      }
+    }
+    @media @phone {
+      height: auto;
+    }
+  }
 }
 
 .arrow3 {
@@ -124,6 +194,10 @@
   position: absolute;
   cursor: pointer;
   z-index: 10;
+  @media @phone {
+    padding: 0;
+    font-size: 2rem;
+  }
 
   svg {
     transition: color 0.5s;
@@ -137,16 +211,27 @@
 .next3 {
   right: -1.5rem;
   top: 20%;
+  @media @phone {
+    right: -0.1rem;
+    top: 35%;
+  }
 }
 
 .prev3 {
   left: -5rem;
   top: 20%;
+  @media @phone {
+    left: 0rem;
+    top: 35%;
+  }
 }
 
 .detail-cast {
   width: 90%;
   margin: 0 auto;
+  @media @phone {
+    text-align: center;
+  }
 }
 
 .detail-info1 {
@@ -154,11 +239,20 @@
   height: 100%;
   padding: 0 1rem;
   margin-left: 3rem;
+  @media @phone {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0.2rem;
+  }
   h1 {
     font-family: @Montserrat;
     color: @color2;
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    @media @phone {
+      font-size: 2rem;
+    }
   }
   .tagline {
     font-family: @Montserrat;
@@ -184,6 +278,9 @@
     margin-top: 1rem;
     font-size: 1.3rem;
     font-weight: 400;
+    @media @phone {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -191,6 +288,10 @@
   display: flex;
   justify-content: left;
   align-items: center;
+  @media @phone {
+    flex-direction: column;
+    align-items: center;
+  }
 
   img {
     width: 10%;
@@ -198,23 +299,33 @@
     border-radius: 0;
     object-fit: cover;
     margin: 0 1rem;
+    @media @phone {
+      margin-bottom: 1rem;
+    }
   }
 }
 
-.detail-info-rating-count {
-  p {
+.detail-info-rating-average1 {
+  width: 100%;
+  margin: 1.5rem 0;
+  span {
     color: @color2;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
   }
   i {
     font-size: 1.8rem;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    background-color: @color2;
+    color: @color3;
+    padding: 0.5rem;
+    border-radius: 50%;
   }
   a {
     color: @color2;
     font-size: 1.4rem;
-    margin-left: 0.5rem;
+    margin-left: 1.5rem;
     font-family: @Montserrat;
   }
 }
@@ -228,7 +339,7 @@
   }
 }
 
-.btn-back {
+.btn-back1 {
   margin: 4rem 35rem;
   font-size: 1.2rem;
   color: @color2;
@@ -243,6 +354,10 @@
   &:hover {
     background-color: rgb(8, 63, 97);
   }
+  @media @phone {
+    margin: 0.5rem;
+    width: 70%;
+  }
 }
 
 .created-by {
@@ -250,7 +365,16 @@
   justify-content: space-between;
   margin-bottom: 3rem;
   align-items: center;
+  @media @phone {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
   .creador {
+    @media @phone {
+      margin-bottom: 1rem;
+    }
     p {
       margin-bottom: 0.5rem;
     }
@@ -272,22 +396,30 @@
   justify-content: space-around;
   margin-bottom: 3rem;
   flex-wrap: wrap;
+  @media @phone {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
   .seasons-container {
     width: 15%;
+    height: 100%;
     margin-bottom: 4rem;
+    @media @phone {
+      width: 50%;
+      margin-bottom: 1rem;
+    }
     .img-container {
-      width: 80%;
-      height: 100%;
-      margin-bottom: -2rem;
-
-      img {
-        width: 100%;
-        height: 90%;
-        border-radius: 20px;
-        object-fit: cover;
-        box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
-      }
+      width: 100%;
+      height: auto;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
     }
 
     h4 {

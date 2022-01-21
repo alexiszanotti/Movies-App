@@ -142,16 +142,18 @@ const DetailMovie = () => {
                   {genre.name + " "}
                 </span>
               ))}
-            <span>{`(${movie.runtime} min)`}</span>
+            <div className='runtime'>
+              <span>{`(${movie.runtime} min)`}</span>
+            </div>
             <p className='tagline'>{movie.tagline ? `"${movie.tagline}"` : ""}</p>
             <p>{movie.overview}</p>
             <div className='detail-info-rating'>
               <div className='detail-info-rating-average'>
                 <span>
                   <i className='fas fa-poll'></i>
+                  {`${movie.vote_average}/10`}
                 </span>
                 <span>
-                  {`${movie.vote_average}/10`}
                   <i className='fas fa-thumbs-up'></i>
                   {movie.vote_count}
                 </span>
@@ -207,7 +209,7 @@ const DetailMovie = () => {
                     <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
                   </Link>
                 )}
-                <div>
+                <div className='name-actor'>
                   <h4>{actor.name}</h4>
                   <p>{actor.character}</p>
                 </div>
@@ -215,7 +217,6 @@ const DetailMovie = () => {
             ))}
         </Slider>
       </div>
-
       <button onClick={handleClick} className='btn-back1'>
         Volver
       </button>

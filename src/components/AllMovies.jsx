@@ -149,6 +149,7 @@ const AllMovies = () => {
                 {movie.genre_ids &&
                   movie.genre_ids.slice(0, 3)?.map(id => {
                     let genre = genres?.find(genre => genre.id === id);
+
                     return (
                       <span key={genre.id && genre.id}>
                         {genre.name && genre.name === undefined ? "" : genre.name}

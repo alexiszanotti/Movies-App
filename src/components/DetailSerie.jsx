@@ -143,7 +143,7 @@ const DetailSerie = () => {
             <p className='tagline'>{serie.tagline ? `"${serie.tagline}"` : ""}</p>
             <p>{serie.overview}</p>
             <div className='detail-info-rating'>
-              <div className='detail-info-rating-average'>
+              <div className='detail-info-rating-average1'>
                 <span>
                   <i className='fas fa-poll'></i>
                   {`${serie.vote_average}/10`}
@@ -215,7 +215,7 @@ const DetailSerie = () => {
                     <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
                   </Link>
                 )}
-                <div>
+                <div className='name-actor1'>
                   <h4>{actor.name}</h4>
                   <p>{actor.character}</p>
                 </div>
@@ -247,7 +247,7 @@ const DetailSerie = () => {
           ))}
       </div>
 
-      <button onClick={handleClick} className='btn-back'>
+      <button onClick={handleClick} className='btn-back1'>
         Volver
       </button>
     </div>

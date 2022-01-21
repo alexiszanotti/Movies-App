@@ -139,7 +139,11 @@ const AllSeries = () => {
                 {serie.genre_ids &&
                   serie.genre_ids.slice(0, 3).map(id => {
                     genre = genres?.find(genre => genre.id === id);
-                    return <span key={genre.id}>{genre.name === undefined ? "" : genre.name}</span>;
+                    return (
+                      <span key={genre.id && genre.id}>
+                        {genre.anme && genre.name === undefined ? "" : genre.name}
+                      </span>
+                    );
                   })}
               </div>
               <div className='info1'>

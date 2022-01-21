@@ -5,13 +5,19 @@
   position: fixed;
   z-index: 50;
   top: 0;
+  @media @phone {
+    width: 100%;
+  }
   nav {
     width: 80%;
     height: 100%;
     margin: 0 auto;
+    @media @phone {
+      width: 100%;
+    }
     .menu-hamburguer {
       display: none;
-      @media screen and (max-width: 768px) {
+      @media @phone {
         display: flex;
         position: absolute;
         top: -1.9rem;
