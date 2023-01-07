@@ -141,7 +141,7 @@ const AllSeries = () => {
                     genre = genres?.find(genre => genre.id === id);
                     return (
                       <span key={genre.id && genre.id}>
-                        {genre.anme && genre.name === undefined ? "" : genre.name}
+                        {genre.name && genre.name === undefined ? "" : genre.name}
                       </span>
                     );
                   })}

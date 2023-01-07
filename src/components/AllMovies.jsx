@@ -2,12 +2,13 @@ import "../less/allMovies.less";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Poster from "../img/default_poster.jpg";
+import { useFetch } from "./../hooks/useFetch";
+import Spinner from "./Spinner";
 
 const AllMovies = () => {
-  const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   const [searchMovie, setSearchMovie] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   const apiKey = process.env.REACT_APP_API_KEY;
   let pagina = 2;
@@ -15,17 +16,11 @@ const AllMovies = () => {
   let starsTotal = 5;
 
   //get genres  from api
-  const getGenres = async () => {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=es-ES`
-      );
-      const data = await response.json();
-      setGenres(data.genres);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    data: genres,
+    error,
+    isLoading,
+  } = useFetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=es-ES`);
 
   const handleInputChange = e => {
     setSearch(e.target.value);
@@ -94,14 +89,21 @@ const AllMovies = () => {
   };
 
   useEffect(() => {
-    getGenres();
-
     if (searchMovie.length === 0) {
       getAllMovies();
     } else {
       setMovies(searchMovie);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchMovie]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div className='container-movies1'>
@@ -148,7 +150,7 @@ const AllMovies = () => {
               <div className='genres'>
                 {movie.genre_ids &&
                   movie.genre_ids.slice(0, 3)?.map(id => {
-                    let genre = genres?.find(genre => genre.id === id);
+                    let genre = genres.genres?.find(genre => genre.id === id);
 
                     return (
                       <span key={genre.id && genre.id}>

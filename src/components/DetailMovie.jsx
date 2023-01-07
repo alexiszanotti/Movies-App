@@ -1,18 +1,15 @@
-import "../less/detailMovie.less";
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import ImgPerfil from "../img/Img-Default-Perfil.jpg";
+import { useParams } from "react-router-dom";
 import Slider from "react-slick";
-import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import Poster from "../img/default_poster.jpg";
+import { useFetch, useConfigCarrousel } from "./../hooks";
+import "../less/detailMovie.less";
+import Spinner from "./Spinner";
+import { CreditCast } from "./CreditCast";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const DetailMovie = () => {
   const { id } = useParams();
-  const [movie, setMovie] = useState({});
-  const [credits, setCredits] = useState({});
-  const [imageIndex, setImageIndex] = useState(0);
 
   const historia = window.history;
 
@@ -20,97 +17,35 @@ const DetailMovie = () => {
     historia.go(-1);
   };
 
-  const getMovie = async () => {
-    try {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-ES`
-      );
-      if (res.status === 200) {
-        const data = await res.json();
-        setMovie(data);
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    data: movie,
+    error,
+    isLoading,
+  } = useFetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-ES`);
 
-  const getCredits = async () => {
-    try {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=es-ES`
-      );
+  const {
+    data: credits,
+    error: errorCredit,
+    isLoading: isLoadingCredit,
+  } = useFetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=es-ES`);
 
-      if (res.status === 200) {
-        const data = await res.json();
-        setCredits(data);
-      } else {
-        console.log("Error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { imageIndex, settings } = useConfigCarrousel();
 
-  const NextArrow = ({ onClick }) => {
-    return (
-      <div className='arrow1 next1' onClick={onClick}>
-        <VscChevronRight />
-      </div>
-    );
-  };
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  const PrevArrow = ({ onClick }) => {
-    return (
-      <div className='arrow1 prev1' onClick={onClick}>
-        <VscChevronLeft />
-      </div>
-    );
-  };
+  if (error) {
+    console.log(error);
+  }
 
-  const settings6 = {
-    infinite: true,
-    lazyLoad: false,
-    speed: 500,
-    dots: false,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    beforeChange: (current, next) => setImageIndex(next),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  if (isLoadingCredit) {
+    return <Spinner />;
+  }
 
-  useEffect(() => {
-    getMovie();
-    getCredits();
-  }, [id]);
+  if (errorCredit) {
+    console.log(error);
+  }
 
   return (
     <div className='container-movie'>
@@ -169,9 +104,9 @@ const DetailMovie = () => {
             <div className='production-companies'>
               <p>Compañías de producción:</p>
               {movie.production_companies &&
-                movie.production_companies?.map((company, index) => (
-                  <span key={company.id}>
-                    {company.name} {index !== movie.production_companies.length - 1 ? ", " : ""}
+                movie.production_companies?.map(({ id, name }, index) => (
+                  <span key={id}>
+                    {name} {index !== movie.production_companies.length - 1 ? ", " : ""}
                   </span>
                 ))}
             </div>
@@ -192,28 +127,17 @@ const DetailMovie = () => {
       </div>
       <h2 className='reparto'>Reparto</h2>
       <div className='detail-cast1'>
-        <Slider {...settings6}>
+        <Slider {...settings}>
           {credits.cast &&
-            credits.cast?.map(actor => (
-              <div key={actor.id} className='slide1'>
-                {actor.profile_path ? (
-                  <Link to={`/personaje/${actor.id}`}>
-                    <img
-                      className='img-perfil'
-                      src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                      alt={actor.name}
-                    />
-                  </Link>
-                ) : (
-                  <Link to={`/personaje/${actor.id}`}>
-                    <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
-                  </Link>
-                )}
-                <div className='name-actor'>
-                  <h4>{actor.name}</h4>
-                  <p>{actor.character}</p>
-                </div>
-              </div>
+            credits.cast?.map(({ profile_path, id, name, character, index }) => (
+              <CreditCast
+                id={id}
+                profilePath={profile_path}
+                name={name}
+                character={character}
+                index={index}
+                imageIndex={imageIndex}
+              />
             ))}
         </Slider>
       </div>

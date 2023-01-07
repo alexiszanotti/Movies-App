@@ -10,7 +10,7 @@ const Home = () => {
         <main>
           <img src={imagenHome} alt='imagen-home' />
           <h1>Bienvenido</h1>
-          <h2>Aquí encontrarás información sobre tus Películas y Series favorítas</h2>
+          <h2>Aquí encontrarás información sobre tus películas y series favorítas</h2>
         </main>
       </div>
       <Movies />

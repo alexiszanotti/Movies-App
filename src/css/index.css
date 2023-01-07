@@ -2272,6 +2272,14 @@
     width: 40%;
   }
 }
+.loader {
+  border: 10px solid #fff;
+  border-top: 10px solid #04253a;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
 body {
   background-color: #fff;
   font-size: 100%;

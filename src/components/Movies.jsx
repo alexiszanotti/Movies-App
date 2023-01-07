@@ -1,105 +1,36 @@
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "../less/movie.less";
-import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
-import { Link } from "react-router-dom";
-
+import { useFetch, useConfigCarrousel } from "../hooks";
+import Spinner from "./Spinner";
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
-  const [imageIndex, setImageIndex] = useState(0);
+  const {
+    data: movies,
+    isLoading,
+    error,
+  } = useFetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-ES`);
 
-  const getMovies = async () => {
-    try {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-ES`
-      );
+  const { imageIndex, settings } = useConfigCarrousel();
 
-      if (data.status === 200) {
-        const resultado = await data.json();
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-        setMovies(resultado.results);
-      } else {
-        console.log("Error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getMovies();
-  }, []);
-
-  const NextArrow = ({ onClick }) => {
-    return (
-      <div className='arrow next' onClick={onClick}>
-        <VscChevronRight />
-      </div>
-    );
-  };
-
-  const PrevArrow = ({ onClick }) => {
-    return (
-      <div className='arrow prev' onClick={onClick}>
-        <VscChevronLeft />
-      </div>
-    );
-  };
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    lazyLoad: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: 0,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    beforeChange: (current, next) => setImageIndex(next),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: false,
-        },
-      },
-    ],
-  };
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div className='container'>
       <h1>Peliculas populares</h1>
       <div className='movie-container'>
         <Slider {...settings}>
-          {movies?.map((movie, index) => (
-            <div key={movie.id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
-              <Link to={`/pelicula/${movie.id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={`${movie.title}`}
-                />
+          {movies?.map(({ id, title, poster_path }, index) => (
+            <div key={id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
+              <Link to={`/pelicula/${id}`}>
+                <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={`${title}`} />
               </Link>
             </div>
           ))}

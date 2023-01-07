@@ -1,18 +1,15 @@
-import "../less/detailSerie.less";
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import ImgPerfil from "../img/Img-Default-Perfil.jpg";
+import { useParams } from "react-router-dom";
 import Slider from "react-slick";
-import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
-import imgPoster from "../img/default_poster.jpg";
+import { useFetch, useConfigCarrousel } from "./../hooks";
+import Spinner from "./Spinner";
+import { Seasons } from "./Seasons";
+import { CreditCast } from "./CreditCast";
+import "../less/detailSerie.less";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const DetailSerie = () => {
   const { id } = useParams();
-  const [serie, setSerie] = useState({});
-  const [credits, setCredits] = useState({});
-  const [imageIndex, setImageIndex] = useState(0);
 
   const historia = window.history;
 
@@ -20,98 +17,35 @@ const DetailSerie = () => {
     historia.go(-1);
   };
 
-  const getSerie = async () => {
-    try {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=es-ES`
-      );
-      if (res.status === 200) {
-        const data = await res.json();
-        setSerie(data);
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    data: serie,
+    error,
+    isLoading,
+  } = useFetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=es-ES`);
 
-  const getCredits = async () => {
-    try {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=es-ES`
-      );
+  const {
+    data: credits,
+    error: errorCredit,
+    isLoading: isLoadingCredit,
+  } = useFetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=es-ES`);
 
-      if (res.status === 200) {
-        const data = await res.json();
-        setCredits(data);
-      } else {
-        console.log("Error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { imageIndex, settings } = useConfigCarrousel();
 
-  const NextArrow = ({ onClick }) => {
-    return (
-      <div className='arrow3 next3' onClick={onClick}>
-        <VscChevronRight />
-      </div>
-    );
-  };
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  const PrevArrow = ({ onClick }) => {
-    return (
-      <div className='arrow3 prev3' onClick={onClick}>
-        <VscChevronLeft />
-      </div>
-    );
-  };
+  if (error) {
+    console.log(error);
+  }
 
-  const settings = {
-    infinite: true,
-    lazyLoad: true,
-    speed: 500,
-    dots: false,
-    rows: 1,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    beforeChange: (current, next) => setImageIndex(next),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  if (isLoadingCredit) {
+    return <Spinner />;
+  }
 
-  useEffect(() => {
-    getSerie();
-    getCredits();
-  }, [id]);
+  if (errorCredit) {
+    console.log(error);
+  }
 
   return (
     <div className='container-serie'>
@@ -134,9 +68,9 @@ const DetailSerie = () => {
           <div className='detail-info1'>
             <h1>{serie.name}</h1>
             {serie.genres &&
-              serie.genres?.map((genre, index) => (
-                <span className='genres' key={genre.id}>
-                  {genre.name + " "}
+              serie.genres?.map(({ id, name }) => (
+                <span className='genres' key={id}>
+                  {name + " "}
                 </span>
               ))}
             <span>{`(${serie.episode_run_time} min)`}</span>
@@ -155,12 +89,8 @@ const DetailSerie = () => {
 
             <div className='networks'>
               {serie.networks &&
-                serie.networks?.map(network => (
-                  <img
-                    key={network.id}
-                    src={`https://image.tmdb.org/t/p/w200/${network.logo_path}`}
-                    alt={network.name}
-                  />
+                serie.networks?.map(({ id, name, logo_path }) => (
+                  <img key={id} src={`https://image.tmdb.org/t/p/w200/${logo_path}`} alt={name} />
                 ))}
             </div>
 
@@ -168,9 +98,9 @@ const DetailSerie = () => {
               <div className='creador'>
                 <p>Creado por:</p>
                 {serie.created_by &&
-                  serie.created_by?.map((creator, index) => (
-                    <span key={creator.id}>
-                      {creator.name} {index !== serie.created_by.length - 1 ? ", " : ""}
+                  serie.created_by?.map(({ id, name }, index) => (
+                    <span key={id}>
+                      {name} {index !== serie.created_by.length - 1 ? ", " : "."}
                     </span>
                   ))}
               </div>
@@ -182,7 +112,7 @@ const DetailSerie = () => {
             <div className='detail-info-buttons'>
               <button>
                 <a
-                  href={`https://www.youtube.com/results?search_query=${serie.title}`}
+                  href={`https://www.youtube.com/results?search_query=${serie.name}`}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -197,53 +127,29 @@ const DetailSerie = () => {
       <div className='detail-cast'>
         <Slider {...settings}>
           {credits.cast &&
-            credits.cast?.map((actor, index) => (
-              <div
-                key={actor.id}
-                className={index === imageIndex ? "slide8 activeSlide8" : "slide8"}
-              >
-                {actor.profile_path ? (
-                  <Link to={`/personaje/${actor.id}`}>
-                    <img
-                      className='img-perfil'
-                      src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                      alt={actor.name}
-                    />
-                  </Link>
-                ) : (
-                  <Link to={`/personaje/${actor.id}`}>
-                    <img className='img-perfil' src={ImgPerfil} alt={actor.name} />
-                  </Link>
-                )}
-                <div className='name-actor1'>
-                  <h4>{actor.name}</h4>
-                  <p>{actor.character}</p>
-                </div>
-              </div>
+            credits.cast?.map(({ id, profile_path, name, character }, index) => (
+              <CreditCast
+                id={id}
+                profilePath={profile_path}
+                name={name}
+                character={character}
+                index={index}
+                imageIndex={imageIndex}
+              />
             ))}
         </Slider>
       </div>
       <h2>Temporadas</h2>
       <div className='seasons'>
         {serie.seasons &&
-          serie.seasons?.map(season => (
-            <div key={season.id} className='seasons-container'>
-              <div className='img-container'>
-                {season.poster_path ? (
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}
-                    alt={season.name}
-                  />
-                ) : (
-                  <img src={imgPoster} alt={season.name} />
-                )}
-              </div>
-              <div>
-                <h4>{season.name}</h4>
-                <p>Estreno: {season.air_date && season.air_date.split("-").reverse().join("-")}</p>
-                <p>Episodios: {season.episode_count}</p>
-              </div>
-            </div>
+          serie.seasons?.map(({ id, name, poster_path, air_date, episode_count }) => (
+            <Seasons
+              id={id}
+              name={name}
+              poster_path={poster_path}
+              airDate={air_date}
+              episodeCount={episode_count}
+            />
           ))}
       </div>
 
