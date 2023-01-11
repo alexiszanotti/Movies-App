@@ -21,7 +21,7 @@ export const useConfigCarrousel = () => {
   };
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     lazyLoad: true,
     speed: 500,
@@ -39,7 +39,7 @@ export const useConfigCarrousel = () => {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -48,6 +48,7 @@ export const useConfigCarrousel = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
+          dots: false,
         },
       },
       {

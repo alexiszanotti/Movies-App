@@ -1,19 +1,14 @@
 import "../less/actors.less";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ImgDefault from "../img/Img-Default-Perfil.jpg";
+import { useFetch } from "./../hooks/useFetch";
+import Spinner from "./Spinner";
 
 const apiKey = process.env.REACT_APP_API_KEY;
-let lastActor;
 
 const Actors = () => {
-  const [actors, setActors] = useState([]);
   const [search, setSearch] = useState("");
-  const [searchActor, setSearchActor] = useState([]);
-
-  const handleChange = e => {
-    setSearch(e.target.value);
-  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -23,93 +18,60 @@ const Actors = () => {
     const data = await res.json();
 
     if (data.results.length > 0) {
-      setSearchActor(data.results);
+      setData(data.results);
     } else if (data.results.length === 0) {
       alert("No se encontraron resultados");
-      setSearchActor([]);
+      setData([]);
     } else {
       alert("Error");
-      setSearchActor([]);
+      setData([]);
     }
     setSearch("");
   };
 
-  let observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          pagina++;
-          getActors();
-        }
-      });
-    },
-    {
-      threshold: 1.0,
-      rootMargin: "0px 0px 200px 0px",
-    }
-  );
-
   let pagina = 1;
 
-  const getActors = async () => {
-    try {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&language=es-ES&page=${pagina}`
-      );
+  const {
+    data: actors,
+    isLoading,
+    error,
+    setData,
+  } = useFetch(
+    `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&language=es-ES&page=${pagina}`
+  );
 
-      if (data.status === 200) {
-        const resultado = await data.json();
+  if (isLoading) return <Spinner />;
 
-        setActors(oldActors => [...oldActors, ...resultado.results]);
-
-        if (lastActor) {
-          observer.unobserve(lastActor);
-        }
-        const actors = document.querySelectorAll(".actors-container .actor");
-        lastActor = actors[actors.length - 1];
-        observer.observe(lastActor);
-      } else {
-        console.log("Error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (searchActor.length === 0) {
-      getActors();
-    } else {
-      setActors(searchActor);
-    }
-  }, [searchActor]);
-
+  if (error) console.log(error);
   return (
     <div className='actors-container'>
       <div className='search-bar2'>
         <form onSubmit={handleSubmit}>
-          <input type='text' placeholder='Personaje...' value={search} onChange={handleChange} />
+          <input
+            type='text'
+            placeholder=' Buscar Personaje...'
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
           <button type='submit'>
             <i className='fas fa-search'></i>
           </button>
         </form>
       </div>
+
       <div className='actors-list'>
-        {actors?.map(actor => (
-          <div className='actor' key={actor.id}>
-            <Link to={`/personaje/${actor.id}`}>
+        {actors?.map(({ id, profile_path, name }) => (
+          <div className='actor' key={id}>
+            <Link to={`/personaje/${id}`}>
               <div className='actor-img'>
-                {actor.profile_path ? (
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                    alt={actor.name}
-                  />
+                {profile_path ? (
+                  <img src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} />
                 ) : (
-                  <img src={ImgDefault} alt={actor.name} />
+                  <img src={ImgDefault} alt={name} />
                 )}
               </div>
               <div className='actor-name'>
-                <h3>{actor.name}</h3>
+                <h3>{name}</h3>
               </div>
             </Link>
           </div>

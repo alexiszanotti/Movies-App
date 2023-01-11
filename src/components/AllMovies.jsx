@@ -22,10 +22,6 @@ const AllMovies = () => {
     isLoading,
   } = useFetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=es-ES`);
 
-  const handleInputChange = e => {
-    setSearch(e.target.value);
-  };
-
   const handleSubmit = async e => {
     try {
       e.preventDefault();
@@ -111,9 +107,9 @@ const AllMovies = () => {
         <form onSubmit={handleSubmit}>
           <input
             type='text'
-            placeholder='Película...'
+            placeholder='Buscar película...'
             value={search}
-            onChange={handleInputChange}
+            onChange={e => setSearch(e.target.value)}
           />
           <button type='submit'>
             <i className='fas fa-search'></i>
@@ -121,57 +117,56 @@ const AllMovies = () => {
         </form>
       </div>
       <div className='allMovies'>
-        {movies?.map(movie => (
-          <div className='card' key={movie.id}>
-            <Link to={`/pelicula/${movie.id}`}>
-              <div className='poster'>
-                {movie.poster_path ? (
-                  <img
-                    src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                ) : (
-                  <img src={Poster} alt={movie.title} />
-                )}
-              </div>
-            </Link>
-
-            <div className='details1'>
-              <h2>{movie.title}</h2>
-              <div className='rating'>
-                <div className='stars-outer'>
-                  <div
-                    className='stars-inner'
-                    style={{ width: `${(movie.vote_average / 2 / starsTotal) * 100}%` }}
-                  ></div>
+        {movies?.map(
+          ({ id, poster_path, title, vote_average, popularity, release_date, genre_ids }) => (
+            <div className='card' key={id}>
+              <Link to={`/pelicula/${id}`}>
+                <div className='poster'>
+                  {poster_path ? (
+                    <img src={`https://image.tmdb.org/t/p/w780/${poster_path}`} alt={title} />
+                  ) : (
+                    <img src={Poster} alt={title} />
+                  )}
                 </div>
-                <span>{`${movie.vote_average / 2}/5`}</span>
-              </div>
-              <div className='genres'>
-                {movie.genre_ids &&
-                  movie.genre_ids.slice(0, 3)?.map(id => {
-                    let genre = genres.genres?.find(genre => genre.id === id);
+              </Link>
 
-                    return (
-                      <span key={genre.id && genre.id}>
-                        {genre.name && genre.name === undefined ? "" : genre.name}
-                      </span>
-                    );
-                  })}
-              </div>
+              <div className='details1'>
+                <h2>{title}</h2>
+                <div className='rating'>
+                  <div className='stars-outer'>
+                    <div
+                      className='stars-inner'
+                      style={{ width: `${(vote_average / 2 / starsTotal) * 100}%` }}
+                    ></div>
+                  </div>
+                  <span>{`${vote_average / 2}/5`}</span>
+                </div>
+                <div className='genres'>
+                  {genre_ids &&
+                    genre_ids.slice(0, 3)?.map(id => {
+                      let genre = genres.genres?.find(genre => genre.id === id);
 
-              <div className='info'>
-                <span>
-                  <i className='fas fa-thumbs-up'></i> {Math.round(movie.popularity)}
-                </span>
-                <span>
-                  <i className='fas fa-calendar-alt'></i>{" "}
-                  {movie.release_date && movie.release_date.split("-").reverse().join("-")}
-                </span>
+                      return (
+                        <span key={genre.id && genre.id}>
+                          {genre.name && genre.name === undefined ? "" : genre.name}
+                        </span>
+                      );
+                    })}
+                </div>
+
+                <div className='info'>
+                  <span>
+                    <i className='fas fa-thumbs-up'></i> {Math.round(popularity)}
+                  </span>
+                  <span>
+                    <i className='fas fa-calendar-alt'></i>{" "}
+                    {release_date && release_date.split("-").reverse().join("-")}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
       <div className='return'>
         <Link to='/'>

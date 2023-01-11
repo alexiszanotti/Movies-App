@@ -72,9 +72,9 @@ const DetailMovie = () => {
           <div className='detail-info'>
             <h1>{movie.title}</h1>
             {movie.genres &&
-              movie.genres?.map(genre => (
-                <span className='genres-movie' key={genre.id}>
-                  {genre.name + " "}
+              movie.genres?.map(({ id, name }) => (
+                <span className='genres-movie' key={id}>
+                  {name + " "}
                 </span>
               ))}
             <div className='runtime'>

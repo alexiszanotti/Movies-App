@@ -29,8 +29,6 @@ const DetailCast = () => {
     `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${apiKey}&language=es-ES`
   );
 
-  console.log(credits);
-
   const { imageIndex, settings } = useConfigCarrousel();
 
   if (isLoading) {
