@@ -209,6 +209,13 @@
 .movie-container img {
   border-radius: 10px;
 }
+.movie-container h4 {
+  color: #04253a;
+  font-family: Montserrat;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: large;
+}
 .slide {
   transform: scale(0.7);
   transition: transform 500ms;
@@ -1127,7 +1134,8 @@
   font-size: 1.2rem;
 }
 .btn-back1 {
-  margin: 4rem 35rem;
+  margin-top: 4rem;
+  margin-left: 35rem;
   font-size: 1.2rem;
   color: #fff;
   width: 30%;
@@ -1280,9 +1288,24 @@
     margin: 0;
   }
 }
+.cast-container .cast-detail .cast-img h2 {
+  color: #04253a;
+  font-family: Montserrat;
+  font-size: medium;
+  margin-left: 1rem;
+  font-weight: 700;
+}
+.cast-container .cast-detail .cast-img p,
+.cast-container .cast-detail .cast-img a {
+  color: #04253a;
+  font-family: Montserrat;
+  font-size: medium;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
 .cast-container .cast-detail .cast-info {
   margin: 1rem;
-  width: 70%;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .cast-container .cast-detail .cast-info {
@@ -1962,7 +1985,7 @@
 }
 .series-container .search-bar1 form button {
   width: 10%;
-  height: 102%;
+  height: 100%;
   border: none;
   background-color: #fff;
   border-radius: 0 10px 10px 0;

@@ -51,15 +51,23 @@ const DetailCast = () => {
       <section className='cast-detail'>
         <div className='cast-img'>
           <img src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} alt='' />
+          <h2>Nacionalidad:</h2>
+          <p>{cast.place_of_birth}</p>
+          <h2>Fecha de nacimiento:</h2>
+          <p>{cast.birthday && cast.birthday.split("-").reverse().join("-")}</p>
+          {cast.homepage && (
+            <>
+              <h2>Web</h2>
+              <a href={cast.homepage} target='_blank' rel='noreferrer'>
+                {cast.homepage}
+              </a>
+            </>
+          )}
         </div>
         <div className='cast-info'>
           <h1>{cast.name}</h1>
           <h2>Biografía:</h2>
           <p>{cast.biography ? cast.biography : "Biogrfía no disponible en español."}</p>
-          <h2>Nacionalidad:</h2>
-          <p>{cast.place_of_birth}</p>
-          <h2>Fecha de nacimiento:</h2>
-          <p>{cast.birthday && cast.birthday.split("-").reverse().join("-")}</p>
         </div>
       </section>
       <section className='more-info'>
@@ -76,17 +84,16 @@ const DetailCast = () => {
         <h1>Conocido por</h1>
         <div className='cast-credits-container'>
           <Slider {...settings}>
-            {credits.cast?.map(({ id, poster_path }, index) => (
+            {credits.cast?.map(({ id, poster_path, character, release_date }, index) => (
               <div key={id} className={index === imageIndex ? "slide7 activeSlide7" : "slide7"}>
-                {poster_path ? (
-                  <Link to={`/pelicula/${id}`}>
-                    <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt='' />
-                  </Link>
-                ) : (
-                  <Link to={`/pelicula/${id}`}>
-                    <img src={Poster} alt='' />
-                  </Link>
-                )}
+                <Link to={`/pelicula/${id}`}>
+                  <img
+                    src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : Poster}
+                    alt=''
+                  />
+                </Link>
+                <p>{character}</p>
+                <p>{release_date ? `(${release_date.substring(0, 4)})` : ""}</p>
               </div>
             ))}
           </Slider>

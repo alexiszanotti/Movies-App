@@ -30,8 +30,9 @@ const Movies = () => {
           {movies?.map(({ id, title, poster_path }, index) => (
             <div key={id} className={index === imageIndex ? "slide activeSlide" : "slide"}>
               <Link to={`/pelicula/${id}`}>
-                <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={`${title}`} />
+                <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} />
               </Link>
+              <h4>{title}</h4>
             </div>
           ))}
         </Slider>
