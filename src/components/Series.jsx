@@ -30,8 +30,9 @@ const Series = () => {
           {series?.map(({ id, name, poster_path }, index) => (
             <div key={id} className={index === imageIndex ? "slide4 activeSlide4" : "slide4"}>
               <Link to={`/serie/${id}`}>
-                <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={`${name}`} />
+                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={`${name}`} />
               </Link>
+              <h4 className='serie-name'>{name}</h4>
             </div>
           ))}
         </Slider>

@@ -1,9 +1,9 @@
+import imagenHome from "../public/Img-Home.jpg";
+import Movies from "../components/Movies";
+import Series from "../components/Series";
 import "../less/home.less";
-import imagenHome from "../img/Img-Home.jpg";
-import Movies from "./Movies";
-import Series from "./Series";
 
-const Home = () => {
+export const Home = () => {
   return (
     <div>
       <div className='main-container'>
@@ -18,5 +18,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

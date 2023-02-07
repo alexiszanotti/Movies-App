@@ -1,11 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
-import Poster from "../img/default_poster.jpg";
-import { useFetch, useConfigCarrousel } from "./../hooks";
-import Spinner from "./Spinner";
+import Poster from "../public/default_poster.jpg";
+import { useFetch, useConfigCarrousel } from "../hooks";
+import Spinner from "../components/Spinner";
 import "../less/detailCast.less";
 
-const DetailCast = () => {
+export const DetailCast = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
   const { id } = useParams();
 
@@ -106,5 +106,3 @@ const DetailCast = () => {
     </div>
   );
 };
-
-export default DetailCast;

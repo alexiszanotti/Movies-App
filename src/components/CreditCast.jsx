@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ImgPerfil from "../img/Img-Default-Perfil.jpg";
+import ImgPerfil from "../public/Img-Default-Perfil.jpg";
 
 export const CreditCast = ({ id, index, imageIndex, profilePath, name, character }) => {
   return (

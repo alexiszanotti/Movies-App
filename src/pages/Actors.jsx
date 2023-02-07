@@ -1,13 +1,13 @@
 import "../less/actors.less";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import ImgDefault from "../img/Img-Default-Perfil.jpg";
-import { useFetch } from "./../hooks/useFetch";
-import Spinner from "./Spinner";
+import ImgDefault from "../public/Img-Default-Perfil.jpg";
+import { useFetch } from "../hooks/useFetch";
+import Spinner from "../components/Spinner";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const Actors = () => {
+export const Actors = () => {
   const [search, setSearch] = useState("");
 
   const handleSubmit = async e => {
@@ -64,11 +64,12 @@ const Actors = () => {
           <div className='actor' key={id}>
             <Link to={`/personaje/${id}`}>
               <div className='actor-img'>
-                {profile_path ? (
-                  <img src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={name} />
-                ) : (
-                  <img src={ImgDefault} alt={name} />
-                )}
+                <img
+                  src={
+                    profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : ImgDefault
+                  }
+                  alt={name}
+                />
               </div>
               <div className='actor-name'>
                 <h3>{name}</h3>
@@ -83,5 +84,3 @@ const Actors = () => {
     </div>
   );
 };
-
-export default Actors;

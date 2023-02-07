@@ -1,20 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import { useFetch, useConfigCarrousel } from "./../hooks";
-import Spinner from "./Spinner";
-import { Seasons } from "./Seasons";
-import { CreditCast } from "./CreditCast";
+import { useFetch, useConfigCarrousel } from "../hooks";
+import Spinner from "../components/Spinner";
+import { Seasons } from "../components/Seasons";
+import { CreditCast } from "../components/CreditCast";
 import "../less/detailSerie.less";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const DetailSerie = () => {
+export const DetailSerie = () => {
   const { id } = useParams();
-
-  const historia = window.history;
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    historia.go(-1);
+    navigate("/series");
   };
 
   const {
@@ -52,18 +51,20 @@ const DetailSerie = () => {
       <div className='container-serie-detail'>
         <div className='img-fondo1'></div>
         <div className='container-serie-detail-img'>
-          {serie.backdrop_path ? (
+          {serie.backdrop_path && (
             <img
-              src={`https://image.tmdb.org/t/p/original/${serie.backdrop_path}`}
-              alt='backdrop'
+              src={`https://image.tmdb.org/t/p/original/${
+                serie.backdrop_path || serie.poster_path
+              }`}
+              alt={serie.name}
             />
-          ) : (
-            <img src={`https://image.tmdb.org/t/p/original/${serie.poster_path}`} alt='backdrop' />
           )}
         </div>
         <div className='detail-serie'>
           <div>
-            <img src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} />
+            {serie.poster_path && (
+              <img src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} />
+            )}
           </div>
           <div className='detail-info1'>
             <h1>{serie.name}</h1>
@@ -129,6 +130,7 @@ const DetailSerie = () => {
           {credits.cast &&
             credits.cast?.map(({ id, profile_path, name, character }, index) => (
               <CreditCast
+                ket={id}
                 id={id}
                 profilePath={profile_path}
                 name={name}
@@ -159,5 +161,3 @@ const DetailSerie = () => {
     </div>
   );
 };
-
-export default DetailSerie;

@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
-import Poster from "../img/default_poster.jpg";
-import { useFetch, useConfigCarrousel } from "./../hooks";
+import Poster from "../public/default_poster.jpg";
+import { useFetch, useConfigCarrousel } from "../hooks";
 import "../less/detailMovie.less";
-import Spinner from "./Spinner";
-import { CreditCast } from "./CreditCast";
+import Spinner from "../components/Spinner";
+import { CreditCast } from "../components/CreditCast";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const DetailMovie = () => {
+export const DetailMovie = () => {
   const { id } = useParams();
 
   const historia = window.history;
@@ -48,25 +48,26 @@ const DetailMovie = () => {
   }
 
   return (
-    <div className='container-movie'>
-      <div className='container-movie-detail'>
+    <main className='container-movie'>
+      <article className='container-movie-detail'>
         <div className='img-fondo'></div>
         <div className='container-movie-detail-img'>
-          {movie.backdrop_path ? (
+          {movie.backdrop_path && (
             <img
-              src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-              alt='backdrop'
+              src={`https://image.tmdb.org/t/p/original/${
+                movie.backdrop_path || movie.poster_path
+              }`}
+              alt={movie.title}
             />
-          ) : (
-            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='backdrop' />
           )}
         </div>
         <div className='detail-movie'>
           <div>
-            {movie.poster_path ? (
-              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-            ) : (
-              <img src={Poster} alt={movie.title} />
+            {movie.poster_path && (
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}` || Poster}
+                alt={movie.title}
+              />
             )}
           </div>
           <div className='detail-info'>
@@ -95,10 +96,12 @@ const DetailMovie = () => {
               </div>
             </div>
             <div className='sitioWeb'>
-              <a href={movie.homepage} target='_blank' rel='noopener noreferrer'>
-                <i className='fas fa-link'></i>
-                <span>Sitio web</span>
-              </a>
+              {movie?.homepage?.length > 3 && (
+                <a href={movie.homepage} target='_blank' rel='noopener noreferrer'>
+                  <i className='fas fa-link'></i>
+                  <span>Sitio web</span>
+                </a>
+              )}
             </div>
 
             <div className='production-companies'>
@@ -124,13 +127,14 @@ const DetailMovie = () => {
             </div>
           </div>
         </div>
-      </div>
+      </article>
       <h2 className='reparto'>Reparto</h2>
       <div className='detail-cast1'>
         <Slider {...settings}>
           {credits.cast &&
             credits.cast?.map(({ profile_path, id, name, character, index }) => (
               <CreditCast
+                key={id}
                 id={id}
                 profilePath={profile_path}
                 name={name}
@@ -144,8 +148,6 @@ const DetailMovie = () => {
       <button onClick={handleClick} className='btn-back1'>
         Volver
       </button>
-    </div>
+    </main>
   );
 };
-
-export default DetailMovie;

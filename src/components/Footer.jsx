@@ -1,5 +1,5 @@
 import "../less/footer.less";
-import img from "../img/tmdb.svg";
+import img from "../public/tmdb.svg";
 
 const Footer = () => {
   return (
