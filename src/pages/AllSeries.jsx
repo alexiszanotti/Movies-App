@@ -2,31 +2,17 @@
 import "../less/allSeries.less";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Poster from "../public/default_poster.jpg";
+import Series from "../components/Series";
 
 export const AllSeries = () => {
   const [series, setSeries] = useState([]);
   const [search, setSearch] = useState("");
   const [searchSerie, setSearchSerie] = useState([]);
-  const [genres, setGenres] = useState([]);
 
   const apiKey = process.env.REACT_APP_API_KEY;
   let lastSerie;
-  var genre;
-  let starsTotal = 5;
-  let pagina = 2;
 
-  const getGenres = async () => {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=es-ES`
-      );
-      const data = await response.json();
-      setGenres(data.genres);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  let pagina = 2;
 
   const handleChange = e => {
     setSearch(e.target.value);
@@ -91,7 +77,6 @@ export const AllSeries = () => {
   };
 
   useEffect(() => {
-    getGenres();
     if (searchSerie.length === 0) {
       getAllSeries();
     } else {
@@ -110,51 +95,19 @@ export const AllSeries = () => {
         </form>
       </div>
       <div className='allSeries'>
-        {series &&
+        {series.length &&
           series.map(
             ({ id, poster_path, name, vote_average, genre_ids, popularity, first_air_date }) => (
-              <div className='serie' key={id}>
-                <Link to={`/serie/${id}`}>
-                  <div className='poster1'>
-                    <img
-                      src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : Poster}
-                      alt={name}
-                    />
-                  </div>
-                </Link>
-                <div className='details2'>
-                  <h2>{name}</h2>
-                  <div className='rating1'>
-                    <div className='stars-outer1'>
-                      <div
-                        className='stars-inner1'
-                        style={{ width: `${(vote_average / 2 / starsTotal) * 100}%` }}
-                      ></div>
-                    </div>
-                    <span>{`${vote_average / 2}/5`}</span>
-                  </div>
-                  <div className='genres1'>
-                    {genre_ids &&
-                      genre_ids.slice(0, 3).map(id => {
-                        genre = genres?.find(genre => genre.id === id);
-                        return (
-                          <span key={genre.id && genre.id}>
-                            {genre.name && genre.name === undefined ? "" : genre.name}
-                          </span>
-                        );
-                      })}
-                  </div>
-                  <div className='info1'>
-                    <span>
-                      <i className='fas fa-thumbs-up'></i> {Math.round(popularity)}
-                    </span>
-                    <span>
-                      <i className='fas fa-calendar-alt'></i>{" "}
-                      {first_air_date && first_air_date.split("-").reverse().join("-")}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <Series
+                key={id}
+                id={id}
+                poster_path={poster_path}
+                name={name}
+                vote_average={vote_average}
+                genre_ids={genre_ids}
+                popularity={popularity}
+                first_air_date={first_air_date}
+              />
             )
           )}
       </div>

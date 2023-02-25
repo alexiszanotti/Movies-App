@@ -1,9 +1,8 @@
-import "../less/actors.less";
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import ImgDefault from "../public/Img-Default-Perfil.jpg";
 import { useFetch } from "../hooks/useFetch";
 import Spinner from "../components/Spinner";
+import "../less/actors.less";
+import Actor from "../components/Actor";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -60,23 +59,10 @@ export const Actors = () => {
       </div>
 
       <div className='actors-list'>
-        {actors?.map(({ id, profile_path, name }) => (
-          <div className='actor' key={id}>
-            <Link to={`/personaje/${id}`}>
-              <div className='actor-img'>
-                <img
-                  src={
-                    profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : ImgDefault
-                  }
-                  alt={name}
-                />
-              </div>
-              <div className='actor-name'>
-                <h3>{name}</h3>
-              </div>
-            </Link>
-          </div>
-        ))}
+        {actors.length &&
+          actors.map(({ id, profile_path, name }) => (
+            <Actor id={id} profile_path={profile_path} name={name} />
+          ))}
       </div>
       <button onClick={() => window.location.reload()} className='btn-back1'>
         Volver

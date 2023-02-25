@@ -5,7 +5,7 @@ import { useFetch, useConfigCarrousel } from "../hooks";
 import Spinner from "./Spinner";
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const Movies = () => {
+const PosterMovies = () => {
   const {
     data: movies,
     isLoading,
@@ -41,4 +41,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default PosterMovies;

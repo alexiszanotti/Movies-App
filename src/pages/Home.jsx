@@ -1,6 +1,6 @@
 import imagenHome from "../public/Img-Home.jpg";
-import Movies from "../components/Movies";
-import Series from "../components/Series";
+import PosterMovies from "../components/PosterMovies";
+import PosterSeries from "../components/PosterSeries";
 import "../less/home.less";
 
 export const Home = () => {
@@ -13,8 +13,8 @@ export const Home = () => {
           <h2>Aquí encontrarás información sobre tus películas y series favorítas</h2>
         </main>
       </div>
-      <Movies />
-      <Series />
+      <PosterMovies />
+      <PosterSeries />
     </div>
   );
 };
