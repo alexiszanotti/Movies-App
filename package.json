@@ -3,21 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "dotenv": "^10.0.0",
     "less": "^4.1.2",
     "less-watch-compiler": "^1.16.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.2"
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
     "less": "less-watch-compiler src/less src/css index.less"
   },
   "eslintConfig": {

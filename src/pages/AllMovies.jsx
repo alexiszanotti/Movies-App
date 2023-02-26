@@ -1,105 +1,36 @@
-import "../less/allMovies.less";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Poster from "../public/default_poster.jpg";
-import { useFetch } from "../hooks/useFetch";
+import { useState } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useFetchMoviesQuery, useSearchMovieQuery } from "../redux/api/apiSlice";
 import Spinner from "../components/Spinner";
+import Movies from "../components/Movies";
+import "../less/allMovies.less";
 
 export const AllMovies = () => {
   const [search, setSearch] = useState("");
-  const [searchMovie, setSearchMovie] = useState([]);
-  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+  const { movie } = useParams();
+  const { pathname } = useLocation();
 
-  const apiKey = process.env.REACT_APP_API_KEY;
-  let pagina = 1;
-  let lastMovie;
-  let starsTotal = 5;
+  const { data: movies, error: moviesError, isLoading: moviesIsLoading } = useFetchMoviesQuery();
 
-  //get genres  from api
   const {
-    data: genres,
-    error,
-    isLoading,
-  } = useFetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=es-ES`);
+    data: searchResults,
+    error: searchError,
+    isLoading: searchIsLoading,
+  } = useSearchMovieQuery(movie !== undefined ? movie : "");
 
-  const handleSubmit = async e => {
-    try {
-      e.preventDefault();
-      const res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=es-ES&query=${search}&page=1&include_adult=false`
-      );
-      const data = await res.json();
-
-      if (data.results.length > 0) {
-        setSearchMovie(data.results);
-      } else if (data.results.length === 0) {
-        alert("No se encontraron resultados");
-      } else {
-        alert("Error");
-        setSearchMovie([]);
-      }
-      setSearch("");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  let observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          pagina++;
-          getAllMovies();
-        }
-      });
-    },
-    {
-      threshold: 1.0,
-      rootMargin: "0px 0px 200px 0px",
-    }
-  );
-
-  const getAllMovies = async () => {
-    try {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-ES&page=${pagina}`
-      );
-
-      if (data.status === 200) {
-        const resultado = await data.json();
-
-        setMovies(movies => [...movies, ...resultado.results]);
-
-        if (lastMovie) {
-          observer.unobserve(lastMovie);
-        }
-        const movies = document.querySelectorAll(".allMovies .card");
-        lastMovie = movies[movies.length - 1];
-        observer.observe(lastMovie);
-      } else {
-        console.log("Error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (searchMovie.length === 0) {
-      getAllMovies();
-    } else {
-      setMovies(searchMovie);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchMovie]);
-
-  if (isLoading) {
+  if (searchIsLoading || moviesIsLoading) {
     return <Spinner />;
   }
 
-  if (error) {
-    console.log(error);
+  if (searchError || moviesError) {
+    console.log(searchError);
+    console.log(moviesError);
   }
+
+  const handleSubmit = () => {
+    navigate(`/peliculas/${search.trim()}`);
+  };
 
   return (
     <div className='container-movies1'>
@@ -117,61 +48,48 @@ export const AllMovies = () => {
         </form>
       </div>
       <div className='allMovies'>
-        {movies &&
-          movies.map(
+        {searchResults.results.length > 0 &&
+          searchResults.results.map(
             ({ id, poster_path, title, vote_average, popularity, release_date, genre_ids }) => (
-              <div className='card' key={id}>
-                <Link to={`/pelicula/${id}`}>
-                  <div className='poster'>
-                    <img
-                      src={poster_path ? `https://image.tmdb.org/t/p/w780/${poster_path}` : Poster}
-                      alt={title}
-                    />
-                  </div>
-                </Link>
-
-                <div className='details1'>
-                  <h2>{title}</h2>
-                  <div className='rating'>
-                    <div className='stars-outer'>
-                      <div
-                        className='stars-inner'
-                        style={{ width: `${(vote_average / 2 / starsTotal) * 100}%` }}
-                      ></div>
-                    </div>
-                    <span>{`${vote_average / 2}/5`}</span>
-                  </div>
-                  <div className='genres'>
-                    {genre_ids &&
-                      genre_ids.slice(0, 3)?.map(id => {
-                        let genre = genres.genres?.find(genre => genre.id === id);
-
-                        return (
-                          <span key={genre.id && genre.id}>
-                            {genre.name && genre.name === undefined ? "" : genre.name}
-                          </span>
-                        );
-                      })}
-                  </div>
-
-                  <div className='info'>
-                    <span>
-                      <i className='fas fa-thumbs-up'></i> {Math.round(popularity)}
-                    </span>
-                    <span>
-                      <i className='fas fa-calendar-alt'></i>{" "}
-                      {release_date && release_date.split("-").reverse().join("-")}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <Movies
+                id={id}
+                poster_path={poster_path}
+                title={title}
+                vote_average={vote_average}
+                popularity={popularity}
+                release_date={release_date}
+                genre_ids={genre_ids}
+              />
+            )
+          )}
+        {movies.results.length &&
+          searchResults.results.length === 0 &&
+          movies.results.map(
+            ({ id, poster_path, title, vote_average, popularity, release_date, genre_ids }) => (
+              <Movies
+                id={id}
+                poster_path={poster_path}
+                title={title}
+                vote_average={vote_average}
+                popularity={popularity}
+                release_date={release_date}
+                genre_ids={genre_ids}
+              />
             )
           )}
       </div>
       <div className='return'>
-        <Link to='/'>
-          <span>Volver</span>
-        </Link>
+        <span
+          onClick={() => {
+            if (pathname === `/peliculas/${movie}`) {
+              navigate("/peliculas");
+            } else {
+              navigate("/");
+            }
+          }}
+        >
+          Volver
+        </span>
       </div>
     </div>
   );

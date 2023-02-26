@@ -16,7 +16,9 @@ function App() {
         <Route path='/serie/:id' element={<DetailSerie />} />
         <Route path='/personaje/:id' element={<DetailCast />} />
         <Route path='/peliculas' element={<AllMovies />} />
+        <Route path='/peliculas/:movie' element={<AllMovies />} />
         <Route path='/series' element={<AllSeries />} />
+        <Route path='/series/:serie' element={<AllSeries />} />
         <Route path='/personajes' element={<Actors />} />
       </Routes>
       <Footer />
