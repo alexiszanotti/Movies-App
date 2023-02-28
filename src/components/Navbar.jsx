@@ -40,7 +40,7 @@ const Navbar = () => {
               Series
             </li>
           </NavLink>
-          <NavLink to='/personajes'>
+          <NavLink to='/actores'>
             <li className='menu-navbar' onClick={() => handleOpen()}>
               <i className='fas fa-user-alt'></i>
               Personajes

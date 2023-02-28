@@ -1,47 +1,38 @@
 import { useState } from "react";
-import { useFetch } from "../hooks/useFetch";
-import Spinner from "../components/Spinner";
-import "../less/actors.less";
-import Actor from "../components/Actor";
 
-const apiKey = process.env.REACT_APP_API_KEY;
+import { useFetchActorsQuery, useSearchActorQuery } from "../redux/api/apiSlice";
+
+import Actor from "../components/Actor";
+import Spinner from "../components/Spinner";
+
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import "../less/actors.less";
 
 export const Actors = () => {
   const [search, setSearch] = useState("");
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&language=es-ES&query=${search}&page=1&include_adult=false`
-    );
-    const data = await res.json();
-
-    if (data.results.length > 0) {
-      setData(data.results);
-    } else if (data.results.length === 0) {
-      alert("No se encontraron resultados");
-      setData([]);
-    } else {
-      alert("Error");
-      setData([]);
-    }
-    setSearch("");
-  };
-
-  let pagina = 1;
+  const navigate = useNavigate();
+  const { actor } = useParams();
+  const { pathname } = useLocation();
 
   const {
-    data: actors,
-    isLoading,
-    error,
-    setData,
-  } = useFetch(
-    `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&language=es-ES&page=${pagina}`
-  );
+    data: searchActor,
+    isLoading: searchIsLoading,
+    error: searchError,
+  } = useSearchActorQuery(actor !== undefined ? actor : "");
 
-  if (isLoading) return <Spinner />;
+  const { data: actors, isLoading, error } = useFetchActorsQuery();
 
-  if (error) console.log(error);
+  if (isLoading || searchIsLoading) return <Spinner />;
+
+  if (error || searchError) {
+    console.log(error);
+    console.log(searchError);
+  }
+
+  const handleSubmit = () => {
+    navigate(`/actores/${search.trim()}`);
+  };
   return (
     <div className='actors-container'>
       <div className='search-bar2'>
@@ -59,12 +50,29 @@ export const Actors = () => {
       </div>
 
       <div className='actors-list'>
-        {actors.length &&
-          actors.map(({ id, profile_path, name }) => (
-            <Actor id={id} profile_path={profile_path} name={name} />
+        {searchActor.results.length > 0 &&
+          searchActor.results.map(({ id, profile_path, name }) => (
+            <Actor key={id} id={id} profile_path={profile_path} name={name} />
           ))}
       </div>
-      <button onClick={() => window.location.reload()} className='btn-back1'>
+
+      <div className='actors-list'>
+        {actors.results.length > 0 &&
+          searchActor.results.length === 0 &&
+          actors.results.map(({ id, profile_path, name }) => (
+            <Actor key={id} id={id} profile_path={profile_path} name={name} />
+          ))}
+      </div>
+      <button
+        onClick={() => {
+          if (pathname === `/actorses/${actor}`) {
+            navigate("/actorses");
+          } else {
+            navigate("/");
+          }
+        }}
+        className='btn-back1'
+      >
         Volver
       </button>
     </div>

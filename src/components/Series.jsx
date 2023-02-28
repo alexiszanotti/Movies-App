@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom";
 import Poster from "../public/default_poster.jpg";
-import { useFetch } from "./../hooks/useFetch";
-
-const apiKey = process.env.REACT_APP_API_KEY;
+import { useFetchGenresQuery } from "../redux/api/apiSlice";
 
 const Series = ({ id, poster_path, name, vote_average, genre_ids, popularity, first_air_date }) => {
-  const { data: genres } = useFetch(
-    `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=es-ES`
-  );
+  const { data: genres } = useFetchGenresQuery();
 
   var genre;
-  let starsTotal = 5;
   return (
     <div className='serie' key={id}>
       <Link to={`/serie/${id}`}>
@@ -27,7 +22,7 @@ const Series = ({ id, poster_path, name, vote_average, genre_ids, popularity, fi
           <div className='stars-outer1'>
             <div
               className='stars-inner1'
-              style={{ width: `${(vote_average / 2 / starsTotal) * 100}%` }}
+              style={{ width: `${(vote_average / 2 / 5) * 100}%` }}
             ></div>
           </div>
           <span>{`${vote_average / 2}/5`}</span>

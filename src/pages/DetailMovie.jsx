@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import Poster from "../public/default_poster.jpg";
-import { useFetch, useConfigCarrousel } from "../hooks";
+import { useConfigCarrousel } from "../hooks";
 import "../less/detailMovie.less";
 import Spinner from "../components/Spinner";
 import { CreditCast } from "../components/CreditCast";
-
-const apiKey = process.env.REACT_APP_API_KEY;
+import { useDetailMovieQuery, useFetchCreditsQuery } from "../redux/api/apiSlice";
 
 export const DetailMovie = () => {
   const { id } = useParams();
@@ -17,17 +16,13 @@ export const DetailMovie = () => {
     historia.go(-1);
   };
 
-  const {
-    data: movie,
-    error,
-    isLoading,
-  } = useFetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-ES`);
+  const { data: movie, error, isLoading } = useDetailMovieQuery(id);
 
   const {
     data: credits,
     error: errorCredit,
     isLoading: isLoadingCredit,
-  } = useFetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=es-ES`);
+  } = useFetchCreditsQuery(id);
 
   const { imageIndex, settings } = useConfigCarrousel();
 

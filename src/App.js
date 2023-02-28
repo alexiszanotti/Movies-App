@@ -19,7 +19,8 @@ function App() {
         <Route path='/peliculas/:movie' element={<AllMovies />} />
         <Route path='/series' element={<AllSeries />} />
         <Route path='/series/:serie' element={<AllSeries />} />
-        <Route path='/personajes' element={<Actors />} />
+        <Route path='/actores' element={<Actors />} />
+        <Route path='/actores/:actor' element={<Actors />} />
       </Routes>
       <Footer />
     </div>

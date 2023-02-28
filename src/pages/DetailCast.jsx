@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import Poster from "../public/default_poster.jpg";
-import { useFetch, useConfigCarrousel } from "../hooks";
+import { useConfigCarrousel } from "../hooks";
 import Spinner from "../components/Spinner";
+import { useDetailActorQuery, useFetchCombinedCreditsQuery } from "../redux/api/apiSlice";
 import "../less/detailCast.less";
 
 export const DetailCast = () => {
-  const apiKey = process.env.REACT_APP_API_KEY;
   const { id } = useParams();
 
   const historia = window.history;
@@ -15,31 +15,22 @@ export const DetailCast = () => {
     historia.go(-1);
   };
 
-  const {
-    data: cast,
-    error,
-    isLoading,
-  } = useFetch(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}&language=es-ES`);
+  const { data: cast, error, isLoading } = useDetailActorQuery(id);
 
   const {
     data: credits,
     error: errorCredits,
     isLoading: isLoadingCredits,
-  } = useFetch(
-    `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${apiKey}&language=es-ES`
-  );
+  } = useFetchCombinedCreditsQuery(id);
 
   const { imageIndex, settings } = useConfigCarrousel();
 
-  if (isLoading) {
+  if (isLoading || isLoadingCredits) {
     return <Spinner />;
   }
 
   if (error) {
     console.log(error);
-  }
-  if (isLoadingCredits) {
-    return <Spinner />;
   }
 
   if (errorCredits) {

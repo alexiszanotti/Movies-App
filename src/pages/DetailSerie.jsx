@@ -1,12 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import { useFetch, useConfigCarrousel } from "../hooks";
+import { useConfigCarrousel } from "../hooks";
 import Spinner from "../components/Spinner";
 import { Seasons } from "../components/Seasons";
 import { CreditCast } from "../components/CreditCast";
+import { useDetailSerieQuery, useFetchCreditSerieQuery } from "../redux/api/apiSlice";
 import "../less/detailSerie.less";
-
-const apiKey = process.env.REACT_APP_API_KEY;
 
 export const DetailSerie = () => {
   const { id } = useParams();
@@ -16,30 +15,22 @@ export const DetailSerie = () => {
     navigate("/series");
   };
 
-  const {
-    data: serie,
-    error,
-    isLoading,
-  } = useFetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=es-ES`);
+  const { data: serie, error, isLoading } = useDetailSerieQuery(id);
 
   const {
     data: credits,
     error: errorCredit,
     isLoading: isLoadingCredit,
-  } = useFetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=es-ES`);
+  } = useFetchCreditSerieQuery(id);
 
   const { imageIndex, settings } = useConfigCarrousel();
 
-  if (isLoading) {
+  if (isLoading || isLoadingCredit) {
     return <Spinner />;
   }
 
   if (error) {
     console.log(error);
-  }
-
-  if (isLoadingCredit) {
-    return <Spinner />;
   }
 
   if (errorCredit) {

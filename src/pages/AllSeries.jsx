@@ -12,6 +12,7 @@ export const AllSeries = () => {
   const navigate = useNavigate();
   const { serie } = useParams();
   const { pathname } = useLocation();
+
   const { data: series, error, isLoading } = useFetchSeriesQuery();
 
   const {
