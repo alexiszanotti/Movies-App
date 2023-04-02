@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useConfigCarrousel } from "../hooks";
 import Spinner from "./Spinner";
 import { useFetchSeriesQuery } from "../redux/api/apiSlice";
+import DefaultPoster from "../public/default_poster.jpg";
 import "../less/series.less";
 
 const PosterSeries = () => {
@@ -26,7 +27,12 @@ const PosterSeries = () => {
           {series?.results?.map(({ id, name, poster_path }, index) => (
             <div key={id} className={index === imageIndex ? "slide4 activeSlide4" : "slide4"}>
               <Link to={`/serie/${id}`}>
-                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={`${name}`} />
+                <img
+                  src={
+                    poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : DefaultPoster
+                  }
+                  alt={name}
+                />
               </Link>
               <h4 className='serie-name'>{name}</h4>
             </div>

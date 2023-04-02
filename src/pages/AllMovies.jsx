@@ -52,6 +52,7 @@ export const AllMovies = () => {
           searchResults.results.map(
             ({ id, poster_path, title, vote_average, popularity, release_date, genre_ids }) => (
               <Movies
+                key={id}
                 id={id}
                 poster_path={poster_path}
                 title={title}
@@ -67,6 +68,7 @@ export const AllMovies = () => {
           movies.results.map(
             ({ id, poster_path, title, vote_average, popularity, release_date, genre_ids }) => (
               <Movies
+                key={id}
                 id={id}
                 poster_path={poster_path}
                 title={title}
