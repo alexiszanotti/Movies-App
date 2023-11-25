@@ -19,7 +19,7 @@ export const AllSeries = () => {
     data: searchResults,
     error: searchError,
     isLoading: searchIsLoading,
-  } = useSearchSerieQuery(serie !== undefined ? serie : "");
+  } = useSearchSerieQuery(serie !== undefined ? serie : null);
 
   if (isLoading || searchIsLoading) {
     return <Spinner />;

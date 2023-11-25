@@ -121,7 +121,7 @@ export const DetailSerie = () => {
           {credits.cast &&
             credits.cast?.map(({ id, profile_path, name, character }, index) => (
               <CreditCast
-                ket={id}
+                key={id}
                 id={id}
                 profilePath={profile_path}
                 name={name}
@@ -137,6 +137,7 @@ export const DetailSerie = () => {
         {serie.seasons &&
           serie.seasons?.map(({ id, name, poster_path, air_date, episode_count }) => (
             <Seasons
+              key={id}
               id={id}
               name={name}
               poster_path={poster_path}

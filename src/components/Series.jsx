@@ -32,7 +32,7 @@ const Series = ({ id, poster_path, name, vote_average, genre_ids, popularity, fi
             genre_ids.slice(0, 3).map(id => {
               genre = genres?.genres.find(genre => genre.id === id);
               return (
-                <span key={genre?.id && genre?.id}>
+                <span key={id}>
                   {genre?.name && genre?.name === undefined ? "" : genre?.name}
                 </span>
               );
