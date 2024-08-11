@@ -1,10 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// AllSeries.jsx
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import Series from "../components/Series";
-import "../less/allSeries.less";
 import { useFetchSeriesQuery, useSearchSerieQuery } from "../redux/api/apiSlice";
 import Spinner from "./../components/Spinner";
+import SearchForm from "../components/SearchForm";
+import SeriesList from "../components/SeriesList";
+import "../less/allSeries.less";
 
 export const AllSeries = () => {
   const [search, setSearch] = useState("");
@@ -14,85 +15,41 @@ export const AllSeries = () => {
   const { pathname } = useLocation();
 
   const { data: series, error, isLoading } = useFetchSeriesQuery();
-
   const {
     data: searchResults,
     error: searchError,
     isLoading: searchIsLoading,
   } = useSearchSerieQuery(serie !== undefined ? serie : null);
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    navigate(`/series/${search.trim()}`);
+  };
+
+  const handleReturn = () => {
+    if (pathname === `/series/${serie}`) {
+      navigate("/series");
+    } else {
+      navigate("/");
+    }
+  };
+
   if (isLoading || searchIsLoading) {
     return <Spinner />;
   }
 
   if (error || searchError) {
-    console.log(error);
+    return <div>Error: {error?.message || searchError?.message}</div>;
   }
 
-  const handleSubmit = () => {
-    navigate(`/series/${search.trim()}`);
-  };
+  const seriesToRender = serie !== undefined ? searchResults?.results : series?.results;
 
   return (
     <div className='series-container'>
-      <div className='search-bar1 '>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            placeholder='Serie...'
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-          <button type='submit'>
-            <i className='fas fa-search'></i>
-          </button>
-        </form>
-      </div>
-      <div className='allSeries'>
-        {searchResults.results.length > 0 &&
-          searchResults.results.map(
-            ({ id, poster_path, name, vote_average, genre_ids, popularity, first_air_date }) => (
-              <Series
-                key={id}
-                id={id}
-                poster_path={poster_path}
-                name={name}
-                vote_average={vote_average}
-                genre_ids={genre_ids}
-                popularity={popularity}
-                first_air_date={first_air_date}
-              />
-            )
-          )}
-        {series.results.length &&
-          searchResults.results.length === 0 &&
-          series.results.map(
-            ({ id, poster_path, name, vote_average, genre_ids, popularity, first_air_date }) => (
-              <Series
-                key={id}
-                id={id}
-                poster_path={poster_path}
-                name={name}
-                vote_average={vote_average}
-                genre_ids={genre_ids}
-                popularity={popularity}
-                first_air_date={first_air_date}
-              />
-            )
-          )}
-      </div>
+      <SearchForm search={search} setSearch={setSearch} handleSubmit={handleSubmit} />
+      <SeriesList series={seriesToRender} />
       <div className='return1'>
-        <span
-          onClick={() => {
-            if (pathname === `/series/${serie}`) {
-              navigate("/series");
-            } else {
-              navigate("/");
-            }
-          }}
-        >
-          Volver
-        </span>
+        <span onClick={handleReturn}>Volver</span>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ImgDefault from "../public/Img-Default-Perfil.jpg";
+import ImgDefault from "../assets/Img-Default-Perfil.jpg";
 
 const Actor = ({ id, profile_path, name }) => {
   return (

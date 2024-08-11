@@ -1,5 +1,5 @@
 import React from "react";
-import imgPoster from "../public/default_poster.jpg";
+import imgPoster from "../assets/default_poster.jpg";
 
 export const Seasons = ({ id, poster_path, name, airDate, episodeCount }) => {
   return (

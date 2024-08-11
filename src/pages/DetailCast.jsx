@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
-import Poster from "../public/default_poster.jpg";
+import Poster from "../assets/default_poster.jpg";
 import { useConfigCarrousel } from "../hooks";
 import Spinner from "../components/Spinner";
 import { useDetailActorQuery, useFetchCombinedCreditsQuery } from "../redux/api/apiSlice";
@@ -80,7 +80,7 @@ export const DetailCast = () => {
                 <Link to={`/pelicula/${id}`}>
                   <img
                     src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : Poster}
-                    alt=''
+                    alt={character}
                   />
                 </Link>
                 <p>{character}</p>

@@ -1,5 +1,5 @@
 import "../less/footer.less";
-import img from "../public/tmdb.svg";
+import img from "../assets/tmdb.svg";
 
 const Footer = () => {
   return (
@@ -12,13 +12,13 @@ const Footer = () => {
           <a href='https://www.linkedin.com/in/alexis-zanotti/' target='_blank' rel='noreferrer'>
             <i id='linkedin' className='fab fa-linkedin'></i>
           </a>
-          <a href='https://github.com/alexiszanotti' target='_blank rel="noreferrer"'>
+          <a href='https://github.com/alexiszanotti' target='_blank' rel='noreferrer'>
             <i id='github' className='fab fa-github'></i>
           </a>
           <a href='https://www.behance.net/alexis-zanotti' target='_blank' rel='noreferrer'>
             <i id='behance' className='fab fa-behance'></i>
           </a>
-          <a href='https://www.themoviedb.org/'>
+          <a href='https://www.themoviedb.org/' target='_blank' rel='noreferrer'>
             <img src={img} alt='tmdb' />
           </a>
         </span>

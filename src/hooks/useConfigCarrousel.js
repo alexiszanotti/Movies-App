@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 
-export const useConfigCarrousel = () => {
+export const useConfigCarrousel = (slideToShow = 5) => {
   const [imageIndex, setImageIndex] = useState(0);
 
   const NextArrow = ({ onClick }) => {
@@ -14,21 +14,17 @@ export const useConfigCarrousel = () => {
 
   const PrevArrow = ({ onClick }) => {
     return (
-      <div className='arrow prev' onClick={onClick}>
-        <VscChevronLeft />
+      <div className='arrow prev'>
+        <VscChevronLeft onClick={onClick} />
       </div>
     );
   };
 
   const settings = {
-    dots: false,
     infinite: true,
-    lazyLoad: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: 0,
+    slidesToShow: slideToShow,
+    slidesToScroll: slideToShow,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     beforeChange: (current, next) => setImageIndex(next),

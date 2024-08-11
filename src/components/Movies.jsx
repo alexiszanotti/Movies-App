@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Poster from "../public/default_poster.jpg";
+import Poster from "../assets/default_poster.jpg";
 import { useFetchGenresQuery } from "../redux/api/apiSlice";
 import Spinner from "./Spinner";
 

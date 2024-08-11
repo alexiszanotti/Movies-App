@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
-import Poster from "../public/default_poster.jpg";
+import Poster from "../assets/default_poster.jpg";
 import { useConfigCarrousel } from "../hooks";
 import "../less/detailMovie.less";
 import Spinner from "../components/Spinner";

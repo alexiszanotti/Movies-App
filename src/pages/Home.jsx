@@ -1,4 +1,4 @@
-import imagenHome from "../public/Img-Home.jpg";
+import imagenHome from "../assets/Img-Home.jpg";
 import PosterMovies from "../components/PosterMovies";
 import PosterSeries from "../components/PosterSeries";
 import "../less/home.less";

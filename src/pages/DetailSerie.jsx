@@ -23,7 +23,9 @@ export const DetailSerie = () => {
     isLoading: isLoadingCredit,
   } = useFetchCreditSerieQuery(id);
 
-  const { imageIndex, settings } = useConfigCarrousel();
+  const imageToSlide = credits?.cast?.length < 5 ? credits.cast?.length : 5;
+
+  const { imageIndex, settings } = useConfigCarrousel(imageToSlide);
 
   if (isLoading || isLoadingCredit) {
     return <Spinner />;

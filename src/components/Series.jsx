@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-import Poster from "../public/default_poster.jpg";
+import Poster from "../assets/default_poster.jpg";
 import { useFetchGenresQuery } from "../redux/api/apiSlice";
 
 const Series = ({ id, poster_path, name, vote_average, genre_ids, popularity, first_air_date }) => {
-  const { data: genres } = useFetchGenresQuery();
+  const { data } = useFetchGenresQuery();
 
-  var genre;
+  const genreList = data?.genres.filter(genre => genre_ids.includes(genre.id));
+
+  const voteAverage = vote_average.toFixed(1);
+
   return (
     <div className='serie' key={id}>
       <Link to={`/serie/${id}`}>
@@ -25,18 +28,10 @@ const Series = ({ id, poster_path, name, vote_average, genre_ids, popularity, fi
               style={{ width: `${(vote_average / 2 / 5) * 100}%` }}
             ></div>
           </div>
-          <span>{`${vote_average / 2}/5`}</span>
+          <span>{`${voteAverage / 2}/5`}</span>
         </div>
         <div className='genres1'>
-          {genre_ids.length &&
-            genre_ids.slice(0, 3).map(id => {
-              genre = genres?.genres.find(genre => genre.id === id);
-              return (
-                <span key={id}>
-                  {genre?.name && genre?.name === undefined ? "" : genre?.name}
-                </span>
-              );
-            })}
+          {genreList?.length && genreList?.map(genre => <span key={genre.id}>{genre.name}</span>)}
         </div>
         <div className='info1'>
           <span>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useConfigCarrousel } from "../hooks";
 import Spinner from "./Spinner";
 import { useFetchSeriesQuery } from "../redux/api/apiSlice";
-import DefaultPoster from "../public/default_poster.jpg";
+import DefaultPoster from "../assets/default_poster.jpg";
 import "../less/series.less";
 
 const PosterSeries = () => {

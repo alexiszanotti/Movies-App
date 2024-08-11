@@ -8,7 +8,7 @@ import { DetailMovie, DetailSerie, DetailCast, AllMovies, AllSeries, Actors, Hom
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -23,7 +23,7 @@ function App() {
         <Route path='/actores/:actor' element={<Actors />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 }
 
