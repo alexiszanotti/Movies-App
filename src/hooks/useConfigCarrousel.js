@@ -24,6 +24,8 @@ export const useConfigCarrousel = (slideToShow = 5) => {
     infinite: true,
     speed: 500,
     slidesToShow: slideToShow,
+    centerMode: true,
+    centerPadding: "10px",
     slidesToScroll: slideToShow,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
